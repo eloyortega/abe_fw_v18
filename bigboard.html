@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>bigboard</title>
+</head>
+
+<body>
+	<div style="padding:40px;">
+		<h2 class="bigboard">this effect</h2>
+		<h4 class="bigboard">IS CREATED</h4>
+		<h1 class="bigboard">DYNAMICALLY</h1>
+		<hr>
+		<p class="bigboard">Just giving text a class of "bigboard" in your HTML causes this animation which flips through characters before generating each letter.</p>
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script>
+		//store each bigboard element in array
+		bb = document.getElementsByClassName('bigboard');
+		//console.log(bb);
+		bbarray = [];
+
+		for (var i = 0; i < bb.length; ++i) {
+			bbarray.push(bb[i].innerText);
+			bb[i].innerText = '';
+		}
+
+		//var for how many changes we want each letter to go through
+		cx = 50;
+
+		//initialize var for every affected character
+		lc = 0;
+
+		//counter how many affected characters
+		for (var i = 0; i < bbarray.length; i++) {
+			bblength = bbarray[i].length;
+			lc += bblength;
+		};
+
+		//mult affected chars to times per character to get total animations
+		ax = lc * cx;
+
+		//animation speed
+		asp = 75;
+
+		//counter for array items
+		x = 0;
+
+		//counter for item characters
+		y = 0;
+
+
+		w = '';
+
+		//loop animation
+		for (var z = 0; z < lc; ++z) {
+			//set delay
+			(function(z) {
+				setTimeout(function() {
+					//check if at end of array
+					if (x < bbarray.length) {
+						//loop through times to change letter
+						for (var i = 0; i < cx; ++i) {
+							//set shorter delay for this
+							(function(i) {
+								setTimeout(function() {
+									//check if at end if string
+									if (y < bbarray[x].length) {
+										//offset to change character
+										ct = (cx - i);
+										console.log("ct / i / letter / y: ", ct, i, bbarray[x][y], y);
+										//convert character to code
+										bbletter = bbarray[x][y].charCodeAt(0);
+										//offset char code
+										bbletter += (ct - 1);
+										//convert offset back to character
+										bbletter = String.fromCharCode(bbletter);
+
+										if (i == (cx - 1)) {
+											w = w.slice(0, -1) + bbletter + " ";
+											console.log(w);
+											bb[x].innerText = w;
+											//document.getElementById("result").innerHTML += bbletter;
+											++y;
+										} else {
+											w = w.slice(0, -1) + bbletter;
+											console.log(w);
+											bb[x].innerText = w;
+
+										};
+										console.log("char change iteration: ", i * (asp / cx));
+									} else {
+										w = w.slice(0, -1);
+										console.log(w);
+										bb[x].innerText = w;
+
+										y = 0;
+										++x;
+										w = '';
+									};
+
+								}, i * (asp / cx));
+							}(i));
+						};
+					};
+					console.log("animation iteration: ", asp * z);
+				}, asp * z);
+			}(z));
+		};
+
+	</script>
+</body>
+
+</html>
