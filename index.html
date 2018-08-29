@@ -13,11 +13,11 @@
 	<style>
 		/*styles to see grid*/
 
-		.row div {
+		.grid .row div {
 			border: 1px solid #eee;
 		}
 
-		.row {
+		.grid .row {
 			border: 1px solid #000;
 		}
 
@@ -118,9 +118,33 @@
 	<p class="font-weight-light">Light weight text.</p>
 	<p class="font-italic">Italic text.</p>
 
+	<br><br>
+	
+		<!-- Display and Spacing -->
+	<h1>Display and Spacing</h1>
+	<hr>
+	<div class="container">
+		<div class="p-2 bg-primary">d-block</div>
+		<div class="d-inline-block p-2 bg-primary">d-inline-block</div>
+		<br><br>
+		<p class="d-lg-block d-sm-none d-none">shows on desktop</p>
+		<p class="d-sm-block d-lg-none">shows on mobile</p>
+		<br><br>
+		<div class="p-1 bg-primary">padding</div>
+		<div class="p-2 bg-secondary">padding</div>
+		<div class="p-3 bg-primary">padding</div>
+		<br><br>
+		<div class="mb-5 bg-primary">Margin Bottom</div>
+		<div class="pl-5 bg-secondary">padding left</div>
+		<br><br>
+		<div class="mx-auto bg-primary" style="width: 200px;">Centered element</div>
+	</div>
+	
+	<br><br>
+
 	<!-- Grid System -->
 	<h1>Grid Systems</h1>
-	<h2>Fluid Container and Auto-width columns</h2>
+	<h2>Fluid Container and Auto-width Columns</h2>
 	<hr>
 	<div class="container-fluid">
 		<div class="row">
@@ -136,9 +160,9 @@
 	<br><br>
 
 	<!-- max-width container -->
-	<h2>Max-Width Container and column properties</h2>
+	<h2>Max-Width Container and Column Properties</h2>
 	<hr>
-	<div class="container">
+	<div class="container grid">
 		<div class="row">
 			<div class="col">
 				Auto-width columns
@@ -196,7 +220,7 @@
 
 	<br><br>
 
-	<h2>col alignments ordered</h2>
+	<h2>Column Alignments and Ordering</h2>
 	<hr>
 	<div class="container">
 		<div class="row">
@@ -220,8 +244,10 @@
 
 	<br><br>
 
+	<!-- Additional Components -->
+	<h1>Additional Components</h1>
 	<!-- Media Object -->
-	<h1>Media Object</h1>
+	<h2>Media Object</h2>
 	<hr>
 	<div class="container">
 
@@ -238,37 +264,33 @@
 	<br><br>
 
 	<!-- Table -->
-	<h1>Table</h1>
+	<h2>Table</h2>
 	<hr>
 	<div class="container">
 
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th scope="col">#</th>
-					<th scope="col">First</th>
-					<th scope="col">Last</th>
-					<th scope="col">Handle</th>
+					<th>#</th>
+					<th>First</th>
+					<th>Last</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<th scope="row">1</th>
+					<th>1</th>
 					<td>Mark</td>
 					<td>Otto</td>
-					<td>@mdo</td>
 				</tr>
 				<tr>
-					<th scope="row">2</th>
+					<th>2</th>
 					<td>Jacob</td>
 					<td>Thornton</td>
-					<td>@fat</td>
 				</tr>
 				<tr>
-					<th scope="row">3</th>
+					<th>3</th>
 					<td>Larry</td>
 					<td>the Bird</td>
-					<td>@twitter</td>
 				</tr>
 			</tbody>
 		</table>
@@ -276,7 +298,7 @@
 	</div>
 
 	<!-- Buttons -->
-	<h1>Buttons</h1>
+	<h2>Buttons</h2>
 	<hr>
 	<div class="container">
 
@@ -288,10 +310,10 @@
 		<button type="button" class="btn btn-info">Info</button>
 		<button type="button" class="btn btn-light">Light</button>
 		<button type="button" class="btn btn-dark">Dark</button>
-
 		<button type="button" class="btn btn-link">Link</button>
 
 		<br><br>
+
 		<button type="button" class="btn btn-outline-primary">Primary</button>
 		<button type="button" class="btn btn-outline-secondary">Secondary</button>
 		<button type="button" class="btn btn-outline-success">Success</button>
@@ -305,24 +327,8 @@
 
 	<br><br>
 
-	<!-- Buttons -->
-	<h1>Images</h1>
-	<hr>
-	<div class="container">
-		<img class="img-fluid" src="https://via.placeholder.com/2000x500">
-	</div>
-
-	<!-- Badges -->
-	<h1>Badges</h1>
-	<hr>
-	<div class="container">
-		<button type="button" class="btn btn-primary">
-  Notifications <span class="badge badge-light">4</span>
-</button>
-	</div>
-
 	<!-- Button Group -->
-	<h1>Button Group</h1>
+	<h2>Button Group</h2>
 	<hr>
 	<div class="container">
 		<div class="btn-group" role="group" aria-label="Basic example">
@@ -332,132 +338,200 @@
 		</div>
 	</div>
 
-	<!-- card -->
-	<h1>card</h1>
+	<br><br>
+
+	<!-- Buttons -->
+	<h2>Images</h2>
+	<hr>
+	<div class="container">
+		<img class="img-fluid" src="https://via.placeholder.com/2000x500">
+		<br><br>
+		<img class="img-thumbnail" src="https://via.placeholder.com/200x200">
+		<img class="rounded-circle" src="https://via.placeholder.com/200x200">
+		<img class="rounded" src="https://via.placeholder.com/200x200">
+	</div>
+
+	<!-- Badges -->
+	<h2>Badges</h2>
+	<hr>
+	<div class="container">
+		<button type="button" class="btn btn-primary">
+			Notifications <span class="badge badge-light">4</span>
+		</button>
+		<button type="button" class="btn btn-primary">
+			Notifications <span class="badge badge-dark">4</span>
+		</button>
+	</div>
+
+
+
+	<!-- Cards -->
+	<h2>Cards</h2>
 	<hr>
 	<div class="container">
 		<div class="row">
-			<div class="card col" >
-				<img class="card-img-top" src="https://via.placeholder.com/200x100" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
-				</div>
-			</div>
-			<div class="card col" >
-				<img class="card-img-top" src="https://via.placeholder.com/200x100" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
-				</div>
-			</div>
-			<div class="card col" >
-				<img class="card-img-top" src="https://via.placeholder.com/200x100" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<a href="#" class="btn btn-primary">Go somewhere</a>
+			<div class="col-md-4">
+				<div class="card">
+					<img class="card-img-top" src="https://via.placeholder.com/400x100">
+					<div class="card-body">
+						<p>simpliest card</p>
+					</div>
 				</div>
 			</div>
 
+			<div class="col-md-4">
+				<div class="card">
+					<img class="card-img-top" src="https://via.placeholder.com/400x100">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card">
+					<div class="card-header">
+						Featured
+					</div>
+					<img class="card-img-top" src="https://via.placeholder.com/400x100">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">Item 1</li>
+							<li class="list-group-item">Item 2</li>
+						</ul>
+					</div>
+					<div class="card-footer text-muted">
+						2 days ago
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<br><br>
+
+	<!-- accordion -->
+	<h2>Accordion</h2>
+	<hr>
+	<div class="container">
+		<div class="row">
+			<div class="col" id="collapse1">
+				<div>
+					<button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#c1" aria-expanded="true" aria-controls="c1">Collapse 1</button>
+				</div>
+				<div id="c1" class="collapse show" data-parent="#collapse1">
+					<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.</p>
+				</div>
+
+				<div>
+					<button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#c2" aria-expanded="true" aria-controls="c2">Collapse 2</button>
+				</div>
+				<div id="c2" class="collapse" data-parent="#collapse1">
+					<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.</p>
+				</div>
+
+				<div>
+					<button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#c3" aria-expanded="true" aria-controls="c3">Collapse 3</button>
+				</div>
+				<div id="c3" class="collapse" data-parent="#collapse1">
+					<p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod.</p>
+				</div>
+			</div>
 		</div>
 	</div>
-	
-	
-	
-	<div id="accordion">
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Collapsible Group Item #1
-        </button>
-      </h5>
-    </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingTwo">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Collapsible Group Item #2
-        </button>
-      </h5>
-    </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-header" id="headingThree">
-      <h5 class="mb-0">
-        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Collapsible Group Item #3
-        </button>
-      </h5>
-    </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-      <div class="card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-      </div>
-    </div>
-  </div>
-</div>
-	
-	
-	
-	
-	
-	
-	
-	<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown button
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
+	<br><br>
 
-	
-	
-	
-	<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
+	<!-- Dropdown Menu -->
+	<h2>Dropdown Menu</h2>
+	<hr>
+	<div class="container">
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+		<div class="dropdown">
+			<button class="btn btn-primary dropdown-toggle" type="button" id="ddb" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown button</button>
+			<div class="dropdown-menu" aria-labelledby="ddb">
+				<a class="dropdown-item" href="#">Action</a>
+				<a class="dropdown-item" href="#">Another action</a>
+				<a class="dropdown-item" href="#">Something else here</a>
+			</div>
+		</div>
+
+	</div>
+
+	<br><br>
+
+	<!-- Modal -->
+	<h2>Modal</h2>
+	<hr>
+	<div class="container">
+
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1">Trigger Modal</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="modal1" tabindex="-1" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<p>Modal Content Goes Here.</p>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<br><br>
+
+	<!-- Modal -->
+	<h2>Modal</h2>
+	<hr>
+	<div class="container">
+
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active show" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Home</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="true">Contact</a>
+			</li>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade  active show p-2" id="home" role="tabpanel" aria-labelledby="home-tab">
+				<p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+			</div>
+			<div class="tab-pane fade  p-2" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+				<p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+			</div>
+			<div class="tab-pane fade  p-2" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+				<p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+
 
 
 
@@ -468,4 +542,5 @@
 	<script src="assets/js/popper.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 </body>
+
 </html>
