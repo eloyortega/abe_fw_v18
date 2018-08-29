@@ -12,17 +12,40 @@
 		/*custom page css here*/
 	</style>
 </head>
+
 <body>
-	<!-- HTML here. -->
-	<h1>Bootstrap 4 template</h1>
+	<h1>JS Digits Numbering</h1>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<div class="container">
+
+		<p class="digits">711</p>
+		<p class="digits">6711</p>
+		<p class="digits">46711</p>
+		<p class="digits">283467.91</p>
+		<p class="digits">283467.90871</p>
+
+	</div>
+
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="assets/js/jquery.js"></script>
 	<script src="assets/js/popper.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
-		/* custom script here */
+		$.fn.digits = function(){ 
+			return this.each(function(){ 
+				if ($(this).text().indexOf(".") !=-1){
+					var parts = $(this).text().split(".");
+					parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					parts[1] = parts[1].substring(0, 2);
+					$(this).text(parts.join("."));
+				}else{
+					$(this).text( $(this).text().replace(/(\d)(?=([^.]{3})+($|[.]))/g,"$1,") );
+				}
+			})
+		}
+		$(".digits").digits();
+
 	</script>
 </body>
 </html>

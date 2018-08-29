@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+		/*custom page css here*/
+	</style>
+</head>
+
+<body>
+	<h1>JS Ordinal Numbering</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<div class="container">
+
+		<p class="ordinal">1</p>
+		<p class="ordinal">2</p>
+		<p class="ordinal">3</p>
+		<p class="ordinal">4</p>
+		<p class="ordinal">5</p>
+		<p class="ordinal">10</p>
+		<p class="ordinal">11</p>
+		<p class="ordinal">12</p>
+		<p class="ordinal">13</p>
+		<p class="ordinal">14</p>
+		<p class="ordinal">21</p>
+		<p class="ordinal">22</p>
+		<p class="ordinal">23</p>
+		<p class="ordinal">24</p>
+		<p class="ordinal">101</p>
+		<p class="ordinal">102</p>
+		<p class="ordinal">103</p>
+		<p class="ordinal">104</p>
+		<p class="ordinal">111</p>
+		<p class="ordinal">112</p>
+		<p class="ordinal">113</p>
+		<p class="ordinal">114</p>
+		<p class="ordinal">28346711</p>
+		<p class="ordinal">28346791</p>
+
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script>
+		var ordinal = document.getElementsByClassName('ordinal');
+
+		for (var i = 0; i < ordinal.length; i++) {
+			var no = ordinal[i].innerText;
+			var no1 = no.slice(-2);
+			var no2 = no.slice(-1);
+			if (no1 != 11 && no2 == 1) {
+				ordinal[i].innerHTML += 'st';
+			} else if (no1 != 12 && no2 == 2) {
+				ordinal[i].innerHTML += 'nd';
+			} else if (no1 != 13 && no2 == 3) {
+				ordinal[i].innerHTML += 'rd';
+			} else {
+				ordinal[i].innerHTML += 'th';
+			};
+		};
+
+	</script>
+</body>
+</html>

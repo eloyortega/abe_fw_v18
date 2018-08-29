@@ -7,10 +7,12 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
-	<title>bigboard</title>
+	<title>ABE Template 2018 | Bigboard</title>
 </head>
 <body>
-	<div style="padding:40px;">
+	<h1>JS BigBoard Animation</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<div class="container">
 		<h2 class="bigboard">this effect</h2>
 		<h4 class="bigboard">IS CREATED</h4>
 		<h1 class="bigboard">DYNAMICALLY</h1>
@@ -77,7 +79,7 @@
 									if (y < bbarray[x].length) {
 										//offset to change character
 										ct = (cx - i);
-										console.log("ct / i / letter / y: ", ct, i, bbarray[x][y], y);
+										//console.log("ct / i / letter / y: ", ct, i, bbarray[x][y], y);
 										//convert character to code
 										bbletter = bbarray[x][y].charCodeAt(0);
 										//offset char code
@@ -87,20 +89,20 @@
 
 										if (i == (cx - 1)) {
 											w = w.slice(0, -1) + bbletter + " ";
-											console.log(w);
+											//console.log(w);
 											bb[x].innerText = w;
 											//document.getElementById("result").innerHTML += bbletter;
 											++y;
 										} else {
 											w = w.slice(0, -1) + bbletter;
-											console.log(w);
+											//console.log(w);
 											bb[x].innerText = w;
 
 										};
 										console.log("char change iteration: ", i * (asp / cx));
 									} else {
 										w = w.slice(0, -1);
-										console.log(w);
+										//console.log(w);
 										bb[x].innerText = w;
 
 										y = 0;
@@ -112,7 +114,7 @@
 							}(i));
 						};
 					};
-					console.log("animation iteration: ", asp * z);
+					//console.log("animation iteration: ", asp * z);
 				}, asp * z);
 			}(z));
 		};
