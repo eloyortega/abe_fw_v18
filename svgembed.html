@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+		/*custom page css here*/
+
+		svg {
+			width: 200px;
+		}
+
+		svg path {
+			fill: #00f;
+		}
+
+	</style>
+</head>
+
+<body>
+	<h1>JS Digits Numbering</h1>
+	<h5>Add svg to img tag and it will render as an embedded svg</h5>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<div class="container">
+		<img src="assets/img/svg/navadmin.svg" class="svg" />
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script>
+		jQuery('img.svg').each(function() {
+			var $img = jQuery(this);
+			var imgID = $img.attr('id');
+			var imgClass = $img.attr('class');
+			var imgURL = $img.attr('src');
+			jQuery.get(imgURL, function(data) {
+				var $svg = jQuery(data).find('svg');
+				if (typeof imgID !== 'undefined') {
+					$svg = $svg.attr('id', imgID);
+				}
+				if (typeof imgClass !== 'undefined') {
+					$svg = $svg.attr('class', imgClass + ' replaced-svg');
+				}
+				$svg = $svg.removeAttr('xmlns:a');
+				$img.replaceWith($svg);
+			}, 'xml');
+		});
+	</script>
+</body>
+
+</html>
