@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<!--	<link rel="stylesheet" href="assets/css/bootstrap.min.css">-->
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+		/*custom page css here*/
+		.collapse {
+	display: none;
+}
+
+.collapseBtn {
+	cursor: pointer;
+}
+
+
+	</style>
+</head>
+
+<body>
+	<h1>jQuery Accordion</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<div class="container">
+		
+		<h4 class="collapseBtn"><span>&#9654;</span>&nbsp;Collapse</h4>
+				<div class="collapse">
+					<p>This is another paragraph. I think it needs to be added that the set of elements tested is not exhaustive in any sense. I have selected those elements for which it can make sense to write user style sheet rules, in my opionion.</p>
+				</div>
+
+
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+	<!--
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+-->
+	<script>
+
+$('.collapseBtn').click(function(){
+		$(this).next().slideToggle('slow');
+			if ( $('span', this).text() == '▶' ) {
+			$('span', this).text('▼');
+			}
+			else {
+				$('span', this).text('▶');
+			}
+		return false;
+	});
+
+
+	</script>
+</body>
+</html>

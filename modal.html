@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<!--	<link rel="stylesheet" href="assets/css/bootstrap.min.css">-->
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+		/*custom page css here*/
+
+		/*overlay*/
+
+		#overlayContainer {
+			background-color: rgba(0, 0, 0, 0.75);
+			height: 100%;
+			width: 100%;
+			position: fixed;
+			top: 0px;
+			z-index: 15;
+			display: none;
+			box-shadow: 0 0 100px 0 rgba(0, 0, 0, 0.25) inset;
+		}
+
+		.overlay {
+			display: none;
+			margin: 120px auto 0px auto;
+			max-height: calc(100% - 140px);
+			overflow-y: auto;
+			box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+			background-color: #fff;
+			position:relative;
+		}
+
+		.overlayWide {
+			max-width: 700px;
+		}
+
+		.overlayNormal {
+			max-width: 600px;
+		}
+
+		.overlaySlim {
+			max-width: 350px;
+		}
+
+		.closeParent {
+			float: right;
+			font-size: 20px;
+			text-align: center;
+			text-decoration: none;
+			width: 30px;
+			height: 30px;
+			background: #444;
+			display: block;
+			color: #fff;
+			position: absolute;
+			right: 0px;
+			z-index: 15;
+			top: 0px;
+		}
+
+		.closeParent:hover {
+			background: #ccc;
+			color: #fff;
+			text-decoration: none;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>jQuery Modal</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<div class="container">
+
+		<a href="#" class="overlayBtnBob">Overlay Bob</a>
+		<br>
+		<a href="#" class="overlayBtnCat">Overlay Cat</a>
+		<br>
+		<a href="#" class="overlayBtnFoo">Overlay Foo</a>
+
+
+	</div>
+	<div id="overlayContainer">
+		<div class="overlay overlayWide overlayFoo pad40">
+			<a href="#" class="closeParent">&times;</a>
+			<h1>foo</h1>
+		</div>
+		<div class="overlay overlayNormal overlayBob pad40">
+			<h2>BOB</h2>
+		</div>
+		<div class="overlay overlaySlim overlayCat pad40">
+			<h3>CAT?</h3>
+		</div>
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+	<!--
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+-->
+	<script>
+		//OVERLAYS Controls
+		$('.closeParent').click(function() {
+			$(this).parents('#overlayContainer').slideUp(500);
+			$(this).parent().fadeOut(500);
+			return false;
+		});
+
+		$("#overlayContainer").click(function() {
+			$(this).fadeOut();
+			$('#overlayContainer > div').fadeOut();
+			return false;
+		});
+
+		$('#overlayContainer > div').click(function(event) {
+			event.stopPropagation();
+		});
+
+		$("a[class*='overlayBtn']").click(function() {
+			overlayBtn = $(this).attr('class').split(' ');
+			$.each(overlayBtn, function(i, classvalue) {
+				if (classvalue.indexOf("overlayBtn") >= 0) {
+					overlayBtn = classvalue;
+				}
+			});
+			overlayTarget = '.' + overlayBtn.replace('Btn', '');
+			console.log(overlayTarget);
+
+			if ($(overlayTarget).css('display') == 'block') {
+				$('#overlayContainer').slideUp(500);
+				$('#overlayContainer > div').fadeOut(500);
+			} else {
+				$('#overlayContainer').slideUp(500);
+				$('#overlayContainer > div').fadeOut(500);
+				$(overlayTarget).parent('#overlayContainer').slideDown(500, function() {
+					$(overlayTarget).fadeIn(500);
+				});
+				$('.nav').removeClass('active');
+			}
+			return false;
+		});
+	</script>
+</body>
+</html>

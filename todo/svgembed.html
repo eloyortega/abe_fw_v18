@@ -33,27 +33,35 @@
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<script src="assets/js/jquery.js"></script>
+<!--	<script src="assets/js/jquery.js"></script>-->
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
 	<script src="assets/js/popper.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
-		jQuery('img.svg').each(function() {
-			var $img = jQuery(this);
-			var imgID = $img.attr('id');
-			var imgClass = $img.attr('class');
-			var imgURL = $img.attr('src');
-			jQuery.get(imgURL, function(data) {
-				var $svg = jQuery(data).find('svg');
-				if (typeof imgID !== 'undefined') {
-					$svg = $svg.attr('id', imgID);
-				}
-				if (typeof imgClass !== 'undefined') {
-					$svg = $svg.attr('class', imgClass + ' replaced-svg');
-				}
-				$svg = $svg.removeAttr('xmlns:a');
-				$img.replaceWith($svg);
-			}, 'xml');
-		});
+		document.querySelectorAll('img.svg').forEach((el) => {
+    const imgID = el.getAttribute('id');
+    const imgClass = el.getAttribute('class');
+    const imgURL = el.getAttribute('src');
+
+    request({url: imgURL}).then((data) => {
+      const parser = new DOMParser();
+      const xmlDoc = parser.parseFromString(data, 'text/html');
+      let svg = xmlDoc.querySelector('svg');
+
+      if (typeof imgID !== 'undefined') {
+        svg.setAttribute('id', imgID);
+      }
+
+      if(typeof imgClass !== 'undefined') {
+        svg.setAttribute('class', imgClass + ' replaced-svg');
+      }
+
+      svg.removeAttribute('xmlns:a');
+
+      el.parentNode.replaceChild(svg, el);
+    })
+  });
 	</script>
 </body>
 
