@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<!--	<link rel="stylesheet" href="assets/css/bootstrap.min.css">-->
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+		.tabcontainer:first-of-type {
+			display: block;
+		}
+
+		.tabcontainer {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>jQuery Tabs</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<div class="container">
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<p class="pad10 alignCenter">
+			<a href="#" class="tablink" id="tabBtn1">tablink1</a> |
+			<a href="#" class="tablink" id="tabBtn2">tablink2</a>
+		</p>
+		<div>
+			<div id="tab1" class="tabcontainer pad20 callAccent">
+				<h1>You clicked tab one</h1>
+			</div>
+			<div id="tab2" class="tabcontainer pad20 callLight">
+				<h1>You clicked tab 2</h1>
+			</div>
+		</div>
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+	<!--
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+-->
+	<script>
+		$("a[class*='tablink']").click(function(){
+			tabBtn= $(this).attr('id');
+			tabTarget = '#' + tabBtn.replace('Btn','');
+			console.log(tabTarget);
+			$('.tabcontainer').hide();
+			$(tabTarget).show();
+			$('html,body').animate({
+				scrollTop: $(".tablink").offset().top
+			});
+			return false;
+		});
+
+	</script>
+</body>
+</html>

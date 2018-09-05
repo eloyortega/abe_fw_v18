@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+		/*form wizard*/
+
+		.clear {
+			clear: both;
+		}
+
+		fieldset {
+			border: none;
+			transition: all 0.3s linear;
+			-webkit-transition: all 0.3s linear;
+			-moz-transition: all 0.3s linear;
+			-ms-transition: all 0.3s linear;
+			width: 100%;
+		}
+
+		.nextstep,
+		.prevstep {
+			font-size: 1.4em;
+			padding: 1em;
+		}
+
+		.nextstep {
+			float: right;
+		}
+
+		.prevstep {
+			float: left;
+		}
+
+		.formWizard fieldset:first-of-type {
+			display: block;
+		}
+
+		.formWizard fieldset {
+			display: none;
+		}
+
+		.formWizardSteps,
+		.formWizardSections {
+			padding: 10px;
+			border-top: 1px solid #ffb;
+			border-bottom: 1px solid #ffb;
+		}
+
+		.formWizardSections ul,
+		.formWizardSteps ul {
+			text-align: center;
+			padding: 0px;
+		}
+
+		.formWizardSections li,
+		.formWizardSteps li {
+			display: inline-block;
+			text-align: center;
+			vertical-align: middle;
+			list-style: none;
+		}
+
+		.formWizardSections a,
+		.formWizardSteps a {
+			padding: 20px;
+			display: block;
+		}
+
+		.formWizardSections a:hover,
+		.formWizardSteps a:hover {
+			text-decoration: none;
+		}
+
+		.fwStepsprev,
+		.fwSectionsprev {
+			color: #aec !important;
+		}
+
+		.fwStepsprev:hover,
+		.fwSectionsprev:hover {
+			color: #aec !important;
+		}
+
+		.fwStepscurrent,
+		.fwSectionscurrent {
+			color: #aec !important;
+		}
+
+		.error {
+			border: 1px solid #f00;
+		}
+
+		.errmsg {
+			color: #f00;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Read More</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<div class="container">
+
+		<!-- form wizard sections -->
+		<form class="formWizard">
+			<div class="formWizardSections">
+				<ul>
+					<li><a href="#">Section 1</a></li>&nbsp;&rsaquo;&nbsp;
+					<li><a href="#">Section 2</a></li>&nbsp;&rsaquo;&nbsp;
+					<li><a href="#">Section 3</a></li>
+				</ul>
+			</div>
+			<fieldset class="Section1">
+				<h1>This is Step 1</h1>
+				<input type="text" name="fn">
+				<input type="text" name="ln" required>
+				<input type="email" name="em" required>
+				<div class="pad10 fwcontrols">
+					<a class="nextstep">Next Section&nbsp;&rsaquo;</a>
+					<br class="clear" />
+				</div>
+			</fieldset>
+			<fieldset class="Section2">
+				<h1>This is Step 2</h1>
+				<input type="text" name="fn1">
+				<input type="text" name="ln1" required>
+				<input type="email" name="em1" required>
+				<div class="fwcontrols">
+					<a class="prevstep">&lsaquo;&nbsp;Prev Section</a>
+					<a class="nextstep">Next Section&nbsp;&rsaquo;</a>
+					<br class="clear" />
+				</div>
+			</fieldset>
+			<fieldset class="Section2">
+				<h1>This is Step 3</h1>
+				<div class="fwcontrols">
+					<a class="prevstep">&lsaquo;&nbsp;Prev Section</a>
+					<a class="nextstep">Next Section&nbsp;&rsaquo;</a>
+					<br class="clear" />
+				</div>
+			</fieldset>
+			<fieldset class="Section3">
+				<h1>This is Step 4</h1>
+				<div class="fwcontrols">
+					<a class="prevstep">&lsaquo;&nbsp;Prev Section</a>
+					<a class="nextstep">Next Section&nbsp;&rsaquo;</a>
+					<br class="clear" />
+				</div>
+			</fieldset>
+		</form>
+
+		<!-- form wizard steps -->
+		<!--
+		<form class="formWizard">
+			<div class="formWizardSteps">
+				<ul>
+					<li><a href="#">Step 1</a></li>&nbsp;&rsaquo;&nbsp;
+					<li><a href="#">Step 2</a></li>&nbsp;&rsaquo;&nbsp;
+					<li><a href="#">Step 3</a></li>
+				</ul>
+			</div>
+			<fieldset class="Section1">
+				<h1>This is Step 1</h1>
+				<div class="fwcontrols">
+					<a class="nextstep">Next Section&nbsp;&rsaquo;</a>
+					<br class="clear" />
+				</div>
+			</fieldset>
+			<fieldset class="Section2">
+				<h1>This is Step 2</h1>
+				<div class="fwcontrols">
+					<a class="prevstep">&lsaquo;&nbsp;Prev Section</a>
+					<a class="nextstep">Next Section&nbsp;&rsaquo;</a>
+					<br class="clear" />
+				</div>
+			</fieldset>
+			<fieldset class="Section2">
+				<h1>This is Step 3</h1>
+				<div class="fwcontrols">
+					<a class="prevstep">&lsaquo;&nbsp;Prev Section</a>
+					<a class="nextstep">Next Section&nbsp;&rsaquo;</a>
+					<br class="clear" />
+				</div>
+			</fieldset>
+		</form>
+-->
+
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+
+	<script>
+		$('.formWizard').each(function() {
+			//initilize classes for input validation
+			$(this).find("input, textarea, select, button").addClass("ignore");
+			$(this).find("*[required]").removeClass("ignore").addClass("validate");
+
+			//next btn click does the following...
+			$('.nextstep', this).click(function() {
+				//remove any error messages
+				$('.errmsg').remove();
+
+				//loop through validate inputs
+				$(this).parents('fieldset').find('.validate').each(function() {
+					//grab the input's value
+					inputval = $(this).val();
+
+					//create an eror is input is empty
+					if (inputval == "") {
+						$(this).addClass('error');
+						errormsg = 'Please enter a value in the highlighed input';
+						proceed = false;
+						//if an email input, extra validation is needed...
+					} else if ($(this).attr('type') == 'email') {
+						//check that the email input val contains an "@" and "." ...
+						//that the "." comes after the "@" ...
+						//and finally that there is a character before and after the "."
+						//create a unique error is 1 of these criteria is not met
+						atcheck = inputval.split("@");
+						dotcheck = atcheck[atcheck.length - 1];
+						if (inputval.indexOf("@") == -1 ||
+							dotcheck.indexOf(".") == -1 ||
+							dotcheck.indexOf(".") == dotcheck.length - 1 ||
+							dotcheck.indexOf(".") == 0
+						) {
+							$(this).addClass('error');
+							errormsg = 'Please enter a valid email';
+							proceed = false;
+						};
+						//if input is valid, remove error class and set var to true
+						//at the end of the loop this var set as true will allow progression through the wizard
+					} else {
+						$(this).removeClass('error');
+						proceed = true;
+					};
+				});
+				//after looping through valid inputs, generate the appropriate error msg invalid input encountered
+				if (proceed == false) {
+					$(this).parents('fieldset').append('<p class="errmsg">' + errormsg + '</p>');
+					return false;
+					//else proceed to next section of form by doing the following...
+				} else {
+					//remove all lingering error classes in the current section
+					$(this).parents('fieldset').find('.validate').removeClass('error');
+					//hide current section and add a class to it in case user wants to go back
+					$(this).parents('fieldset').hide();
+					//show next section
+					$(this).parents('fieldset').next().show();
+				};
+			});
+
+			$('.prevstep', this).click(function() {
+				$(this).parents('fieldset').hide();
+				$(this).parents('fieldset').prev().show();
+			});
+
+
+
+
+			if ($('.formWizardSections', this).length > -1) {
+				$('.formWizardSections li').eq(0).children('a').addClass('fwSectionscurrent');
+
+				//next click stuff
+				/*
+								fsNumber = $(this).parents('fieldset').next().attr('class').split(' ');
+								$.each(fsNumber, function(i, val) {
+									if (val.indexOf("Section") > -1) {
+										fsNumber = val;
+										fsSection = fsNumber.replace('Section', '') - 1;
+									};
+								});
+								$(this).closest('.formWizard').find('.formWizardSections li a').removeClass('fwSectionscurrent');
+								$(this).closest('.formWizard').find('.formWizardSections li').each(function() {
+									if ($(this).index() < fsSection) {
+										$('a', this).addClass('fwSectionsprev');
+									};
+									if ($(this).index() == fsSection) {
+										$('a', this).addClass('fwSectionscurrent');
+									};
+								});
+				*/
+				//prev button
+				/*
+					var fsNumber = $(this).parents('fieldset').prev().attr('class');
+					var fsSection = fsNumber.replace('Section', '') - 1;
+					$(this).closest('.formWizard').find('.formWizardSections a').removeClass('fwSectionscurrent').removeClass('fwSectionsprev');
+					$(this).closest('.formWizard').find('.formWizardSections li').each(function() {
+						if ($(this).index() < fsSection) {
+							$('a', this).addClass('fwSectionsprev');
+						}
+						if ($(this).index() == fsSection) {
+							$('a', this).addClass('fwSectionscurrent');
+						}
+					});
+				*/
+
+				//				$('.formWizardSections', this).on('click', '.fwSectionsprev', function() {
+				//					fsjumpto = $(this).parents('li').index() + 1;
+				//					$(this).parents('.formWizard').find('fieldset').hide();
+				//					$(this).parents('.formWizard').find('fieldset.Section' + fsjumpto).first().show().removeClass('prevfs');
+				//					$(this).parents('.formWizard').find('fieldset.Section' + fsjumpto).first().nextAll().removeClass('prevfs');
+				//					$(this).closest('.formWizard').find('.formWizardSections a').removeClass('fwSectionscurrent').removeClass('fwSectionsprev');
+				//					$(this).addClass('fwSectionscurrent');
+				//					var fsSection = $(this).parent('li').prevAll().length;
+				//					$(this).closest('.formWizard').find('.formWizardSections li').each(function() {
+				//						if ($(this).index() < fsSection) {
+				//							$('a', this).addClass('fwSectionsprev');
+				//						}
+				//					});
+				//				});
+			} else if ($('.formWizardSteps', this).length) {
+
+			}
+		});
+	</script>
+</body>
+</html>

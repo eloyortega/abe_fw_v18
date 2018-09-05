@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+	</style>
+</head>
+
+<body>
+	<h1>jQuery UI Sortable, Object to Dynamic HTML loop, and Local Storage</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<div class="container">
+		<ul id="sortable"></ul>
+		<button onclick="reorder()">resort</button>
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+		if (localStorage.getItem("object")) {
+			obj = JSON.parse(localStorage.getItem("object"));
+		} else {
+			obj = {
+				"p1": {
+					"name": "Bob",
+					"age": 13
+				},
+				"p2": {
+					"name": "Sam",
+					"age": 14
+				},
+				"p3": {
+					"name": "Joe",
+					"age": 13
+				}
+			};
+		};
+
+		$(function() {
+			$.each(obj, function(k, v) {
+				$('#sortable').append(`
+					<li id="${k}">${v.name} | ${v.age}</li>
+				`);
+			});
+			$("#sortable").sortable();
+		});
+
+		function reorder() {
+			sorter = [];
+			obj2 = {};
+			$('#sortable li').each(function() {
+				sorter.push($(this).attr('id'));
+			});
+			$.each(sorter, function(k, v) {
+				console.log(v);
+				obj2[v] = obj[v];
+			});
+			obj = obj2;
+			localStorage.setItem("object", JSON.stringify(obj));
+		};
+	</script>
+</body>
+</html>

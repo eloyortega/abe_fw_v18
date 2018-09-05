@@ -17,15 +17,15 @@
 		}
 
 		svg path {
-			fill: #00f;
+			fill: #f00;
 		}
-
 	</style>
 </head>
 
 <body>
 	<h1>JS Digits Numbering</h1>
 	<h5>Add svg to img tag and it will render as an embedded svg</h5>
+	<p>note: This requires a server to execute</p>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
 	<div class="container">
 		<img src="assets/img/svg/navadmin.svg" class="svg" />
@@ -33,35 +33,29 @@
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<!--	<script src="assets/js/jquery.js"></script>-->
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script src="assets/js/jquery.js"></script>
+<!--	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>-->
 
 	<script src="assets/js/popper.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
-		document.querySelectorAll('img.svg').forEach((el) => {
-    const imgID = el.getAttribute('id');
-    const imgClass = el.getAttribute('class');
-    const imgURL = el.getAttribute('src');
-
-    request({url: imgURL}).then((data) => {
-      const parser = new DOMParser();
-      const xmlDoc = parser.parseFromString(data, 'text/html');
-      let svg = xmlDoc.querySelector('svg');
-
-      if (typeof imgID !== 'undefined') {
-        svg.setAttribute('id', imgID);
-      }
-
-      if(typeof imgClass !== 'undefined') {
-        svg.setAttribute('class', imgClass + ' replaced-svg');
-      }
-
-      svg.removeAttribute('xmlns:a');
-
-      el.parentNode.replaceChild(svg, el);
-    })
-  });
+		$('img.svg').each(function(){
+		var $img = $(this);
+		var imgID = $img.attr('id');
+		var imgClass = $img.attr('class');
+		var imgURL = $img.attr('src');
+		$.get(imgURL, function(data) {
+			var $svg = $(data).find('svg');
+			if(typeof imgID !== 'undefined') {
+				$svg = $svg.attr('id', imgID);
+			}
+			 if(typeof imgClass !== 'undefined') {
+				 $svg = $svg.attr('class', imgClass+' replaced-svg');
+			 }
+			 $svg = $svg.removeAttr('xmlns:a');
+			 $img.replaceWith($svg);
+		}, 'xml');
+	});
 	</script>
 </body>
 
