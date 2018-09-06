@@ -203,19 +203,29 @@
 
 	<script>
 		$('.formWizard').each(function() {
+			
+			$('fieldset', this).eq(0).addClass('curSec');
 		
 
 			if ($('.formWizardSections', this).length > -1) {
-				
-				pagBtns = function(){
+				console.log("hi");
 
+				//pagBtns = function(){
 					$('fieldset', this).each(function(i,v){
-						if( $(this).className('curSec') > -1 ){
-								alert(i);
+						if( $(this).hasClass('curSec') ){
+								sec = i;
 						};
-					});					
-				};			
+					});
+					$('.formWizardSections', this).each(function(i,v){
+						if(i < sec) {
+							$(this).addClass('fwSectionsprev');
+						} else if (i < sec){
+								$(this).addClass('fwSectionscurrent');
+						}
+					});
+				//};
 			};
+			//pagBtns();
 
 		
 			//initilize classes for input validation
