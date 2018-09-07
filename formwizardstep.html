@@ -203,31 +203,39 @@
 
 	<script>
 		$('.formWizard').each(function() {
-			
+
 			$('fieldset', this).eq(0).addClass('curSec');
-		
-
-			if ($('.formWizardSections', this).length > -1) {
-				console.log("hi");
-
-				//pagBtns = function(){
-					$('fieldset', this).each(function(i,v){
-						if( $(this).hasClass('curSec') ){
-								sec = i;
+					console.log( $(this).html() );
+			pagBtns = function() {
+				if ($('.formWizardSections', this).length > -1) {
+					console.log('yes');
+					console.log( $(this).html() );
+					$('fieldset', this).each(function(i, v) {
+						console.log(i);
+						if ($(this).hasClass('curSec')) {
+							sec = i;
+							console.log(sec);
 						};
 					});
-					$('.formWizardSections', this).each(function(i,v){
-						if(i < sec) {
-							$(this).addClass('fwSectionsprev');
-						} else if (i < sec){
-								$(this).addClass('fwSectionscurrent');
-						}
-					});
-				//};
-			};
-			//pagBtns();
+					
 
-		
+
+					$('.formWizardSections li', this).each(function(i, v) {
+						console.log(i);
+						if (i < sec) {
+							$(this).addClass('fwSectionsprev');
+						} else if (i < sec) {
+							$(this).addClass('fwSectionscurrent');
+						};
+					});
+				};
+
+
+			};
+
+			pagBtns();
+
+
 			//initilize classes for input validation
 			$(this).find("input, textarea, select, button").addClass("ignore");
 			$(this).find("*[required]").removeClass("ignore").addClass("validate");
@@ -284,6 +292,7 @@
 					$('fieldset').removeClass('curSec');
 					//show next section
 					$(this).parents('fieldset').next().show().addClass('curSec');
+					pagBtns();
 				};
 			});
 
@@ -294,56 +303,56 @@
 			});
 
 
-				
 
-				//next click stuff
-				/*
-								fsNumber = $(this).parents('fieldset').next().attr('class').split(' ');
-								$.each(fsNumber, function(i, val) {
-									if (val.indexOf("Section") > -1) {
-										fsNumber = val;
-										fsSection = fsNumber.replace('Section', '') - 1;
-									};
-								});
-								$(this).closest('.formWizard').find('.formWizardSections li a').removeClass('fwSectionscurrent');
-								$(this).closest('.formWizard').find('.formWizardSections li').each(function() {
-									if ($(this).index() < fsSection) {
-										$('a', this).addClass('fwSectionsprev');
-									};
-									if ($(this).index() == fsSection) {
-										$('a', this).addClass('fwSectionscurrent');
-									};
-								});
-				*/
-				//prev button
-				/*
-					var fsNumber = $(this).parents('fieldset').prev().attr('class');
-					var fsSection = fsNumber.replace('Section', '') - 1;
-					$(this).closest('.formWizard').find('.formWizardSections a').removeClass('fwSectionscurrent').removeClass('fwSectionsprev');
-					$(this).closest('.formWizard').find('.formWizardSections li').each(function() {
-						if ($(this).index() < fsSection) {
-							$('a', this).addClass('fwSectionsprev');
-						}
-						if ($(this).index() == fsSection) {
-							$('a', this).addClass('fwSectionscurrent');
-						}
-					});
-				*/
 
-				//				$('.formWizardSections', this).on('click', '.fwSectionsprev', function() {
-				//					fsjumpto = $(this).parents('li').index() + 1;
-				//					$(this).parents('.formWizard').find('fieldset').hide();
-				//					$(this).parents('.formWizard').find('fieldset.Section' + fsjumpto).first().show().removeClass('prevfs');
-				//					$(this).parents('.formWizard').find('fieldset.Section' + fsjumpto).first().nextAll().removeClass('prevfs');
-				//					$(this).closest('.formWizard').find('.formWizardSections a').removeClass('fwSectionscurrent').removeClass('fwSectionsprev');
-				//					$(this).addClass('fwSectionscurrent');
-				//					var fsSection = $(this).parent('li').prevAll().length;
-				//					$(this).closest('.formWizard').find('.formWizardSections li').each(function() {
-				//						if ($(this).index() < fsSection) {
-				//							$('a', this).addClass('fwSectionsprev');
-				//						}
-				//					});
-				//				});
+			//next click stuff
+			/*
+							fsNumber = $(this).parents('fieldset').next().attr('class').split(' ');
+							$.each(fsNumber, function(i, val) {
+								if (val.indexOf("Section") > -1) {
+									fsNumber = val;
+									fsSection = fsNumber.replace('Section', '') - 1;
+								};
+							});
+							$(this).closest('.formWizard').find('.formWizardSections li a').removeClass('fwSectionscurrent');
+							$(this).closest('.formWizard').find('.formWizardSections li').each(function() {
+								if ($(this).index() < fsSection) {
+									$('a', this).addClass('fwSectionsprev');
+								};
+								if ($(this).index() == fsSection) {
+									$('a', this).addClass('fwSectionscurrent');
+								};
+							});
+			*/
+			//prev button
+			/*
+				var fsNumber = $(this).parents('fieldset').prev().attr('class');
+				var fsSection = fsNumber.replace('Section', '') - 1;
+				$(this).closest('.formWizard').find('.formWizardSections a').removeClass('fwSectionscurrent').removeClass('fwSectionsprev');
+				$(this).closest('.formWizard').find('.formWizardSections li').each(function() {
+					if ($(this).index() < fsSection) {
+						$('a', this).addClass('fwSectionsprev');
+					}
+					if ($(this).index() == fsSection) {
+						$('a', this).addClass('fwSectionscurrent');
+					}
+				});
+			*/
+
+			//				$('.formWizardSections', this).on('click', '.fwSectionsprev', function() {
+			//					fsjumpto = $(this).parents('li').index() + 1;
+			//					$(this).parents('.formWizard').find('fieldset').hide();
+			//					$(this).parents('.formWizard').find('fieldset.Section' + fsjumpto).first().show().removeClass('prevfs');
+			//					$(this).parents('.formWizard').find('fieldset.Section' + fsjumpto).first().nextAll().removeClass('prevfs');
+			//					$(this).closest('.formWizard').find('.formWizardSections a').removeClass('fwSectionscurrent').removeClass('fwSectionsprev');
+			//					$(this).addClass('fwSectionscurrent');
+			//					var fsSection = $(this).parent('li').prevAll().length;
+			//					$(this).closest('.formWizard').find('.formWizardSections li').each(function() {
+			//						if ($(this).index() < fsSection) {
+			//							$('a', this).addClass('fwSectionsprev');
+			//						}
+			//					});
+			//				});
 			//} else if ($('.formWizardSteps', this).length) {
 
 			//}
