@@ -17,10 +17,6 @@
 
 		fieldset {
 			border: none;
-			transition: all 0.3s linear;
-			-webkit-transition: all 0.3s linear;
-			-moz-transition: all 0.3s linear;
-			-ms-transition: all 0.3s linear;
 			width: 100%;
 		}
 
@@ -46,20 +42,17 @@
 			display: none;
 		}
 
-		.formWizardSteps,
 		.formWizardSteps {
 			padding: 10px;
-			border-top: 1px solid #ffb;
-			border-bottom: 1px solid #ffb;
+			border-top: 1px solid #ddd;
+			border-bottom: 1px solid #ddd;
 		}
 
-		.formWizardSteps ul,
 		.formWizardSteps ul {
 			text-align: center;
 			padding: 0px;
 		}
 
-		.formWizardSteps li,
 		.formWizardSteps li {
 			display: inline-block;
 			text-align: center;
@@ -67,30 +60,25 @@
 			list-style: none;
 		}
 
-		.formWizardSteps a,
 		.formWizardSteps a {
 			padding: 20px;
 			display: block;
 		}
 
-		.formWizardSteps a:hover,
 		.formWizardSteps a:hover {
 			text-decoration: none;
 		}
 
-		.fwStepsprev,
-		.fwSectionsprev a {
+		.fwsprev a {
 			color: #ddd !important;
 		}
 
-		.fwStepsprev:hover,
-		.fwSectionsprev a:hover {
+		.fwsprev a:hover {
 			color: #ccc !important;
 		}
 
-		.fwStepscurrent,
-		.fwSectionscurrent a {
-			color: #aec !important;
+		.fwscurrent a {
+			color: #aaa !important;
 		}
 
 		.error {
@@ -112,12 +100,12 @@
 		<form class="formWizard">
 			<div class="formWizardSteps">
 				<ul>
-					<li><a href="#">Section 1</a></li>&nbsp;&rsaquo;&nbsp;
-					<li><a href="#">Section 2</a></li>&nbsp;&rsaquo;&nbsp;
-					<li><a href="#">Section 3</a></li>
+					<li><a href="#">Step 1</a></li>&nbsp;&rsaquo;&nbsp;
+					<li><a href="#">Step 2</a></li>&nbsp;&rsaquo;&nbsp;
+					<li><a href="#">Step 3</a></li>
 				</ul>
 			</div>
-			<fieldset class="section1">
+			<fieldset>
 				<h1>This is Step 1</h1>
 				<input type="text" name="fn">
 				<input type="text" name="ln" required>
@@ -127,7 +115,7 @@
 					<br class="clear" />
 				</div>
 			</fieldset>
-			<fieldset class="section2">
+			<fieldset>
 				<h1>This is Step 2</h1>
 				<input type="text" name="fn1">
 				<input type="text" name="ln1" required>
@@ -138,7 +126,7 @@
 					<br class="clear" />
 				</div>
 			</fieldset>
-			<fieldset class="section2">
+			<fieldset>
 				<h1>This is Step 3</h1>
 				<div class="fwcontrols">
 					<a class="prevstep">&lsaquo;&nbsp;Prev Section</a>
@@ -159,7 +147,7 @@
 	<script>
 		$('.formWizard').each(function() {
 			$('fieldset', this).eq(0).addClass('curSec');
-			$('.formWizardSteps li', this).eq(0).addClass('fwSectionscurrent');
+			$('.formWizardSteps li', this).eq(0).addClass('fwscurrent');
 			//initilize classes for input validation
 			$(this).find("input, textarea, select, button").addClass("ignore");
 			$(this).find("*[required]").removeClass("ignore").addClass("validate");
@@ -216,9 +204,9 @@
 					$('fieldset').removeClass('curSec');
 					//show next section
 					$(this).parents('fieldset').next().show().addClass('curSec');
-					$('.fwSectionscurrent').next().addClass('fwSectionscurrent');
-					$('.fwSectionscurrent').first().removeClass('fwSectionscurrent');
-					$('.fwSectionscurrent').prevAll().addClass('fwSectionsprev');
+					$('.fwscurrent').next().addClass('fwscurrent');
+					$('.fwscurrent').first().removeClass('fwscurrent');
+					$('.fwscurrent').prevAll().addClass('fwsprev');
 				};
 			});
 
@@ -226,23 +214,18 @@
 				$(this).parents('fieldset').hide();
 				$('fieldset').removeClass('curSec');
 				$(this).parents('fieldset').prev().show().addClass('curSec');
-				$('.fwSectionscurrent').prev().addClass('fwSectionscurrent');
-				$('.fwSectionscurrent').last().removeClass('fwSectionscurrent');
-				$('.fwSectionscurrent').prevAll().addClass('fwSectionsprev');
+				$('.fwscurrent').prev().addClass('fwscurrent');
+				$('.fwscurrent').last().removeClass('fwscurrent');
+				$('.fwscurrent').prevAll().addClass('fwsprev');
 			});
 			
-			$('.formWizardSteps', this).on('click', '.fwSectionsprev a', function(){
-				fsjumpto = $(this).index();
+			$('.formWizardSteps', this).on('click', '.fwsprev a', function(){
+				fsjumpto = $(this).parent().index();
 				$('fieldset').hide().removeClass('curSec');
 				$(this).parents('.formWizard').find('fieldset').eq(fsjumpto).show().addClass('curSec');
-				$(this).closest('.formWizard').find('.formWizardSteps li').removeClass('fwSectionscurrent').removeClass('fwSectionsprev');
-				$(this).addClass('fwSectionscurrent');
-				fspassed = $(this).prevAll().length + 1;
-				$(this).closest('.formWizard').find('.formWizardSteps li').each(function() {
-					if( $(this).index() < fspassed ){
-						$('a',this).addClass('fwStepsprev');
-					}
-				});
+				$(this).closest('.formWizard').find('.formWizardSteps li').removeClass('fwscurrent').removeClass('fwsprev');
+				$(this).parent().addClass('fwscurrent');
+				$(this).parent().prevAll().addClass('fwsprev');
 			});
 		});
 	</script>
