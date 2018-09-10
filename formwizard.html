@@ -47,19 +47,19 @@
 		}
 
 		.formWizardSteps,
-		.formWizardSections {
+		.formWizardSteps {
 			padding: 10px;
 			border-top: 1px solid #ffb;
 			border-bottom: 1px solid #ffb;
 		}
 
-		.formWizardSections ul,
+		.formWizardSteps ul,
 		.formWizardSteps ul {
 			text-align: center;
 			padding: 0px;
 		}
 
-		.formWizardSections li,
+		.formWizardSteps li,
 		.formWizardSteps li {
 			display: inline-block;
 			text-align: center;
@@ -67,29 +67,29 @@
 			list-style: none;
 		}
 
-		.formWizardSections a,
+		.formWizardSteps a,
 		.formWizardSteps a {
 			padding: 20px;
 			display: block;
 		}
 
-		.formWizardSections a:hover,
+		.formWizardSteps a:hover,
 		.formWizardSteps a:hover {
 			text-decoration: none;
 		}
 
 		.fwStepsprev,
-		.fwSectionsprev {
-			color: #aec !important;
+		.fwSectionsprev a {
+			color: #ddd !important;
 		}
 
 		.fwStepsprev:hover,
-		.fwSectionsprev:hover {
-			color: #aec !important;
+		.fwSectionsprev a:hover {
+			color: #ccc !important;
 		}
 
 		.fwStepscurrent,
-		.fwSectionscurrent {
+		.fwSectionscurrent a {
 			color: #aec !important;
 		}
 
@@ -110,7 +110,7 @@
 
 		<!-- form wizard sections -->
 		<form class="formWizard">
-			<div class="formWizardSections">
+			<div class="formWizardSteps">
 				<ul>
 					<li><a href="#">Section 1</a></li>&nbsp;&rsaquo;&nbsp;
 					<li><a href="#">Section 2</a></li>&nbsp;&rsaquo;&nbsp;
@@ -146,52 +146,7 @@
 					<br class="clear" />
 				</div>
 			</fieldset>
-			<fieldset class="section3">
-				<h1>This is Step 4</h1>
-				<div class="fwcontrols">
-					<a class="prevstep">&lsaquo;&nbsp;Prev Section</a>
-					<a class="nextstep">Next Section&nbsp;&rsaquo;</a>
-					<br class="clear" />
-				</div>
-			</fieldset>
 		</form>
-
-		<!-- form wizard steps -->
-		<!--
-		<form class="formWizard">
-			<div class="formWizardSteps">
-				<ul>
-					<li><a href="#">Step 1</a></li>&nbsp;&rsaquo;&nbsp;
-					<li><a href="#">Step 2</a></li>&nbsp;&rsaquo;&nbsp;
-					<li><a href="#">Step 3</a></li>
-				</ul>
-			</div>
-			<fieldset class="Section1">
-				<h1>This is Step 1</h1>
-				<div class="fwcontrols">
-					<a class="nextstep">Next Section&nbsp;&rsaquo;</a>
-					<br class="clear" />
-				</div>
-			</fieldset>
-			<fieldset class="Section2">
-				<h1>This is Step 2</h1>
-				<div class="fwcontrols">
-					<a class="prevstep">&lsaquo;&nbsp;Prev Section</a>
-					<a class="nextstep">Next Section&nbsp;&rsaquo;</a>
-					<br class="clear" />
-				</div>
-			</fieldset>
-			<fieldset class="Section2">
-				<h1>This is Step 3</h1>
-				<div class="fwcontrols">
-					<a class="prevstep">&lsaquo;&nbsp;Prev Section</a>
-					<a class="nextstep">Next Section&nbsp;&rsaquo;</a>
-					<br class="clear" />
-				</div>
-			</fieldset>
-		</form>
--->
-
 	</div>
 
 	<!-- Optional JavaScript -->
@@ -203,39 +158,8 @@
 
 	<script>
 		$('.formWizard').each(function() {
-
 			$('fieldset', this).eq(0).addClass('curSec');
-					console.log( $(this).html() );
-			pagBtns = function() {
-				if ($('.formWizardSections', this).length > -1) {
-					console.log('yes');
-					console.log( $(this).html() );
-					$('fieldset', this).each(function(i, v) {
-						console.log(i);
-						if ($(this).hasClass('curSec')) {
-							sec = i;
-							console.log(sec);
-						};
-					});
-					
-
-
-					$('.formWizardSections li', this).each(function(i, v) {
-						console.log(i);
-						if (i < sec) {
-							$(this).addClass('fwSectionsprev');
-						} else if (i < sec) {
-							$(this).addClass('fwSectionscurrent');
-						};
-					});
-				};
-
-
-			};
-
-			pagBtns();
-
-
+			$('.formWizardSteps li', this).eq(0).addClass('fwSectionscurrent');
 			//initilize classes for input validation
 			$(this).find("input, textarea, select, button").addClass("ignore");
 			$(this).find("*[required]").removeClass("ignore").addClass("validate");
@@ -292,7 +216,9 @@
 					$('fieldset').removeClass('curSec');
 					//show next section
 					$(this).parents('fieldset').next().show().addClass('curSec');
-					pagBtns();
+					$('.fwSectionscurrent').next().addClass('fwSectionscurrent');
+					$('.fwSectionscurrent').first().removeClass('fwSectionscurrent');
+					$('.fwSectionscurrent').prevAll().addClass('fwSectionsprev');
 				};
 			});
 
@@ -300,62 +226,24 @@
 				$(this).parents('fieldset').hide();
 				$('fieldset').removeClass('curSec');
 				$(this).parents('fieldset').prev().show().addClass('curSec');
+				$('.fwSectionscurrent').prev().addClass('fwSectionscurrent');
+				$('.fwSectionscurrent').last().removeClass('fwSectionscurrent');
+				$('.fwSectionscurrent').prevAll().addClass('fwSectionsprev');
 			});
-
-
-
-
-			//next click stuff
-			/*
-							fsNumber = $(this).parents('fieldset').next().attr('class').split(' ');
-							$.each(fsNumber, function(i, val) {
-								if (val.indexOf("Section") > -1) {
-									fsNumber = val;
-									fsSection = fsNumber.replace('Section', '') - 1;
-								};
-							});
-							$(this).closest('.formWizard').find('.formWizardSections li a').removeClass('fwSectionscurrent');
-							$(this).closest('.formWizard').find('.formWizardSections li').each(function() {
-								if ($(this).index() < fsSection) {
-									$('a', this).addClass('fwSectionsprev');
-								};
-								if ($(this).index() == fsSection) {
-									$('a', this).addClass('fwSectionscurrent');
-								};
-							});
-			*/
-			//prev button
-			/*
-				var fsNumber = $(this).parents('fieldset').prev().attr('class');
-				var fsSection = fsNumber.replace('Section', '') - 1;
-				$(this).closest('.formWizard').find('.formWizardSections a').removeClass('fwSectionscurrent').removeClass('fwSectionsprev');
-				$(this).closest('.formWizard').find('.formWizardSections li').each(function() {
-					if ($(this).index() < fsSection) {
-						$('a', this).addClass('fwSectionsprev');
-					}
-					if ($(this).index() == fsSection) {
-						$('a', this).addClass('fwSectionscurrent');
+			
+			$('.formWizardSteps', this).on('click', '.fwSectionsprev a', function(){
+				fsjumpto = $(this).index();
+				$('fieldset').hide().removeClass('curSec');
+				$(this).parents('.formWizard').find('fieldset').eq(fsjumpto).show().addClass('curSec');
+				$(this).closest('.formWizard').find('.formWizardSteps li').removeClass('fwSectionscurrent').removeClass('fwSectionsprev');
+				$(this).addClass('fwSectionscurrent');
+				fspassed = $(this).prevAll().length + 1;
+				$(this).closest('.formWizard').find('.formWizardSteps li').each(function() {
+					if( $(this).index() < fspassed ){
+						$('a',this).addClass('fwStepsprev');
 					}
 				});
-			*/
-
-			//				$('.formWizardSections', this).on('click', '.fwSectionsprev', function() {
-			//					fsjumpto = $(this).parents('li').index() + 1;
-			//					$(this).parents('.formWizard').find('fieldset').hide();
-			//					$(this).parents('.formWizard').find('fieldset.Section' + fsjumpto).first().show().removeClass('prevfs');
-			//					$(this).parents('.formWizard').find('fieldset.Section' + fsjumpto).first().nextAll().removeClass('prevfs');
-			//					$(this).closest('.formWizard').find('.formWizardSections a').removeClass('fwSectionscurrent').removeClass('fwSectionsprev');
-			//					$(this).addClass('fwSectionscurrent');
-			//					var fsSection = $(this).parent('li').prevAll().length;
-			//					$(this).closest('.formWizard').find('.formWizardSections li').each(function() {
-			//						if ($(this).index() < fsSection) {
-			//							$('a', this).addClass('fwSectionsprev');
-			//						}
-			//					});
-			//				});
-			//} else if ($('.formWizardSteps', this).length) {
-
-			//}
+			});
 		});
 	</script>
 </body>
