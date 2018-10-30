@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+		/*custom page css here*/
+	</style>
+</head>
+
+<body>
+	<!-- HTML here. -->
+	<h1>jQuery Countdown</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md text-center">
+				<h3 class="durationYear"></h3>
+				<p>years</p>
+			</div>
+			<div class="col-md text-center">
+				<h3 class="durationDay"></h3>
+				<p>days</p>
+			</div>
+			<div class="col-md text-center">
+				<h3 class="durationHr"></h3>
+				<p>hours</p>
+			</div>
+			<div class="col-md text-center">
+				<h3 class="durationMin"></h3>
+				<p>mins</p>
+			</div>
+			<div class="col-md text-center">
+				<h3 class="durationSec"></h3>
+				<p>secs</p>
+			</div>
+			<div class="col-md text-center">
+				<h3 class="durationMSec"></h3>
+				<p>millsecs</p>
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script>
+	/* custom script here */
+	setInterval(function() {
+		var targetDate = new Date("10/30/2018");
+		var todayDate = new Date();
+
+		if (todayDate < targetDate) {
+			var todayYrs = targetDate.getYear() - todayDate.getYear();
+
+			var timeDiff = Math.abs(todayDate.getTime() - targetDate.getTime());
+			var todayDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+			var todayHrs = 23 - todayDate.getHours();
+			var todayMin = 59 - todayDate.getMinutes();
+			var todaySec = 59 - todayDate.getSeconds();
+			var todayMSec = 1000 - todayDate.getMilliseconds();
+		} else {
+			var todayYrs = todayDate.getYear() - targetDate.getYear();
+
+			var timeDiff = Math.abs( targetDate.getTime() - todayDate.getTime() -1 );
+			var todayDays =  timeDiff / (1000 * 60 * 60 * 24);
+//			var todayDays =  Math.floor( timeDiff / (1000 * 60 * 60 * 24) );
+
+			var todayHrs = todayDate.getHours();
+			var todayMin = todayDate.getMinutes();
+			var todaySec = todayDate.getSeconds();
+			var todayMSec = todayDate.getMilliseconds();
+		};
+		$('.durationYear').text(todayYrs);
+		$('.durationDay').text(todayDays);
+		$('.durationHr').text(todayHrs);
+		$('.durationMin').text(todayMin);
+		$('.durationSec').text(todaySec);
+		$('.durationMSec').text(todayMSec);
+	}, 1);
+	</script>
+</body>
+</html>
