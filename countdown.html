@@ -55,40 +55,39 @@
 	<script src="assets/js/popper.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
-	/* custom script here */
-	setInterval(function() {
-		var targetDate = new Date("10/30/2018");
-		var todayDate = new Date();
+		/* custom script here */
+		setInterval(function() {
+			var targetDate = new Date("11/6/2018");
+			var todayDate = new Date();
 
-		if (todayDate < targetDate) {
-			var todayYrs = targetDate.getYear() - todayDate.getYear();
+			if (todayDate < targetDate) {
+				var todayYrs = targetDate.getYear() - todayDate.getYear();
 
-			var timeDiff = Math.abs(todayDate.getTime() - targetDate.getTime());
-			var todayDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+				var timeDiff = Math.abs(todayDate.getTime() - targetDate.getTime());
+				var todayDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 
-			var todayHrs = 23 - todayDate.getHours();
-			var todayMin = 59 - todayDate.getMinutes();
-			var todaySec = 59 - todayDate.getSeconds();
-			var todayMSec = 1000 - todayDate.getMilliseconds();
-		} else {
-			var todayYrs = todayDate.getYear() - targetDate.getYear();
+				var todayHrs = 23 - todayDate.getHours();
+				var todayMin = 59 - todayDate.getMinutes();
+				var todaySec = 59 - todayDate.getSeconds();
+				var todayMSec = 1000 - todayDate.getMilliseconds();
+			} else {
+				var todayYrs = todayDate.getYear() - targetDate.getYear();
 
-			var timeDiff = Math.abs( targetDate.getTime() - todayDate.getTime() -1 );
-			var todayDays =  timeDiff / (1000 * 60 * 60 * 24);
-//			var todayDays =  Math.floor( timeDiff / (1000 * 60 * 60 * 24) );
+				var timeDiff = Math.abs( ( targetDate.getTime() - todayDate.getTime() ) );
+				var todayDays = Math.floor( timeDiff / (1000 * 60 * 60 * 24) );
 
-			var todayHrs = todayDate.getHours();
-			var todayMin = todayDate.getMinutes();
-			var todaySec = todayDate.getSeconds();
-			var todayMSec = todayDate.getMilliseconds();
-		};
-		$('.durationYear').text(todayYrs);
-		$('.durationDay').text(todayDays);
-		$('.durationHr').text(todayHrs);
-		$('.durationMin').text(todayMin);
-		$('.durationSec').text(todaySec);
-		$('.durationMSec').text(todayMSec);
-	}, 1);
+				var todayHrs = todayDate.getHours();
+				var todayMin = todayDate.getMinutes();
+				var todaySec = todayDate.getSeconds();
+				var todayMSec = todayDate.getMilliseconds();
+			};
+			$('.durationYear').text(todayYrs);
+			$('.durationDay').text(todayDays);
+			$('.durationHr').text(todayHrs);
+			$('.durationMin').text(todayMin);
+			$('.durationSec').text(todaySec);
+			$('.durationMSec').text(todayMSec);
+		}, 1);
 	</script>
 </body>
 </html>
