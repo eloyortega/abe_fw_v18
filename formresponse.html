@@ -18,13 +18,13 @@
 	<h1>Bootstrap 4 template</h1>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
 	<div class="container">
-		<h1>Message Someone</h1>
+		<h1>Message</h1>
 		<div class="messageForm">
 			<form>
 				<div>
 					<textarea name="message"></textarea>
 					<br /><br />
-					<button type="submit" class="messageSend">SEND</button>
+					<input type="submit" class="messageSend" value="SEND">
 				</div>
 			</form>
 		</div>
@@ -41,6 +41,26 @@
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
 		/* custom script here */
+		$(".messageForm form").submit(function(e) {
+			var formData = new FormData($(this)[0]);
+			$.ajax({
+				url: "formreceive.php",
+				type: "POST",
+				data: formData,
+				cache: false,
+				contentType: false,
+				processData: false,
+				success: function() {
+					messagePosted = $("textarea[name='message']").val();
+			$('.messageForm').hide();
+			$('.messageConfirm').show();
+			$('.messagePosted').append( "You wrote "+messagePosted);
+				},
+				error: console.log("eh")
+			});
+			e.preventDefault();
+			return false;
+		});
 	</script>
 </body>
 </html>
