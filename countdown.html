@@ -19,6 +19,7 @@
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
 
 	<div class="container">
+		<p class="targetDate">Target Date: <b></b></p>
 		<div class="row">
 			<div class="col-md text-center">
 				<h3 class="durationYear"></h3>
@@ -56,8 +57,11 @@
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
 		/* custom script here */
+
+		var targetDate = new Date("11/6/2018");
+
 		setInterval(function() {
-			var targetDate = new Date("11/6/2018");
+
 			var todayDate = new Date();
 
 			if (todayDate < targetDate) {
@@ -81,6 +85,7 @@
 				var todaySec = todayDate.getSeconds();
 				var todayMSec = todayDate.getMilliseconds();
 			};
+
 			$('.durationYear').text(todayYrs);
 			$('.durationDay').text(todayDays);
 			$('.durationHr').text(todayHrs);
@@ -88,6 +93,8 @@
 			$('.durationSec').text(todaySec);
 			$('.durationMSec').text(todayMSec);
 		}, 1);
+
+		$('.targetDate b').append(targetDate.toLocaleDateString());
 	</script>
 </body>
 </html>

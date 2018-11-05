@@ -5,79 +5,77 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 	<title>ABE Template 2018 | BS4 Template</title>
 	<style>
-	/*graphic radio*/
+		/*graphic radio*/
 
-.graphic_radio {
-	max-width: 100px;
-	width: auto;
-	display: inline-block;
-	margin: 1em;
-	vertical-align: top;
-}
+		.graphic_radio {
+			max-width: 100px;
+			width: auto;
+			display: inline-block;
+			margin: 1em;
+			vertical-align: top;
+		}
 
-.graphic_radio input[type="radio"] {
-	left: -10000px;
-	position: relative;
-}
+		.graphic_radio input[type="radio"] {
+			left: -10000px;
+			position: relative;
+		}
 
-.graphic_radio a {
-	display: block;
-	width: 100px;
-	height: 100px;
-	border-style: solid;
-	border-color: #ddd;
-	border-radius: 50%;
-	margin: 0px auto;
-}
+		.graphic_radio a {
+			display: block;
+			width: 100px;
+			height: 100px;
+			border-style: solid;
+			border-color: #ddd;
+			border-radius: 50%;
+			margin: 0px auto;
+		}
 
-.mini_graphic_radio.graphic_radio a {
-	width: 70px;
-	height: 70px;
-}
+		.mini_graphic_radio.graphic_radio a {
+			width: 70px;
+			height: 70px;
+		}
 
-.graphic_radio a img {
-	border-radius: 50%;
-	width:100%;
-}
+		.graphic_radio a img {
+			border-radius: 50%;
+			width: 100%;
+		}
 
-.graphic_radio a:hover {
-	border-color: #333;
-}
+		.graphic_radio a:hover {
+			border-color: #333;
+		}
 
-a.selected {
-	border-color: #aaa;
-}
+		a.selected {
+			border-color: #aaa;
+		}
 
-a.selected + div {
-	display: block;
-	padding: 10px;
-	background-color: #aaa;
-	color: fff;
-}
+		a.selected+div {
+			display: block;
+			padding: 10px;
+			background-color: #aaa;
+			color: fff;
+		}
 
-.graphic_radio a + div {
-	padding: 10px;
-}
+		.graphic_radio a+div {
+			padding: 10px;
+		}
 
-.graphic_radio a + div p {
-	margin: 0;
-	text-align: center;
-}
+		.graphic_radio a+div p {
+			margin: 0;
+			text-align: center;
+		}
 
-.graphic_radio_container label.error {
-	display: block;
-}
+		.graphic_radio_container label.error {
+			display: block;
+		}
 
-a.selected + div p,
-a.selected + div p {
-	color: #fff;
-}
-
-
+		a.selected+div p,
+		a.selected+div p {
+			color: #fff;
+		}
 	</style>
 </head>
 
@@ -85,47 +83,50 @@ a.selected + div p {
 	<h1>jQuery Image Radio Buttons</h1>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
 	<div class="container">
-		
-<form name="testform">
-					<div class="graphic_radio_container">
-						<div class="graphic_radio">
-							<input type="radio" name="imgRadioTest" value="value1">
-							<a><img src="assets/img/1icon.png" /></a>
-							<div><p>label A</p></div>
-						</div>
-						<div class="graphic_radio">
-							<input type="radio" name="imgRadioTest" value="value2">
-							<a><img src="assets/img/2icon.png" /></a>
-							<div><p>label B</p></div>
-						</div>
-						<div class="graphic_radio">
-							<input type="radio" name="imgRadioTest" value="value3">
-							<a><img src="assets/img/3icon.png" /></a>
-							<div><p>label C</p></div>
-						</div>
+
+		<form name="testform">
+			<div class="graphic_radio_container">
+				<div class="graphic_radio">
+					<input type="radio" name="imgRadioTest" value="value1">
+					<a><img src="assets/img/1icon.png" /></a>
+					<div>
+						<p>label A</p>
 					</div>
-					<input id="radio" type="submit" name="radiosubmit" value="Submit Input">
-				</form>
+				</div>
+				<div class="graphic_radio">
+					<input type="radio" name="imgRadioTest" value="value2">
+					<a><img src="assets/img/2icon.png" /></a>
+					<div>
+						<p>label B</p>
+					</div>
+				</div>
+				<div class="graphic_radio">
+					<input type="radio" name="imgRadioTest" value="value3">
+					<a><img src="assets/img/3icon.png" /></a>
+					<div>
+						<p>label C</p>
+					</div>
+				</div>
+			</div>
+			<input id="radio" type="submit" name="radiosubmit" value="Submit Input">
+		</form>
 
 	</div>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="assets/js/jquery.js"></script>
-	
+
 	<script src="assets/js/popper.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 
 	<script>
-	
-//Graphic Radio Button
-	$(".graphic_radio a").click(function(){
-		$(this).parents('.graphic_radio_container').find('a').removeClass('selected');
-		$(this).addClass('selected');
-		$(this).prev("input[type='radio']").click();
-	});
-
-
+		//Graphic Radio Button
+		$(".graphic_radio a").click(function() {
+			$(this).parents('.graphic_radio_container').find('a').removeClass('selected');
+			$(this).addClass('selected');
+			$(this).prev("input[type='radio']").click();
+		});
 	</script>
 </body>
 </html>

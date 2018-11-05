@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -10,41 +9,30 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 	<title>ABE Template 2018 | BS4 Template</title>
 	<style>
-
-
+		/*custom page css here*/
 	</style>
 </head>
-
 <body>
-	<h1>jQuery Clone Element</h1>
+	<!-- HTML here. -->
+	<h1>Bootstrap 4 template</h1>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
-	<div class="container">
-
-		<div class="addAnother">
-			<p>This is another paragraph. I think it needs to be added that the set of elements tested is not exhaustive in any sense. I have selected those elements for which it can make sense to write user style sheet rules, in my opionion.</p>
-			<hr />
-		</div>
-		<h5 class="alignCenter addAnotherBtn">
-			<button class="btn btn-primary">Add another</button>
-		</h5>
-
-	</div>
-
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="assets/js/jquery.js"></script>
 	<script src="assets/js/popper.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
-
 	<script>
-		//Clone Element
-		$(document).on('click', '.addAnotherBtn', function() {
-			var addAnother = $(this).prev('.addAnother').html();
-			$(this).prev('.addAnother').after("<div class='content addAnother'>" + addAnother + "</div>");
-			return false;
-		});
-
+		/* custom script here */
+		function f(x){
+			x*=2;
+			return function(y){
+				y*=x;
+				return function(z){
+					return z*y;
+				}
+			}
+		}
+		let g = f(3)(4)(5);
 	</script>
 </body>
-
 </html>

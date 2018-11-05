@@ -21,9 +21,9 @@
 		<input type="text" name="name"><br>
 		<input type="text" name="address"><br>
 		<input type="text" name="city"><br>
-		<input type="radio" name="radio1" value="option1">
-		<input type="radio" name="radio1" value="option2">
-		<input type="radio" name="radio1" value="option3">
+		<input type="radio" name="radbtn" value="option1">
+		<input type="radio" name="radbtn" value="option2">
+		<input type="radio" name="radbtn" value="option3">
 		<br>
 		<input type="submit" value="check" id="submit">
 	</form>
@@ -40,9 +40,9 @@
 	<script>
 		/* custom script here */
 		document.getElementById('submit').onclick = function(e) {
-			for (i = 0; i < document.forms.personal.radio1.length; i++) {
-				if (document.forms.personal.radio1[i].checked) {
-					user_input = document.forms.personal.radio1[i].value;
+			for (i = 0; i < document.forms.personal.radbtn.length; i++) {
+				if (document.forms.personal.radbtn[i].checked) {
+					user_input = document.forms.personal.radbtn[i].value;
 				};
 			};
 			document.getElementById('forminputs').innerHTML = document.forms.personal.name.value + `<br>

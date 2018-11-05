@@ -78,7 +78,7 @@
 		}
 
 		.fwscurrent a {
-			color: #aaa !important;
+			color: #f00 !important;
 		}
 
 		.error {
@@ -108,7 +108,9 @@
 			<fieldset>
 				<h1>This is Step 1</h1>
 				<input type="text" name="fn">
+				<br>
 				<input type="text" name="ln" required>
+				<br>
 				<input type="email" name="em" required>
 				<div class="pad10 fwcontrols">
 					<a class="nextstep">Next Section&nbsp;&rsaquo;</a>
@@ -118,7 +120,9 @@
 			<fieldset>
 				<h1>This is Step 2</h1>
 				<input type="text" name="fn1">
+				<br>
 				<input type="text" name="ln1" required>
+				<br>
 				<input type="email" name="em1" required>
 				<div class="fwcontrols">
 					<a class="prevstep">&lsaquo;&nbsp;Prev Section</a>
@@ -218,8 +222,8 @@
 				$('.fwscurrent').last().removeClass('fwscurrent');
 				$('.fwscurrent').prevAll().addClass('fwsprev');
 			});
-			
-			$('.formWizardSteps', this).on('click', '.fwsprev a', function(){
+
+			$('.formWizardSteps', this).on('click', '.fwsprev a', function() {
 				fsjumpto = $(this).parent().index();
 				$('fieldset').hide().removeClass('curSec');
 				$(this).parents('.formWizard').find('fieldset').eq(fsjumpto).show().addClass('curSec');

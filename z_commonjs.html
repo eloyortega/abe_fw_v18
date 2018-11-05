@@ -16,20 +16,23 @@
 	<h1>Common JS Functions</h1>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
 	<div class="container">
-		
-		<button onclick="location.reload();">page reload</button>
+
+		<button onclick="location.reload();" class="btn btn-primary">page reload</button>
+		<hr>
+		<p>dynamic load of content</p>
+		<div class="pad40" id="txtcode"></div>
+
 
 	</div>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="assets/js/jquery.js"></script>
-	
 	<script src="assets/js/popper.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 
 	<script>
-
+			$("#txtcode").load("snippet.html");
 	</script>
 </body>
 </html>

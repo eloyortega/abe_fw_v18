@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
 	<title>UI Template</title>
 </head>
+
 <body>
 	<h3>Block Elements</h3>
 	<hr />
@@ -148,7 +149,8 @@
 		<a href="">this is a link</a>
 	</p>
 
-	<p>In order to test how subscripts and superscripts work inside running text like X<sub>1</sub>, X<sub>1<sub>a+b+c</sub></sub>, M<sup>2</sup> and some nested superscripts X<sup>x<sup>a+b+c</sup></sup></p>
+	<p>In order to test how subscripts and superscripts work inside running text like X<sub>1</sub>, X<sub>1<sub>a+b+c</sub></sub>, M<sup>2</sup> and some nested superscripts X<sup>x<sup>a+b+c</sup></sup>
+	</p>
 
 	<h3>Inline Sample</h3>
 	<hr />
@@ -176,8 +178,7 @@
 		<u>underlined</u> text
 		<var>variable</var> text <br>
 		<span>span</span> text
-		<a href="">this is a link</a>
-		In order to test how subscripts and superscripts work inside running text like X<sub>1</sub>, X<sub>1<sub>a+b+c</sub></sub>, M<sup>2</sup> and some nested superscripts X<sup>x<sup>a+b+c</sup></sup>
+		<a href="">this is a link</a> In order to test how subscripts and superscripts work inside running text like X<sub>1</sub>, X<sub>1<sub>a+b+c</sub></sub>, M<sup>2</sup> and some nested superscripts X<sup>x<sup>a+b+c</sup></sup>
 	</p>
 	<p>This is another paragraph. I think it needs to be added that the set of elements tested is not exhaustive in any sense.</p>
 	<hr>
@@ -201,6 +202,22 @@
 		<br>
 		<label>email field:<br>
 			<input type="email" name="email" placeholder="placeholder..." />
+		</label>
+		<br>
+		<label>autofill field:<br>
+			<input type="text" name="auto" placeholder="auto..." list="listitems" />
+			<datalist id="listitems">
+				<option>Bavette</option>
+				<option>Cannelloni</option>
+				<option>Fiorentine</option>
+				<option>Gnocchi</option>
+				<option>Pappardelle</option>
+				<option>Penne lisce</option>
+				<option>Pici</option>
+				<option>Rigatoni</option>
+				<option>Spaghetti</option>
+				<option>Tagliatelle</option>
+			</datalist>
 		</label>
 		<br>
 		<label>file:<br>
@@ -320,7 +337,9 @@
 	<h3>Media</h3>
 	<hr />
 	<img src="assets/img/gargoyles_logo.jpg">
+	<br>
 	<audio src="assets/audio/gargoyles.mp3" controls></audio>
+	<br>
 	<video src="assets/video/gargoyles.mp4" controls></video>
 </body>
 </html>

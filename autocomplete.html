@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+		/*custom page css here*/
+
+		.ui-autocomplete {
+			list-style: none;
+			border: 1px solid #ccc;
+			max-width: 400px;
+			z-index: 10;
+			padding-left: 0;
+		}
+		
+		#ac_selections{
+			padding-left: 0;
+		}
+
+		.ui-autocomplete li {
+			background-color: #FFF;
+			border-bottom: 1px solid #ccc;
+		}
+
+		.ui-autocomplete li a {
+			display: block;
+		}
+
+		.ui-autocomplete li a.ui-state-focus {
+			background: #E4F0E8 !important;
+			border-radius: 0;
+		}
+		.selection{
+			list-style: none;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- HTML here. -->
+	<h1>Bootstrap 4 template</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<div class="container">
+		<form id="formTemplate">
+			<h3>Lookup someone</h3>
+			<input type="text" name="ac_lookup" class="ac_lookup">
+			<ul id="ac_selections"></ul>
+			<input type="hidden" name="ac_list" value="" class="required" />
+		</form>
+	</div>
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/jqueryui.js"></script>
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script>
+		/* custom script here */
+		//Sample Emp Data
+		companyDirectory = [{
+				value: "Clark Kent",
+				img: "user1.jpg",
+				category: "DC",
+			},
+			{
+				value: "Bruce Wayne",
+				img: "user2.jpg",
+				category: "DC",
+			},
+			{
+				value: "Diana Prince",
+				img: "user3.jpg",
+				category: "DC",
+			},
+			{
+				value: "Carol Danvers",
+				img: "user4.jpg",
+				category: "Marvel",
+			},
+			{
+				value: "Tony Stark",
+				img: "user5.jpg",
+				category: "Marvel",
+			},
+			{
+				value: "Thor Odinson",
+				img: "user6.jpg",
+				category: "Marvel",
+			}
+		];
+
+		var multiarray = [];
+		var value = "";
+
+		//Check for duplicates. load each selection into an array. when clicking to advance to next step, check array. If selection is NOT in array, add it and display the choice to the user. If not return.
+		function logMultiSelect(selection, img, category) {
+			if (multiarray.indexOf(selection) == -1) {
+				multiarray.push(selection);
+				var acSelections = "<li class='selection'><img src='assets/img/" + img + "'>" + selection + "<a href='#' class='close'>&times;</a>";
+				$(acSelections).prependTo("#ac_selections");
+			}
+
+			// when multselect close is clicked, remove this instance from the array.
+			$("li.selection a").click(function() {
+				selection = $(this).parent();
+				text = selection.text().slice(0, -1);
+				i = multiarray.indexOf(text);
+				if (i != -1) {
+					multiarray.splice(i, 1);
+				}
+				selection.remove();
+				$("input[name='ac_list']").val(multiarray);
+			});
+		}
+
+		$(document).ready(function() {
+			acfunc();
+		});
+
+		function acfunc() {
+
+			// Locate and select employees to reward
+			$(".ac_lookup").autocomplete({
+					source: companyDirectory,
+					minLength: 0,
+					select: function(event, ui) {
+						logMultiSelect(ui.item.value, ui.item.img, ui.item.category, ui.item.href);
+						$(this).val("");
+						return false;
+					}
+				})
+				.data("ui-autocomplete")._renderItem = function(ul, item) {
+					return $("<li>")
+						.data('ui-autocomplete-item', item)
+						.append("<a><img src='assets/img/" + item.img + "'>" + item.value + " | " + item.category + "</a>")
+						.appendTo(ul);
+				};
+		};
+	</script>
+</body>
+
+</html>

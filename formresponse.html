@@ -10,6 +10,10 @@
 	<title>ABE Template 2018 | BS4 Template</title>
 	<style>
 		/*custom page css here*/
+
+		.messageConfirm {
+			display: none;
+		}
 	</style>
 </head>
 
@@ -24,13 +28,13 @@
 				<div>
 					<textarea name="message"></textarea>
 					<br /><br />
-					<input type="submit" class="messageSend" value="SEND">
+					<input type="submit" class="messageSend btn btn-primary" value="SEND">
 				</div>
 			</form>
 		</div>
 		<div class="messageConfirm">
 			<h5 class="messagePosted"></h5><br /><br />
-			<a class="btnRefresh" href="#">Close</a>
+			<button onclick="location.reload();" class="btn btn-primary">page reload</button>
 		</div>
 	</div>
 
@@ -52,9 +56,9 @@
 				processData: false,
 				success: function() {
 					messagePosted = $("textarea[name='message']").val();
-			$('.messageForm').hide();
-			$('.messageConfirm').show();
-			$('.messagePosted').append( "You wrote "+messagePosted);
+					$('.messageForm').hide();
+					$('.messageConfirm').show();
+					$('.messagePosted').append("You wrote " + messagePosted);
 				},
 				error: console.log("eh")
 			});

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -9,15 +10,13 @@
 	<link rel="stylesheet" href="assets/css/style.css">
 	<title>ABE Template 2018 | BS4 Template</title>
 	<style>
+		.morecontent span {
+			display: none;
+		}
 
-.morecontent span {
-	display: none;
-}
-
-.morelink {
-	display: block;
-}
-
+		.morelink {
+			display: block;
+		}
 	</style>
 </head>
 
@@ -33,42 +32,40 @@
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="assets/js/jquery.js"></script>
-	
+
 	<script src="assets/js/popper.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 
 	<script>
-	
-// Read More
-    var showChar = 100; // How many characters are shown by default
-    var ellipsestext = "...";
-    var moretext = "read more";
-    var lesstext = "read less";
+		// Read More
+		var showChar = 100; // How many characters are shown by default
+		var ellipsestext = "...";
+		var moretext = "read more";
+		var lesstext = "read less";
 
-	$('.readMore').each(function() {
-		var content = $(this).html();
-        if(content.length > showChar) {
-            var previewtext = content.substr(0, showChar);
-            var completetext = content.substr(showChar, content.length - showChar);
-            var readMoreHTML = previewtext + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + completetext + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
-            $(this).html(readMoreHTML);
-        }
-    });
- 
-    $(".morelink").click(function(){
-        if($(this).hasClass("less")) {
-            $(this).removeClass("less");
-            $(this).html(moretext);
-        } else {
-            $(this).addClass("less");
-            $(this).html(lesstext);
-        }
-        $(this).parent().prev().toggle();
-        $(this).prev().toggle();
-        return false;
-    });
+		$('.readMore').each(function() {
+			var content = $(this).html();
+			if (content.length > showChar) {
+				var previewtext = content.substr(0, showChar);
+				var completetext = content.substr(showChar, content.length - showChar);
+				var readMoreHTML = previewtext + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + completetext + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+				$(this).html(readMoreHTML);
+			}
+		});
 
-
+		$(".morelink").click(function() {
+			if ($(this).hasClass("less")) {
+				$(this).removeClass("less");
+				$(this).html(moretext);
+			} else {
+				$(this).addClass("less");
+				$(this).html(lesstext);
+			}
+			$(this).parent().prev().toggle();
+			$(this).prev().toggle();
+			return false;
+		});
 	</script>
 </body>
+
 </html>
