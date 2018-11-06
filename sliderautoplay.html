@@ -182,8 +182,8 @@
 				} else {
 					++sliderInt;
 				};
-				console.log('before: '+sliderInt);
-				$("#slides > .slide").hide();
+				console.log('before: '+ (sliderInt - 1));
+				$("#slides > #slide" + (sliderInt - 1)).hide( "slide", 500 );
 				$("#slides > #slide" + sliderInt).show( "slide", { direction: "right" }, 500 );
 				$('.pag > a').removeClass('pagactive');
 				$('.pag > a:eq(' + (sliderInt - 1) + ')').addClass('pagactive');
@@ -197,11 +197,14 @@
 
 		function showSlide(id) {
 			stopLoop();
-			if ( sliderInt > countOfSlides ) {
+			if ( sliderInt >= countOfSlides ) {
 				sliderInt = 1;
+				console.log("reset");
 			} else if (sliderInt < 1) {
 				sliderInt = countOfSlides;
-			};
+			}else {
+					++sliderInt;
+				};
 			$("#slides > div").fadeOut(200);
 			$("#slides > div#slide" + sliderInt).fadeIn(200);
 			$('.pagination > a').removeClass('pagactive');
@@ -212,13 +215,15 @@
 		}
 
 		function prev() {
-			newSlide = sliderInt - 1;
+			newSlide = --sliderInt;
 			showSlide(newSlide);
+			console.log('prev: '+sliderInt);
 		}
 
 		function next() {
-			newSlide = sliderInt + 1;
+			newSlide = ++sliderInt;
 			showSlide(newSlide);
+			console.log('next: '+sliderInt);
 		}
 
 		$('.pag > a').click(function() {
