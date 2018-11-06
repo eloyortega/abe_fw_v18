@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+		/*custom page css here*/
+		.flexcontainer{
+			display: flex;
+			height: calc( 100vh - 110px);
+			border:1px solid #aaa;
+		}
+		.flexchild{
+			background-color: #cdcdcd;
+			padding:20px;
+			border:1px solid #aaa;
+		}
+		
+		#flex2 .flexchild{
+			width:50%;
+		}
+
+/* center child */
+		#flex1{
+			justify-content: center;
+			align-items: center;
+		}
+
+/* even heights */
+		#flex2{
+			justify-content: space-evenly;
+			align-items: stretch;
+			align-content: stretch;
+		}
+		
+		
+	</style>
+</head>
+<body>
+	<!-- HTML here. -->
+	<h1>Bootstrap 4 template</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<div class="flexcontainer" id="flex1">
+		<div class="flexchild">
+			<p>Centered Div.</p>
+		</div>
+	</div>
+	<div class="flexcontainer" id="flex2">
+		<div class="flexchild">
+			<p>Centered Div.</p>
+		</div>
+		<div class="flexchild">
+			<p>Centered Div.</p>
+		</div>
+	</div>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script>
+		/* custom script here */
+	</script>
+</body>
+</html>

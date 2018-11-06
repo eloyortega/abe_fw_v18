@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+		/*custom page css here*/
+
+		.slider {
+			height: 400px;
+			position: relative;
+		}
+
+		#slides {
+			height: calc(100% - 40px);
+			background: #ccc;
+			/*			background-image: url(../images/sliderbg.jpg);*/
+			background-position: center 70px;
+			background-attachment: fixed;
+			background-size: cover;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.slide {
+			width: 100%;
+			display: none;
+			text-align: center;
+			background: #ccc;
+		}
+
+		.slidebtnnext,
+		.slidebtnprev {
+			font-size: 5em;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			z-index: 2;
+			width: auto;
+			position: absolute;
+			height: 100%;
+			top: 0px;
+		}
+
+		.slidebtnprev {
+			float: left;
+			text-align: left;
+			padding: 0 0 0 .5em;
+			left: 10px;
+		}
+
+		.slidebtnnext {
+			float: right;
+			text-align: right;
+			padding: 0 .5em 0 0;
+			right: 10px;
+		}
+
+		.slidebtnprev a,
+		.slidebtnnext a {
+			color: rgba(255, 255, 255, 0.5);
+		}
+
+		.slidebtnprev a:hover,
+		.slidebtnnext a:hover {
+			text-decoration: none;
+			color: #000;
+		}
+
+		.pag {
+			font-size: 20px;
+			text-align: center;
+			background-color: #aaa;
+			line-height: 200%;
+			height: 40px;
+		}
+
+		.pag a {
+			color: #fff;
+			border-radius: 50%;
+		}
+
+		.pag a:hover {
+			color: #000;
+			text-decoration: none;
+			color: #f00;
+		}
+
+		.pag a.pagactive {
+			color: #000;
+		}
+
+		.pag.pagWithThumbs {
+			font-size: 0px;
+		}
+
+		.pag.pagWithThumbs a.pagactive {
+			border: 2px solid #000;
+		}
+
+		.pag.pagWithThumbs a {
+			border: 2px solid transparent;
+			display: inline-block;
+			margin: 3px 5px 0px;
+		}
+
+		.pag.pagWithThumbs a:hover {
+			border: 2px solid #f00;
+		}
+
+		.pagWithThumbs img {
+			border-radius: 50%;
+			width: 30px;
+		}
+	</style>
+</head>
+<body>
+	<!-- HTML here. -->
+	<h1>Bootstrap 4 template</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+
+	<div class="slider">
+		<div id="slides">
+			<div class="slide" id="slide1">
+				<div>
+					<h2>Slide 1</h2>
+					<h4>This is the first slide</h4>
+				</div>
+			</div>
+			<div class="slide" id="slide2">
+				<div>
+					<h2>Slide 2</h2>
+					<h4>This is a second slide</h4>
+				</div>
+			</div>
+			<div class="slide" id="slide3">
+				<div>
+					<h2>Slide 3</h2>
+					<h4>This is a third slide</h4>
+				</div>
+			</div>
+		</div>
+<!--
+		<div class="pag">
+			<a href="#">&#9673;</a>&nbsp;
+			<a href="#">&#9673;</a>&nbsp;
+			<a href="#">&#9673;</a>&nbsp;
+		</div>
+-->
+		<div class="pag pagWithThumbs">
+			<a href="#"><img src="assets/img/pag1.jpg" /></a>&nbsp;
+			<a href="#"><img src="assets/img/pag2.jpg" /></a>&nbsp;
+			<a href="#"><img src="assets/img/pag3.jpg" /></a>
+		</div>
+		<div class="slidebtnprev"><a href="#" onclick="prev();">&#9668;</a></div>
+		<div class="slidebtnnext"><a href="#" onclick="next();">&#9658;</a></div>
+	</div>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/jqueryui.js"></script>
+	
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script>
+		/* custom script here */
+		sliderInt = 1;
+		countOfSlides = $("#slides > div").length;
+
+		function startSlider() {
+			loop = setInterval(function() {
+				if ( sliderInt >= countOfSlides ) {
+					sliderInt = 1;
+					console.log("reset");
+				} else {
+					++sliderInt;
+				};
+				console.log('before: '+sliderInt);
+				$("#slides > .slide").hide();
+				$("#slides > #slide" + sliderInt).show( "slide", { direction: "right" }, 500 );
+				$('.pag > a').removeClass('pagactive');
+				$('.pag > a:eq(' + (sliderInt - 1) + ')').addClass('pagactive');
+				console.log('after: '+sliderInt);
+			}, 5000);
+		}
+
+		function stopLoop() {
+			window.clearInterval(loop);
+		};
+
+		function showSlide(id) {
+			stopLoop();
+			if ( sliderInt > countOfSlides ) {
+				sliderInt = 1;
+			} else if (sliderInt < 1) {
+				sliderInt = countOfSlides;
+			};
+			$("#slides > div").fadeOut(200);
+			$("#slides > div#slide" + sliderInt).fadeIn(200);
+			$('.pagination > a').removeClass('pagactive');
+			$('.pagination > a:eq('+(sliderInt-1)+')').addClass('pagactive');
+			++sliderInt;
+			//console.log(sliderInt);
+			startSlider();
+		}
+
+		function prev() {
+			newSlide = sliderInt - 1;
+			showSlide(newSlide);
+		}
+
+		function next() {
+			newSlide = sliderInt + 1;
+			showSlide(newSlide);
+		}
+
+		$('.pag > a').click(function() {
+			newSlide = $(this).index() + 1;
+			showSlide(newSlide);
+			return false;;
+		});
+
+		$("#slides > #slide1").fadeIn(500);
+		$('.pag > a').removeClass('pagactive');
+		$('.pag > a:eq(0)').addClass('pagactive');
+		startSlider();
+
+		$("#slides").hover(
+			function() {
+				stopLoop();
+			},
+			function() {
+				startSlider();
+			}
+		);
+	</script>
+</body>
+</html>

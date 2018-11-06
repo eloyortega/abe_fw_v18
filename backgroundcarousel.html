@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+		/*custom page css here*/
+
+		#carousel,
+		#carousel2 {
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			z-index: -2;
+		}
+
+		#carousel {
+			background-image: url(assets/img/carbg1.png);
+		}
+
+		#carousel2 {
+			background-image: url(assets/img/carbg2.png);
+	</style>
+</head>
+
+<body>
+	<!-- HTML here. -->
+	<div id="carousel"></div>
+	<div id="carousel2"></div>
+	<h1 class="text-white">Bootstrap 4 template</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script>
+		/* custom script here */
+		carmotion = 0;
+		carmotion2 = 0;
+		w = window.innerWidth;
+		$('#carousel, #carousel2').css({'background-size': w + 'px auto'});
+
+		$(window).on("load", function() {
+			motion = function() {
+				carmotion = carmotion - 1;
+				carmotion2 = carmotion2 + 1;
+				if (carmotion == '-' + w) {
+					carmotion = 0;
+					carmotion2 = 0;
+				};
+			};
+			setInterval(function() {
+				motion();
+				$('#carousel').css({'background-position': carmotion + 'px center'});
+				$('#carousel2').css({'background-position': carmotion2 + 'px center'});
+			}, 30);
+		});
+	</script>
+</body>
+</html>

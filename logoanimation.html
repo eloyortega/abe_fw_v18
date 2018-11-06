@@ -10,37 +10,69 @@
 	<title>ABE Template 2018 | BS4 Template</title>
 	<style>
 		/*custom page css here*/
-		body{
-			background: #000;
+		@keyframes logoa1{
+			0% {background: #000;}
+			100% {background: #fff;}
 		}
+
+		@keyframes logoa2{
+			0% {fill: #000;}
+			100% {fill: #fff;}
+		}
+
+		@keyframes logoa3{
+			0% {fill: #000;}
+			100% {fill: #C8C8C8;}
+		}
+
+		@keyframes logoa4{
+			0% {
+				top:0px;
+				left:0px;
+			}
+			100% {
+				top:8px;
+				left:8px;
+			}
+		}
+
+		body {
+			background: #fff;
+			animation: logoa1 2s linear 1;
+		}
+
+		#logocontainer{
+			position: relative;
+		}
+		#logoLayer1,
+		#logoLayer2 {
+			position: absolute;
+			top: 0px;
+			left: 0px;
+		}
+		#logoLayer1 svg path{
+			animation: logoa2 2s linear 1;
+		}
+
+		#logoLayer2 svg path{
+			animation: logoa3 2s linear 1;
+		}
+		#logoLayer2{
+			animation: logoa4 2s linear 1;
+			top: 8px;
+			left: 8px;
+		}
+
 	</style>
 </head>
+
 <body>
 	<!-- HTML here. -->
 	<h1>Bootstrap 4 template</h1>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
-	<div class="container">
-		<div><svg version="1.1" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-	 x="0px" y="0px" width="600px" height="400px" viewBox="0 0 600 400" xml:space="preserve">
-<g>
-	<path fill="#FFFFFF" d="M133.333,350c43.148,0,78.711-32.947,82.91-75H50.423C54.622,317.053,90.202,350,133.333,350z"/>
-	<path fill="#FFFFFF" d="M133.333,183.333c-43.131,0-78.711,32.947-82.91,75h165.82C212.044,216.28,176.481,183.333,133.333,183.333
-		z"/>
-	<path fill="#FFFFFF" d="M416.667,183.333c-45.947,0-83.334,37.381-83.334,83.333c0,45.952,37.387,83.334,83.334,83.334
-		S500,312.618,500,266.666C500,220.715,462.614,183.333,416.667,183.333z"/>
-	<path fill="#FFFFFF" d="M0,0v400h600V0H0z M133.333,366.667c-55.208,0-100-44.78-100-100.001c0-55.22,44.792-100,100-100
-		c55.225,0,100,44.78,100,100C233.333,321.887,188.558,366.667,133.333,366.667z M283.333,356.25c0,5.729-3.743,10.417-8.333,10.417
-		c-4.573,0-8.333-4.688-8.333-10.417V43.75c0-5.729,3.76-10.417,8.333-10.417c4.59,0,8.333,4.688,8.333,10.417V356.25z
-		 M416.667,366.667c-55.209,0-100-44.78-100-100.001c0-55.22,44.791-100,100-100c55.225,0,100,44.78,100,100
-		C516.667,321.887,471.892,366.667,416.667,366.667z M566.667,356.25c0,5.729-3.744,10.417-8.334,10.417
-		c-4.573,0-8.333-4.688-8.333-10.417V177.083c0-5.729,3.76-10.417,8.333-10.417c4.59,0,8.334,4.688,8.334,10.417V356.25z
-		 M558.333,150c-4.605,0-8.333-3.731-8.333-8.333s3.728-8.333,8.333-8.333c4.606,0,8.334,3.731,8.334,8.333S562.939,150,558.333,150
-		z"/>
-</g>
-</svg></div>
-		<div>
-			<svg version="1.1" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-	 x="0px" y="0px" width="600px" height="400px" viewBox="0 0 600 400" overflow="auto" xml:space="preserve">
+	<div class="container" id="logocontainer">
+				<div id="logoLayer2">
+			<svg version="1.1" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="600px" height="400px" viewBox="0 0 600 400" overflow="auto" xml:space="preserve">
 <g>
 	<path fill="#C8C8C8" d="M133.333,350c43.148,0,78.711-32.947,82.91-75H50.423C54.622,317.053,90.202,350,133.333,350z"/>
 	<path fill="#C8C8C8" d="M133.333,183.333c-43.131,0-78.711,32.947-82.91,75.001h165.82
@@ -59,6 +91,24 @@
 </svg>
 
 		</div>
+		<div id="logoLayer1"><svg version="1.1" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="600px" height="400px" viewBox="0 0 600 400" xml:space="preserve">
+<g>
+	<path fill="#FFFFFF" d="M133.333,350c43.148,0,78.711-32.947,82.91-75H50.423C54.622,317.053,90.202,350,133.333,350z"/>
+	<path fill="#FFFFFF" d="M133.333,183.333c-43.131,0-78.711,32.947-82.91,75h165.82C212.044,216.28,176.481,183.333,133.333,183.333
+		z"/>
+	<path fill="#FFFFFF" d="M416.667,183.333c-45.947,0-83.334,37.381-83.334,83.333c0,45.952,37.387,83.334,83.334,83.334
+		S500,312.618,500,266.666C500,220.715,462.614,183.333,416.667,183.333z"/>
+	<path fill="#FFFFFF" d="M0,0v400h600V0H0z M133.333,366.667c-55.208,0-100-44.78-100-100.001c0-55.22,44.792-100,100-100
+		c55.225,0,100,44.78,100,100C233.333,321.887,188.558,366.667,133.333,366.667z M283.333,356.25c0,5.729-3.743,10.417-8.333,10.417
+		c-4.573,0-8.333-4.688-8.333-10.417V43.75c0-5.729,3.76-10.417,8.333-10.417c4.59,0,8.333,4.688,8.333,10.417V356.25z
+		 M416.667,366.667c-55.209,0-100-44.78-100-100.001c0-55.22,44.791-100,100-100c55.225,0,100,44.78,100,100
+		C516.667,321.887,471.892,366.667,416.667,366.667z M566.667,356.25c0,5.729-3.744,10.417-8.334,10.417
+		c-4.573,0-8.333-4.688-8.333-10.417V177.083c0-5.729,3.76-10.417,8.333-10.417c4.59,0,8.334,4.688,8.334,10.417V356.25z
+		 M558.333,150c-4.605,0-8.333-3.731-8.333-8.333s3.728-8.333,8.333-8.333c4.606,0,8.334,3.731,8.334,8.333S562.939,150,558.333,150
+		z"/>
+</g>
+</svg></div>
+
 	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
