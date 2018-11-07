@@ -156,18 +156,18 @@
 				</div>
 			</div>
 		</div>
-<!--
 		<div class="pag">
 			<a href="#">&#9673;</a>&nbsp;
 			<a href="#">&#9673;</a>&nbsp;
 			<a href="#">&#9673;</a>&nbsp;
 		</div>
--->
+<!--
 		<div class="pag pagWithThumbs">
 			<a href="#"><img src="assets/img/pag1.jpg" /></a>&nbsp;
 			<a href="#"><img src="assets/img/pag2.jpg" /></a>&nbsp;
 			<a href="#"><img src="assets/img/pag3.jpg" /></a>
 		</div>
+-->
 		<div class="slidebtnprev"><a href="#" onclick="prev();">&#9668;</a></div>
 		<div class="slidebtnnext"><a href="#" onclick="next();">&#9658;</a></div>
 	</div>
@@ -182,34 +182,34 @@
 		/* custom script here */
 		sliderInt = 0;
 		countOfSlides = $(".slide").length;
-		console.log(countOfSlides);
 		$("#slides > #slide1").fadeIn(500);
 		$('.pag > a:eq(0)').addClass('pagactive');
 		startSlider();
-		
+
 		function slideanimation(a){
 			if(a == "forward"){
 				b="left";
 				c="right";
 				d = countOfSlides-1;
 				e = 0;
-			} else{
-				c="left";
+				f = sliderInt + 1;
+			} else {
 				b="right";
-				e = countOfSlides-1;
+				c="left";
 				d = 0;
-			}
+				e = countOfSlides-1;
+				f = sliderInt - 1;
+			};
 			$(".slide").hide();
 			$('.pag > a').removeClass('pagactive');
-				console.log(sliderInt);
-				if ( sliderInt == countOfSlides-1 ) {
-					sliderInt = 0;
-				} else {
-					++sliderInt;
-				};
-				console.log(sliderInt);
-				$(".slide:eq("+(sliderInt)+")").show("slide",{"direction":"right"}, 200);
-				$('.pag > a:eq(' + (sliderInt) + ')').addClass('pagactive');
+			console.log(sliderInt);
+			if ( sliderInt == d ) {
+				sliderInt = e;
+			} else {
+				sliderInt = f;
+			};
+			$(".slide:eq("+(sliderInt)+")").show("slide",{"direction":c}, 200);
+			$('.pag > a:eq(' + (sliderInt) + ')').addClass('pagactive');
 		};
 
 		function startSlider() {
@@ -224,37 +224,25 @@
 
 		function prev() {
 			stopLoop();
-			$(".slide:eq("+sliderInt+")").hide("slide",{"direction":"right"}, 200);
-			$('.pag > a').removeClass('pagactive');
-				console.log(sliderInt);
-				if ( sliderInt == 0 ) {
-					sliderInt = countOfSlides-1;
-					console.log("reset");
-				} else {
-					--sliderInt;
-				};
-				console.log("new:" + sliderInt);
-				$(".slide:eq("+(sliderInt)+")").show("slide",{"direction":"left"}, 200);
-				$('.pag > a:eq(' + (sliderInt) + ')').addClass('pagactive');
+			slideanimation("backward");
 			startSlider();
-		}
+		};
 
 		function next() {
 			stopLoop();
-			slideanimation();
+			slideanimation("forward");
 			startSlider();
-		}
-		
+		};
+
 		$('.pag > a').click(function() {
 			stopLoop();
 			if ($(this).index() == 0){
 				sliderInt = countOfSlides-1;
-				console.log("yup");
 			}
 			else{
 				sliderInt = $(this).index() -1;
 			}
-			slideanimation();
+			slideanimation("forward");
 			startSlider();
 			return false;
 		});
@@ -265,7 +253,7 @@
 			},
 			function() {
 				startSlider();
-			});
+		});
 	</script>
 </body>
 </html>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+		/*custom page css here*/
+		.scrollPage{
+			height:100vh;
+		}
+	</style>
+</head>
+<body>
+	<!-- HTML here. -->
+	<div class="scrollPage" id="mo">
+		<div>
+			<h1 class="alignCenter">Once upon a time...</h1>
+		</div>
+	</div>
+	<div class="scrollPage" id="larry">
+		<div>
+			<h5 class="">
+				I tried to make a page scroller.<br>
+				<br>
+				<br>
+				And then I did.
+			</h5>
+		</div>
+	</div>
+	<div class="scrollPage" id="curly">
+		<div>
+			<h1>-Fin-</h1>
+		</div>
+	</div>
+	
+		<h1>Bootstrap 4 template</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/jqueryui.js"></script>
+
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+<!--
+	<script>
+		/* custom script here */
+		scrollDirection = "scrollreset";
+		thisPageindex = 0;
+		
+		pageScroller = function(){
+			bob = $(window).height();
+			bob = bob / 2;
+			headerHeight = $('.headFiller').height();
+			console.log(bob);
+			
+			$('.scrollPage').each(function () {
+				windowScrollTop = $(window).scrollTop();
+				pageid = $(this).attr('id');
+				pageindex = $(this).index('.scrollPage');
+				pageHeight = $(this).height();
+				pageTop = $(this).offset().top;
+				pageTop =  pageTop - windowScrollTop;
+				pageBottom = pageHeight + pageTop;
+				console.log(scrollDirection);
+				console.log(pageindex+" | "+ pageTop +" | "+ pageBottom);
+				if(pageTop < bob && pageBottom > bob){
+					thisPageindex = pageindex;
+					console.log('thisPageindex = '+ thisPageindex);
+					if (scrollDirection == "up"){
+						if(thisPageindex == 0){
+							return false;
+							console.log(36);
+						}
+						else{
+							$('html,body').animate({
+								scrollTop: $('.scrollPage:eq('+(thisPageindex - 1)+')').offset().top - headerHeight
+							});
+							console.log(42);
+							return false;
+						}
+					}
+					
+					else if (scrollDirection == "down"){
+						if(thisPageindex != ($('.scrollPage').length - 1)){
+							
+							
+							$('html,body').animate({
+								scrollTop: $('.scrollPage:eq('+(thisPageindex + 1)+')').offset().top - headerHeight
+							});
+							console.log(59);
+							return false;
+						}	
+						else{
+						$('html,body').animate({
+							scrollTop: $('.scrollPage:eq('+thisPageindex+')').offset().top - headerHeight
+						});
+						console.log(67);
+						return false;
+					}
+					}
+					
+					else{
+						$('html,body').animate({
+							scrollTop: $('.scrollPage:eq('+thisPageindex+')').offset().top - headerHeight
+						});
+						console.log(67);
+						return false;
+					}
+				}
+/*				if (pageTop < bob && pageBottom > bob){
+					
+					console.log(pageindex +" is it!");
+					$('html,body').animate({
+						scrollTop: $('.scrollPage:eq('+pageindex+')').offset().top - headerHeight
+					});
+				}*/
+				
+			
+			});
+			scrollDirection = "scrollreset";
+			console.log(scrollDirection);
+		};
+		
+		$(window).bind('DOMMouseScroll mousewheel', function(e){
+			//e.preventDefault();
+			if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+				if (e.originalEvent.detail < 0) 
+				{
+					scrollDirection = "up";
+				}
+				else
+				{
+					scrollDirection = "down";
+				}
+			} else {
+				if (e.originalEvent.wheelDelta > 0) 
+				{
+					scrollDirection = "up";
+				}
+				else
+				{
+					scrollDirection = "down";
+				}
+			}
+			
+			//return false;
+			
+		});
+		
+		$(document).ready(function(){
+			setInterval(function() {
+				if (scrollDirection != "scrollreset"){
+					pageScroller();
+					
+				}
+			}, 2000)
+		});
+	</script>
+-->
+</body>
+</html>
