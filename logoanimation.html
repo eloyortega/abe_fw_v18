@@ -10,29 +10,42 @@
 	<title>ABE Template 2018 | BS4 Template</title>
 	<style>
 		/*custom page css here*/
-		@keyframes logoa1{
-			0% {background: #000;}
-			100% {background: #fff;}
-		}
 
-		@keyframes logoa2{
-			0% {fill: #000;}
-			100% {fill: #fff;}
-		}
-
-		@keyframes logoa3{
-			0% {fill: #000;}
-			100% {fill: #C8C8C8;}
-		}
-
-		@keyframes logoa4{
+		@keyframes logoa1 {
 			0% {
-				top:0px;
-				left:0px;
+				background: #000;
 			}
 			100% {
-				top:8px;
-				left:8px;
+				background: #fff;
+			}
+		}
+
+		@keyframes logoa2 {
+			0% {
+				fill: #000;
+			}
+			100% {
+				fill: #fff;
+			}
+		}
+
+		@keyframes logoa3 {
+			0% {
+				fill: #000;
+			}
+			100% {
+				fill: #C8C8C8;
+			}
+		}
+
+		@keyframes logoa4 {
+			0% {
+				top: 0px;
+				left: 0px;
+			}
+			100% {
+				top: 8px;
+				left: 8px;
 			}
 		}
 
@@ -41,28 +54,115 @@
 			animation: logoa1 2s linear 1;
 		}
 
-		#logocontainer{
+		#logocontainer {
 			position: relative;
+			height: 100vh;
 		}
+
 		#logoLayer1,
 		#logoLayer2 {
 			position: absolute;
 			top: 0px;
 			left: 0px;
 		}
-		#logoLayer1 svg path{
+
+		#logoLayer1 svg path {
 			animation: logoa2 2s linear 1;
 		}
 
-		#logoLayer2 svg path{
+		#logoLayer2 svg path {
 			animation: logoa3 2s linear 1;
 		}
-		#logoLayer2{
+
+		#logoLayer2 {
 			animation: logoa4 2s linear 1;
 			top: 8px;
 			left: 8px;
 		}
 
+
+		/* entire container, keeps perspective */
+
+		.flip-container {
+			perspective: 1000px;
+			display: inline-block;
+		}
+
+		/* flip the pane when hovered */
+
+		.flip-container:hover .front {
+			z-index: 1;
+			transform: rotateY(180deg);
+		}
+
+		.flip-container:hover .back {
+			z-index: 2;
+			transform: rotateY(0deg);
+		}
+
+		.flip-container,
+		.front,
+		.back {
+			width: 200px;
+			height: 200px;
+		}
+
+		/* flip speed goes here */
+
+		.flipper {
+			position: relative;
+		}
+
+		/* hide back of pane during swap */
+
+		.front,
+		.back {
+			transition: all 0.6s;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+
+		/* front pane, placed above back */
+
+		.front {
+			z-index: 2;
+			backface-visibility: hidden;
+		}
+
+		.front > div {
+			background-color: #000;
+			height: 200px;
+			border-radius: 50%;
+			color: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
+
+		.front img {
+			max-width: 60px;
+		}
+
+		/* back, initially hidden pane */
+
+		.back {
+			z-index: 1;
+			transform: rotateY(-180deg);
+			backface-visibility: hidden;
+		}
+
+		.back > div {
+			background-color: #ac3;
+			height: 200px;
+			border-radius: 50%;
+			color: #fff;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+		}
 	</style>
 </head>
 
@@ -71,7 +171,7 @@
 	<h1>Bootstrap 4 template</h1>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
 	<div class="container" id="logocontainer">
-				<div id="logoLayer2">
+		<div id="logoLayer2">
 			<svg version="1.1" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="600px" height="400px" viewBox="0 0 600 400" overflow="auto" xml:space="preserve">
 <g>
 	<path fill="#C8C8C8" d="M133.333,350c43.148,0,78.711-32.947,82.91-75H50.423C54.622,317.053,90.202,350,133.333,350z"/>
@@ -108,8 +208,72 @@
 		z"/>
 </g>
 </svg></div>
-
+		<br>
 	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col text-center">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="p-10">
+								<div>
+									<img src="assets/img/1icon.png" class="rounded-circle">
+									<h1>Title</h1>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div>
+								<p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col text-center">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="p-10" style="background-color: #F49C3F">
+								<div>
+									<img src="assets/img/2icon.png" class="rounded-circle">
+									<h1>Title</h1>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div>
+								<p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col text-center">
+				<div class="flip-container">
+					<div class="flipper">
+						<div class="front">
+							<div class="p-10" style="background-color: #4EB7B7">
+								<div>
+									<img src="assets/img/3icon.png" class="rounded-circle">
+									<h1>Title</h1>
+								</div>
+							</div>
+						</div>
+						<div class="back">
+							<div>
+								<p class="m-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="assets/js/jquery.js"></script>
