@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+		/*custom page css here*/
+		.question,
+		#results {
+			display: none;
+		}
+
+		#q1 {
+			display: block;
+		}
+
+		.question h3 {
+			padding-bottom: 20px;
+		}
+
+		.question {
+			text-align: left;
+		}
+
+		label {
+			font-size: 18px;
+			padding-left: 50px;
+		}
+	</style>
+</head>
+<body>
+	<!-- HTML here. -->
+	<h1>Bootstrap 4 template</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+				<div id="q1" class="question">
+				<h3>1. What's the name on the clumsy robot arm that saved Tony Stark's life?</h3>
+				<label><input type="radio" name="q1" value="jarvis"> J.A.R.V.I.S.</label><br>
+				<label><input type="radio" name="q1" value="dum-e"> Dum-E</label><br>
+				<label><input type="radio" name="q1" value="mkii"> MK II</label>
+				<br><br>
+				<button class="next btn">Next</button>
+			</div>
+			<div id="q2" class="question">
+				<h3>2. What does Bruce Banner accidently say when he used his catchphrase in spanish?</h3>
+				<label><input type="radio" name="q2" value="hungry"> You wouldn't like me when I'm hungry</label><br>
+				<label><input type="radio" name="q2" value="lonely"> You wouldn't like to be alone with me</label><br>
+				<label><input type="radio" name="q2" value="beefy"> You wouldn't like a beefy</label>
+				<br><br>
+				<button class="next  btn">Next</button>
+			</div>
+			<div id="q3" class="question">
+				<h3>3. How many soon-to-be Avengers debute in the 2011 film, Thor?</h3>
+				<label><input type="radio" name="q3" value="one"> One. Thor.</label><br>
+				<label><input type="radio" name="q3" value="three"> Three. Thor, Hawkeye and Black Widow.</label><br>
+				<label><input type="radio" name="q3" value="two"> Two. Thor and Hawkeye.</label>
+				<br><br>
+				<button class="next  btn">Next</button>
+			</div>
+			<div id="q4" class="question">
+				<h3>4. Who's father was present when Steve Rogers became Captain America?</h3>
+				<label><input type="radio" name="q4" value="carter"> Agent 13</label><br>
+				<label><input type="radio" name="q4" value="banner"> Hulk</label><br>
+				<label><input type="radio" name="q4" value="stark"> Ironman</label>
+				<br><br>
+				<button class="next  btn">Next</button>
+			</div>
+			<div id="q5" class="question">
+				<h3>5. What does Ironman request at the end of the battle in Avengers?</h3>
+				<label><input type="radio" name="q5" value="shawarma"> Shawarma</label><br>
+				<label><input type="radio" name="q5" value="gyros"> Gyro</label><br>
+				<label><input type="radio" name="q5" value="falafel"> Falafel</label>
+				<br><br>
+				<button class="next  btn" id="finish">Finish</button>
+			</div>
+			<div id="results">
+				<h3>You Scored:</h3>
+				<h3 id="score"></h3>
+			</div>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script>
+		/* custom script here */
+		a1 = "dum-e";
+		a2 = "hungry";
+		a3 = "two";
+		a4 = "stark";
+		a5 = "shawarma";
+
+		nxtbtn = document.getElementsByClassName('next');
+		for (i in nxtbtn) {
+			nxtbtn[i].onclick = function() {
+				this.parentElement.style.display = "none";
+				this.parentElement.nextElementSibling.style.display = "block";
+			};
+		};
+
+		document.getElementById('finish').onclick = function() {
+			this.parentElement.style.display = "none";
+			this.parentElement.nextElementSibling.style.display = "block";
+			r1 = document.querySelector('input[name="q1"]:checked').value;
+			r2 = document.querySelector('input[name="q2"]:checked').value;
+			r3 = document.querySelector('input[name="q3"]:checked').value;
+			r4 = document.querySelector('input[name="q4"]:checked').value;
+			r5 = document.querySelector('input[name="q5"]:checked').value;
+			score = 0;
+			if (r1 == a1) {
+				++score;
+			}
+			if (r2 == a2) {
+				++score;
+			}
+			if (r3 == a3) {
+				++score;
+			}
+			if (r4 == a4) {
+				++score;
+			}
+			if (r5 == a5) {
+				++score;
+			}
+			console.log(score);
+			questioncount = document.getElementsByClassName('question').length;
+			score = (score / questioncount) * 100;
+			score = score.toFixed(0) + "%";
+			console.log(score);
+			document.getElementById("score").innerHTML = score;
+		};
+	</script>
+</body>
+</html>

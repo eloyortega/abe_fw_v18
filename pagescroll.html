@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -10,36 +11,74 @@
 	<title>ABE Template 2018 | BS4 Template</title>
 	<style>
 		/*custom page css here*/
-		.scrollPage{
-			height:100vh;
+
+		.scrollPage {
+			height: 100vh;
+		}
+		
+		#scrpag{
+			position:fixed;
+			top:0px;
+			right:0px;
+			padding:20px;
+		}
+
+		#scrpag a:hover {
+			color: #000;
+			text-decoration: none;
+			color: #f00;
+		}
+
+		#scrpag a.pagactive {
+			color: #000;
 		}
 	</style>
 </head>
+
 <body>
 	<!-- HTML here. -->
-	<div class="scrollPage" id="mo">
+	<div class="scrollPage">
+		<h1>Bootstrap 4 template</h1>
+		<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
 		<div>
 			<h1 class="alignCenter">Once upon a time...</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+			incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+			nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+			fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+			culpa qui officia deserunt mollit anim id est laborum.</p>
 		</div>
 	</div>
-	<div class="scrollPage" id="larry">
+	<div class="scrollPage">
 		<div>
-			<h5 class="">
-				I tried to make a page scroller.<br>
-				<br>
-				<br>
-				And then I did.
-			</h5>
+			<h1>Chapter 2</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+			incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+			nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+			fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+			culpa qui officia deserunt mollit anim id est laborum.</p>
 		</div>
 	</div>
-	<div class="scrollPage" id="curly">
+	<div class="scrollPage">
+		<div>
+			<h1>Chapter 3</h1>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+			incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+			nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+			fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+			culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+	</div>
+	<div class="scrollPage">
 		<div>
 			<h1>-Fin-</h1>
 		</div>
 	</div>
-	
-		<h1>Bootstrap 4 template</h1>
-	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<div id="scrpag"></div>
+
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="assets/js/jquery.js"></script>
@@ -47,121 +86,60 @@
 
 	<script src="assets/js/popper.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
-<!--
 	<script>
-		/* custom script here */
-		scrollDirection = "scrollreset";
-		thisPageindex = 0;
+		sect = 0;
+		scrollDirection = "rest";
 		
-		pageScroller = function(){
-			bob = $(window).height();
-			bob = bob / 2;
-			headerHeight = $('.headFiller').height();
-			console.log(bob);
-			
-			$('.scrollPage').each(function () {
-				windowScrollTop = $(window).scrollTop();
-				pageid = $(this).attr('id');
-				pageindex = $(this).index('.scrollPage');
-				pageHeight = $(this).height();
-				pageTop = $(this).offset().top;
-				pageTop =  pageTop - windowScrollTop;
-				pageBottom = pageHeight + pageTop;
-				console.log(scrollDirection);
-				console.log(pageindex+" | "+ pageTop +" | "+ pageBottom);
-				if(pageTop < bob && pageBottom > bob){
-					thisPageindex = pageindex;
-					console.log('thisPageindex = '+ thisPageindex);
-					if (scrollDirection == "up"){
-						if(thisPageindex == 0){
-							return false;
-							console.log(36);
-						}
-						else{
-							$('html,body').animate({
-								scrollTop: $('.scrollPage:eq('+(thisPageindex - 1)+')').offset().top - headerHeight
-							});
-							console.log(42);
-							return false;
-						}
-					}
-					
-					else if (scrollDirection == "down"){
-						if(thisPageindex != ($('.scrollPage').length - 1)){
-							
-							
-							$('html,body').animate({
-								scrollTop: $('.scrollPage:eq('+(thisPageindex + 1)+')').offset().top - headerHeight
-							});
-							console.log(59);
-							return false;
-						}	
-						else{
-						$('html,body').animate({
-							scrollTop: $('.scrollPage:eq('+thisPageindex+')').offset().top - headerHeight
-						});
-						console.log(67);
-						return false;
-					}
-					}
-					
-					else{
-						$('html,body').animate({
-							scrollTop: $('.scrollPage:eq('+thisPageindex+')').offset().top - headerHeight
-						});
-						console.log(67);
-						return false;
-					}
-				}
-/*				if (pageTop < bob && pageBottom > bob){
-					
-					console.log(pageindex +" is it!");
-					$('html,body').animate({
-						scrollTop: $('.scrollPage:eq('+pageindex+')').offset().top - headerHeight
-					});
-				}*/
-				
-			
-			});
-			scrollDirection = "scrollreset";
-			console.log(scrollDirection);
-		};
+		//console.log($('#scrpag').length);
 		
-		$(window).bind('DOMMouseScroll mousewheel', function(e){
-			//e.preventDefault();
+		for(var i = 0; i<$('.scrollPage').length; ++i){
+			console.log(i);
+			$('#scrpag').append('<a href="#">&#9673;</a><br>');
+		}
+		
+		$('#scrpag a:eq(0)').addClass('pagactive');
+		
+		
+		$(window).bind('DOMMouseScroll mousewheel', function(e) {
 			if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-				if (e.originalEvent.detail < 0) 
-				{
+				if (e.originalEvent.detail < 0) {
 					scrollDirection = "up";
-				}
-				else
-				{
+				} else {
 					scrollDirection = "down";
-				}
+				};
 			} else {
-				if (e.originalEvent.wheelDelta > 0) 
-				{
+				if (e.originalEvent.wheelDelta > 0) {
 					scrollDirection = "up";
-				}
-				else
-				{
+				} else {
 					scrollDirection = "down";
-				}
-			}
-			
-			//return false;
-			
+				};
+			};
+			console.log(scrollDirection);
 		});
+
+		setInterval(function() {
+			if (scrollDirection == "up") {
+				if (sect != 0) {
+					--sect;
+					scrollto();
+				};
+			} else if ( scrollDirection == "down" ) {
+				if (sect != $('.scrollPage').length -1) {
+					++sect;
+					scrollto();
+				};
+			};
+		}, 2000);
 		
-		$(document).ready(function(){
-			setInterval(function() {
-				if (scrollDirection != "scrollreset"){
-					pageScroller();
-					
-				}
-			}, 2000)
-		});
+		function scrollto(){
+			$('html,body').animate({
+					scrollTop: $('.scrollPage:eq(' + sect + ')').offset().top
+			});
+			$('#scrpag a').removeClass('pagactive');
+			$('#scrpag a:eq(' + sect + ')').addClass('pagactive');
+			scrollDirection = "rest";
+		};
 	</script>
--->
 </body>
+
 </html>
