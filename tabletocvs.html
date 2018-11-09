@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+		/*custom page css here*/
+	</style>
+</head>
+<body>
+	<!-- HTML here. -->
+	<h1>Bootstrap 4 template</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<table class="table table-stripped" id="dvData">
+					<tbody><tr>
+						<th>Date</th>
+						<th>Denomination</th>
+						<th>Quantity</th>
+						<th>Vendor</th>
+					</tr>
+					<tr>
+						<td>12/02/2014</td>
+						<td>$25</td>
+						<td>4</td>
+						<td>Target</td>
+					</tr>
+					<tr>
+						<td>12/02/2014</td>
+						<td>$50</td>
+						<td>1</td>
+						<td>Target</td>
+					</tr>
+					<tr>
+						<td>12/10/2014</td>
+						<td>$100</td>
+						<td>2</td>
+						<td>JC Penny</td>
+					</tr>
+					<tr>
+						<td>12/16/2014</td>
+						<td>$50</td>
+						<td>2</td>
+						<td>The Sports Authority</td>
+					</tr>
+				</tbody></table>
+	<a href="#" class="export" style=" margin-right: 5px;">Export Table Data into Excel</a>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script>
+		/* custom script here */
+		function exportTableToCSV($table, filename) {
+		var $rows = $table.find('tr:has(td)'),
+			tmpColDelim = String.fromCharCode(11),
+			tmpRowDelim = String.fromCharCode(0),
+			colDelim = '","',
+			rowDelim = '"\r\n"',
+			csv = '"' + $rows.map(function (i, row) {
+				var $row = $(row),
+					$cols = $row.find('td');
+				return $cols.map(function (j, col) {
+					var $col = $(col),
+					text = $col.text();
+					return text.replace('"', '""');
+				}).get().join(tmpColDelim);
+			}).get().join(tmpRowDelim).split(tmpRowDelim).join(rowDelim).split(tmpColDelim).join(colDelim) + '"',
+			csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+
+		$(this)
+			.attr({
+				'download': filename,
+				'href': csvData,
+				'target': '_blank'
+		});
+	}
+
+	$(".export").on('click', function (event) {
+		exportTableToCSV.apply(this, [$('#dvData'), 'export.csv']);
+	});
+	</script>
+</body>
+</html>
