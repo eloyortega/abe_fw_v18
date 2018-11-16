@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+		/*custom page css here*/
+	</style>
+</head>
+
+<body>
+	<!-- HTML here. -->
+	<h1>Bootstrap 4 template</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<div class="container">
+		<div class="row" id="cardcontainer">
+		</div>
+	</div>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script>
+		/* custom script here */
+		heroes = [{
+				img: 'assets/img/user1.jpg',
+				hn: 'Superman',
+				rn: 'Clark Kent',
+				city: 'Metropolis'
+			},
+			{
+				img: 'assets/img/user2.jpg',
+				hn: 'Batman',
+				rn: 'Bruce Wayne',
+				city: 'Gotham City'
+			},
+			{
+				img: 'assets/img/user3.jpg',
+				hn: 'Wonder Woman',
+				rn: 'Diana Prince',
+				city: 'Paradise Island'
+			},
+			{
+				img: 'assets/img/user4.jpg',
+				hn: 'Captain Marvel',
+				rn: 'Carol Danvers',
+				city: 'New York'
+			},
+			{
+				img: 'assets/img/user5.jpg',
+				hn: 'Iron Man',
+				rn: 'Tony Stark',
+				city: 'New York'
+			},
+			{
+				img: 'assets/img/user6.jpg',
+				hn: 'Thor',
+				rn: 'Thor Odinson',
+				city: 'Asgard'
+			}
+		];
+
+		for (i in heroes) {
+			console.log(heroes[i]);
+			document.getElementById('cardcontainer').innerHTML += `
+				<div class="col-md-2 p-1">
+					<div class="card">
+						<div class="card-header">
+							<b>${heroes[i].hn}</b>
+						</div>
+						<img class="card-img-top" src="${heroes[i].img}">
+						<div class="card-body">
+							<p class="card-text">
+								<b>Real Name:</b><br>
+								${heroes[i].rn}
+								<br><br>
+								<b>City:</b><br>
+								${heroes[i].city}
+							</p>
+						</div>
+					</div>
+				</div>
+			`;
+		}
+	</script>
+</body>
+</html>
