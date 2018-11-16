@@ -46,6 +46,21 @@
 		let g = f(3)(4)(5);
 		console.log(f);
 		console.log(g);
+		
+		
+		
+		//detect IE Browsers
+	var ua = window.navigator.userAgent;
+	var msie = ua.indexOf('MSIE ');
+	var trident = ua.indexOf('Trident/');
+	var edge = ua.indexOf('Edge/');
+	
+	if ( (msie > 0) || (edge > 0) || (trident > 0) ) {
+		alert('Why are you using IE');
+	} else{
+		alert(ua);
+	}
+		
 	</script>
 </body>
 </html>
