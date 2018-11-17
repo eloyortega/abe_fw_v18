@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 	<title>ABE Template 2018 | BS4 Template</title>
 	<style>
@@ -22,6 +22,24 @@
 		<p>dynamic load of content</p>
 		<div class="pad40" id="txtcode"></div>
 
+		<p id="math1">Math Random: </p>
+
+		<p>Use Random to generate 0-100:
+			<span id="math2"></span>
+		</p>
+
+		<p>Use Random to generate 0-1000:
+			<span id="math3"></span>
+		</p>
+
+		<p class="math">Round:</p>
+		<p class="math">Ceiling:</p>
+		<p class="math">Floor:</p>
+		<p class="math">Exponent:</p>
+		<p class="math">Square Root:</p>
+
+		<p>Interval: <span id="int"></span></p>
+
 
 	</div>
 
@@ -32,35 +50,78 @@
 	<script src="assets/js/bootstrap.min.js"></script>
 
 	<script>
-			$("#txtcode").load("snippet.html");
+		$("#txtcode").load("snippet.html");
 
-			function f(x){
-			x*=2;
-			return function(y){
-				y*=x;
-				return function(z){
-					return z*y;
+		function f(x) {
+			x *= 2;
+			return function(y) {
+				y *= x;
+				return function(z) {
+					return z * y;
 				}
 			}
 		}
 		let g = f(3)(4)(5);
 		console.log(f);
 		console.log(g);
-		
-		
-		
+
 		//detect IE Browsers
-	var ua = window.navigator.userAgent;
-	var msie = ua.indexOf('MSIE ');
-	var trident = ua.indexOf('Trident/');
-	var edge = ua.indexOf('Edge/');
-	
-	if ( (msie > 0) || (edge > 0) || (trident > 0) ) {
-		alert('Why are you using IE');
-	} else{
-		alert(ua);
-	}
-		
+		var ua = window.navigator.userAgent;
+		var msie = ua.indexOf('MSIE ');
+		var trident = ua.indexOf('Trident/');
+		var edge = ua.indexOf('Edge/');
+
+		if ((msie > 0) || (edge > 0) || (trident > 0)) {
+			//alert('Why are you using IE');
+		} else {
+			//alert(ua);
+		}
+
+		a = Math.random();
+		$('#math1').append(a);
+
+		b = a.toFixed(2) * 100;
+		b = Math.round(b);
+		$('#math2').html(b);
+
+		c = a.toFixed(3) * 1000;
+		c = Math.round(c);
+		$('#math3').html(c);
+
+		$('.math:eq(0)').append(Math.round(9.4));
+		$('.math:eq(1)').append(Math.ceil(9.4));
+		$('.math:eq(2)').append(Math.floor(9.7));
+		$('.math:eq(3)').append(Math.pow(3, 3));
+		$('.math:eq(4)').append(Math.sqrt(9));
+
+		var i = 0;
+
+		sint = function() {
+			int = setInterval(function() {
+				$('#int').html(++i);
+			}, 200);
+		};
+
+		cint = function() {
+			clearInterval(int);
+		};
+
+		$('#int').parent().hover(function() {
+			cint();
+		}, function() {
+			sint();
+		});
+
+		sint();
+
+		var points = [40, 100, 1, 5, 25, 10];
+		points.sort(function(a, b) {
+			return a - b
+		});
+
+		var numbers = [1, 2, 3, 4];
+		Math.max(...numbers) // 4
+		Math.min(...numbers) // 1
 	</script>
 </body>
 </html>
