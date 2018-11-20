@@ -12,7 +12,7 @@
 	</style>
 </head>
 
-<body>
+<body id="body">
 	<h1>Common JS Functions</h1>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
 	<div class="container">
@@ -21,7 +21,7 @@
 		<hr>
 		<p>dynamic load of content</p>
 		<div class="pad40" id="txtcode"></div>
-
+		<p id="brow"></p>
 		<p id="math1">Math Random: </p>
 
 		<p>Use Random to generate 0-100:
@@ -39,7 +39,16 @@
 		<p class="math">Square Root:</p>
 
 		<p>Interval: <span id="int"></span></p>
+		<p id="coords">Coordinates:</p>
 
+
+		<p id="demo"></p>
+		
+		<button onclick="openInNewTab('https://www.facebook.com')">click</button>
+		
+		<p id="scrinfo"></p>
+		<p id="addline"></p>
+		
 
 	</div>
 
@@ -76,6 +85,15 @@
 		} else {
 			//alert(ua);
 		}
+		document.getElementById('brow').innerHTML = `
+			browser info:${ua}<br>
+			${navigator.appName}<br>
+			${navigator.appVersion}<br>
+			${navigator.userAgent}<br>
+			${navigator.platform}<br>
+			${navigator.onLine}<br>
+		`;
+		
 
 		a = Math.random();
 		$('#math1').append(a);
@@ -122,6 +140,49 @@
 		var numbers = [1, 2, 3, 4];
 		Math.max(...numbers) // 4
 		Math.min(...numbers) // 1
+
+		document.body.onmousemove = function(event) {
+			var pageCoords = "( " + event.pageX + ", " + event.pageY + " )";
+			var clientCoords = "( " + event.clientX + ", " + event.clientY + " )";
+			$("#coords").text("Coords: ( event.pageX, event.pageY ) : " + pageCoords + "( event.clientX, event.clientY ) : " + clientCoords);
+		};
+
+
+
+		var w = window.innerWidth ||
+			document.documentElement.clientWidth ||
+			document.body.clientWidth;
+
+		var h = window.innerHeight ||
+			document.documentElement.clientHeight ||
+			document.body.clientHeight;
+
+		var x = document.getElementById("demo");
+		x.innerHTML = "Browser inner window width: " + w + ", height: " + h + ".";
+
+		function openInNewTab(url) {
+			var win = window.open(url, '_blank');
+			win.focus();
+		}
+		
+		document.getElementById("scrinfo").innerHTML = `
+			Screen width is: ${screen.width} <br>
+			Screen height is: ${screen.height} <br>
+			Screen width minus taskbar is: ${screen.availWidth} <br>
+			Screen height minus taskbar is: ${screen.availHeight} <br>
+			Screen color depth is: ${screen.colorDepth} <br>
+		
+		`;
+		
+		document.getElementById("addline").innerHTML =`
+			Page location is ${window.location.href}<br>
+			Page hostname is ${window.location.hostname}<br>
+			Page pathname is ${window.location.pathname}<br>
+			Page protocol is ${window.location.protocol}<br>
+			Page port is ${window.location.port}<br>
+		`;
+		
+		
 	</script>
 </body>
 </html>
