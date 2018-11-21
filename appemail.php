@@ -43,25 +43,25 @@
 
 <?php
 
-$t = $_POST['to'];
-$f = $_POST['from'];
-$s = $_POST['subject'];
-$m = $_POST['message'];
+$t = $_GET['to'];
+$f = $_GET['from'];
+$s = $_GET['subject'];
+$m = $_GET['message'];
 
 $b = '
 	<html>
 		<body>
 			<p style="font-size:18px;">
-				From:'.$f.'<br><br>
-				To:'.$t.'<br><br>
-				Subject:'.$s.'<br><br>
-				Message:'.$m.'
+				From: '.$f.'<br><br>
+				To: '.$t.'<br><br>
+				Subject: '.$s.'<br><br>
+				Message: '.$m.'
 			</p>
 		</body>
 	</html>
 ';
 
-$h = 'MIME-Version: 1.0\r\n Content-type: text/html; charset=iso-8859-1 \r\n From: '.$f.'\r\n Reply-To: '.$f.'\r\n X-Mailer: PHP/' . phpversion();
+$h = 'MIME-Version: 1.0' . "\r\n". 'Content-type: text/html; charset=iso-8859-1' . "\r\n".'From: '.$f."\r\n".'Reply-To: '.$f."\r\n".'X-Mailer: PHP/' . phpversion();
 
 mail($t, $s, $b, $h);
 
