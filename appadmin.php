@@ -13,38 +13,36 @@
 	</style>
 </head>
 <body>
+	<?php require_once('assets/partials/nav.php')?>
 	<!-- HTML here. -->
 	<h1>Bootstrap 4 template</h1>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
 	<div class="container">
-		<div class="row" id="cardcontainer">
-			<?php
-				$d = file_get_contents('assets/datahandler/dynamic.json');
-				$d = json_decode($d, true);
+		<h2>Admin</h2>
 
-				foreach( $d as $k => $v ) {
+		<?php
+			$d = file_get_contents('assets/datahandler/user.json');
+			$d = json_decode($d, true);
+		?>
+
+		<table class="table">
+			<tr>
+				<th>Image</th>
+				<th>Email</th>
+				<th>Change</th>
+			</tr>
+			<?php
+				foreach($d as $k => $v){
 					echo '
-						<div class="col-md-2 p-1">
-							<div class="card">
-								<div class="card-header">
-									<b>'.$v['hn'].'</b>
-								</div>
-								<img class="card-img-top" src="'.$v['img'].'">
-								<div class="card-body">
-									<p class="card-text">
-										<b>Real Name:</b><br>
-										'.$v['rn'].'
-										<br><br>
-										<b>City:</b><br>
-										'.$v['city'].'
-									</p>
-								</div>
-							</div>
-						</div>
+						<tr>
+							<td><img src="assets/datahandler/'.$v['img'].'"></td>
+							<td>'.$v['email'].'</td>
+							<td><a href="appedit.php?'.$k.'">edit</a> | <a href="appdelete.php?'.$k.'">delete</a></td>
+						</tr>
 					';
 				};
 			?>
-		</div>
+		</table>
 	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

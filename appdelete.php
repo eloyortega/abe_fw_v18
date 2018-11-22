@@ -13,38 +13,27 @@
 	</style>
 </head>
 <body>
+	<?php require_once('assets/partials/nav.php')?>
 	<!-- HTML here. -->
 	<h1>Bootstrap 4 template</h1>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
 	<div class="container">
-		<div class="row" id="cardcontainer">
-			<?php
-				$d = file_get_contents('assets/datahandler/dynamic.json');
-				$d = json_decode($d, true);
-
-				foreach( $d as $k => $v ) {
-					echo '
-						<div class="col-md-2 p-1">
-							<div class="card">
-								<div class="card-header">
-									<b>'.$v['hn'].'</b>
-								</div>
-								<img class="card-img-top" src="'.$v['img'].'">
-								<div class="card-body">
-									<p class="card-text">
-										<b>Real Name:</b><br>
-										'.$v['rn'].'
-										<br><br>
-										<b>City:</b><br>
-										'.$v['city'].'
-									</p>
-								</div>
-							</div>
-						</div>
-					';
-				};
-			?>
-		</div>
+		<h2>Registration</h2>
+		<form action="assets/datahandler/regprocess.php" method="post" enctype="multipart/form-data">
+			<label>Email <br>
+				<input type="text" name="email">
+			</label>
+			<br>
+			<label>Password <br>
+				<input type="password" name="pw">
+			</label>
+			<br>
+			<label>Photo <br>
+				<input type="file" name="userimg">
+			</label>
+			<br>
+			<input type="submit" value="Register">
+		</form>
 	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -10,49 +11,47 @@
 	<title>ABE Template 2018 | BS4 Template</title>
 	<style>
 		/*custom page css here*/
+
 	</style>
 </head>
+
 <body>
 	<!-- HTML here. -->
 	<h1>Bootstrap 4 template</h1>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
 	<div class="container">
-		<div class="row" id="cardcontainer">
-			<?php
-				$d = file_get_contents('assets/datahandler/dynamic.json');
-				$d = json_decode($d, true);
+		<div class="row">
+			<div id="draggable" class="col-md-1">
+				<p>I revert when I'm not dropped</p>
+			</div>
 
-				foreach( $d as $k => $v ) {
-					echo '
-						<div class="col-md-2 p-1">
-							<div class="card">
-								<div class="card-header">
-									<b>'.$v['hn'].'</b>
-								</div>
-								<img class="card-img-top" src="'.$v['img'].'">
-								<div class="card-body">
-									<p class="card-text">
-										<b>Real Name:</b><br>
-										'.$v['rn'].'
-										<br><br>
-										<b>City:</b><br>
-										'.$v['city'].'
-									</p>
-								</div>
-							</div>
-						</div>
-					';
-				};
-			?>
+			<div id="droppable" class="offset-md-5 col-md-6 p-3 bg-primary">
+			</div>
+
 		</div>
+
 	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/jqueryui.js"></script>
 	<script src="assets/js/popper.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
 		/* custom script here */
+		$("#draggable").draggable({
+			revert: 'invalid',
+			zIndex:20,
+			snapMode: 'inner',
+			snapTolerance: 30,
+			 stop: function( event, ui ) {
+				 $(this).css('zIndex','20');
+			 }
+		});
+
+		$("#droppable").droppable();
+
 	</script>
 </body>
+
 </html>
