@@ -1,4 +1,7 @@
 <?php
+
+$q = $_SERVER['QUERY_STRING'];
+
 $e = $_POST['email'];
 $p = $_POST['pw'];
 $u = $_FILES['userimg'];
@@ -6,13 +9,16 @@ $u = $_FILES['userimg'];
 $d = file_get_contents('user.json');
 $d = json_decode($d, true);
 
-$idx = end(array_keys($d));
-print_r ($idx);
+if( $e !== '' ){
+	$d[$q]['email'] = $e;
+};
 
-++$idx;
-echo $idx;
+if( $p !== '' ){
+	$d[$q]['pw'] = $p;
+};
 
-switch( $u['type'] ) {
+if( file_exists($u['tmp_name']) ){
+	switch( $u['type'] ) {
 	case 'image/jpeg':
 		$x = '.jpg';
 		break;
@@ -30,20 +36,17 @@ switch( $u['type'] ) {
 $t = $u['tmp_name'];
 
 if( $x != '' ){
-	$i = 'users/'.count($d).$x;
+	$i = 'users/'.$q.$x;
 	move_uploaded_file($t, $i);
 };
 
-$a = [
-	"email" => $e,
-	"pw" => $p,
-	"img" => $i
-];
+	$d[$q]['img'] = $i;
+};
 
-$d[$idx] = $a;
 print_r($d);
+
 $d = json_encode($d);
 file_put_contents('user.json', $d);
 
-header('location:../../applogin.php');
+header('location:../../appadmin.php');
 ?>

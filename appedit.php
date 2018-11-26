@@ -18,21 +18,30 @@
 	<h1>Bootstrap 4 template</h1>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
 	<div class="container">
-		<h2>Registration</h2>
-		<form action="assets/datahandler/regprocess.php" method="post" enctype="multipart/form-data">
-			<label>Email <br>
-				<input type="text" name="email">
+		<h2>Edit User</h2>
+		<?php
+		
+			$x = $_SERVER['QUERY_STRING'];
+
+			$d = file_get_contents('assets/datahandler/user.json');
+			$d = json_decode($d, true);
+			$d = $d[$x];
+
+		?>
+		<form action="assets/datahandler/editprocess.php?<?php echo $x?>" method="post" enctype="multipart/form-data">
+			<label>New Email <br>
+				<input type="text" name="email" value="<?php echo $d['email']?>">
 			</label>
 			<br>
-			<label>Password <br>
+			<label>New Password <br>
 				<input type="password" name="pw">
 			</label>
 			<br>
-			<label>Photo <br>
+			<label>New Photo <br>
 				<input type="file" name="userimg">
 			</label>
 			<br>
-			<input type="submit" value="Register">
+			<input type="submit" value="Edit">
 		</form>
 	</div>
 	<!-- Optional JavaScript -->
