@@ -8,16 +8,10 @@
 		<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
 			<ul class="navbar-nav">
 				<li class="nav-item dropdown active">
-					<a class="nav-link" href="index.html">Home</a>
+					<a class="nav-link" href="appbloglist.php">Home</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a class="nav-link" href="#">CSS Components</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link" href="#">JS Components</a>
-				</li>
-				<li class="nav-item dropdown">
-					<a class="nav-link" href="#">PHP Components</a>
+					<a class="nav-link" href="appblogcreate.php">Create</a>
 				</li>
 			</ul>
 		</div>
