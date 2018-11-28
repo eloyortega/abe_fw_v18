@@ -1,14 +1,21 @@
 <div class="col-md-4">
 	<?php
-		$d = file_get_contents('assets/datahandler/article.json');
-		$d = json_decode($d, true);
+		$articles = file_get_contents('assets/datahandler/article.json');
+		$articles = json_decode($articles, true);
 		//print_r($d);
 		$categories = [];
-		foreach( $d as $k => $v ) {
-			if(array_search($v['categories'], $categories) == false){
-				array_push( $categories, $v['categories'] );
+		foreach( $articles as $k => $v ) {
+			if(array_search($v['category'], $categories) == false){
+				array_push( $categories, $v['category'] );
 			};
 		};
-		print_r($categories);
-	?>
+		?>
+		<ul>
+			<li><a href="appbloglist.php">All</a></li>
+			<?php
+				foreach($categories as $i => $val){
+					echo '<li><a href="appbloglist.php?'.$val.'">'.$val.'</a></li>';			
+				};
+			?>
+		</ul>
 </div>

@@ -3,7 +3,7 @@
 		"date": "2018-11-27",
 		"category": "new category",
 		"title": "new article",
-		"article": "<p>new stuff<\/p>"
+		"article": "<p>new stuff in a blog post. I mean for real though. new stuff in a blog post. I mean for real though. new stuff in a blog post. I mean for real though. new stuff in a blog post. I mean for real though.<\/p>"
 	},
 	"5": {
 		"date": "2018-11-27",
@@ -11,17 +11,11 @@
 		"title": "blogtitle",
 		"article": "<p>this is another blog<\/p>"
 	},
-	"4": {
-		"date": "2018-11-27",
-		"category": "update",
-		"title": "blogtitle",
-		"article": "<p>wsup<\/p>"
-	},
 	"3": {
 		"date": "2018-11-27",
 		"category": "update",
 		"title": "blogtitle",
-		"article": "<p>wsup<\/p>"
+		"article": "<p>The fresh prince of belair was an overrated show.<\/p>"
 	},
 	"2": {
 		"date": "2018-11-27",
