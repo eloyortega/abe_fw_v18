@@ -58,27 +58,42 @@
 	<script>
 		/* custom script here */
 
-		var targetDate = new Date("11/6/2018");
+		var targetDate = new Date("11/30/2017");
 
 		setInterval(function() {
 
 			var todayDate = new Date();
 
 			if (todayDate < targetDate) {
-				var todayYrs = targetDate.getYear() - todayDate.getYear();
 
 				var timeDiff = Math.abs(todayDate.getTime() - targetDate.getTime());
-				var todayDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+				var totalDays = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+				
+				if ( totalDays >= 365 ){
+					var todayYrs = targetDate.getYear() - todayDate.getYear();
+					var todayDays = Math.floor(totalDays % 365);
+				} else{
+					var todayYrs = Math.floor( totalDays / 365 );
+					var todayDays = totalDays;
+				};
+
 
 				var todayHrs = 23 - todayDate.getHours();
 				var todayMin = 59 - todayDate.getMinutes();
 				var todaySec = 59 - todayDate.getSeconds();
 				var todayMSec = 1000 - todayDate.getMilliseconds();
 			} else {
-				var todayYrs = todayDate.getYear() - targetDate.getYear();
+				
 
 				var timeDiff = Math.abs( ( targetDate.getTime() - todayDate.getTime() ) );
-				var todayDays = Math.floor( timeDiff / (1000 * 60 * 60 * 24) );
+				var totalDays = Math.floor( timeDiff / (1000 * 60 * 60 * 24) );
+				if ( totalDays >= 365 ){
+					var todayYrs = todayDate.getYear() - targetDate.getYear();
+					var todayDays = Math.floor(totalDays % 365);
+				} else{
+					var todayYrs = Math.floor( totalDays / 365 );
+					var todayDays = totalDays;
+				};
 
 				var todayHrs = todayDate.getHours();
 				var todayMin = todayDate.getMinutes();
