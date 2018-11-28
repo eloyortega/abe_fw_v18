@@ -11,6 +11,15 @@
 	<title>ABE Template 2018 | BS4 Template</title>
 	<style>
 		/*custom page css here*/
+		.post{
+			display:none;
+		}
+		.post:nth-child(1),
+		.post:nth-child(2),
+		.post:nth-child(3){
+			display:block;
+		}
+		
 
 	</style>
 </head>
@@ -25,22 +34,25 @@
 			<?php require_once('assets/partials/sidebar.php')?>
 			<div class="col-md-8">
 				<?php
+					$x = $_SERVER['QUERY_STRING'];
+					$x = str_replace("%20"," ",$x);
+					
 					$d = file_get_contents('assets/datahandler/article.json');
 					$d = json_decode($d, true);
-					$c = 0;
-					foreach( $d as $k => $v ) {
-						if ( $c < 3 ) {
-							echo '
-								<div class="m-2 p-3 border">
-									<h2><a href="appblogarticle.php?'.$k.'">'.$v['title'].'</a></h2>
-									<h6>'.$v['date'].'</h6>
-									<div>'.$v['article'].'</div>
-								</div>
-							';
-							++$c;
-						};
+				foreach( $d as $k => $v ) {
+					if ( $x == $v['category'] || $x == '' ) {
+						echo '
+							<div class="m-2 p-3 border post">
+								<h2><a href="appblogarticle.php?'.$k.'">'.$v['title'].'</a></h2>
+								<h6>'.$v['date'].'</h6>
+								<div>'.substr($v['article'],0,100).'...</div>
+							</div>
+						';
+						++$c;
 					};
+				};
 				?>
+				<button class="next btn btn-primary">NEXT</button>
 			</div>
 		</div>
 	</div>
@@ -51,7 +63,18 @@
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
 		/* custom script here */
-
+		var c = 3;
+		
+		$('.next').click(function(){
+			if( c < $('.post').length ){
+				alert(c);
+				$('.post').hide();
+				$('.post:eq('+c+')').show();
+				$('.post:eq('+(c+1)+')').show();
+				$('.post:eq('+(c+2)+')').show();
+				c += 3;			
+			};
+		});		
 	</script>
 </body>
 

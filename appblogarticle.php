@@ -1,3 +1,10 @@
+<?php
+	$x = $_SERVER['QUERY_STRING'];
+	if( $x == '' ){
+		header('location:appbloglist.php');
+	};
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,7 +32,7 @@
 			<?php
 				$d = file_get_contents('assets/datahandler/article.json');
 				$d = json_decode($d, true);
-				$x = $_SERVER['QUERY_STRING'];
+
 				echo '
 					<h1>'.$d[$x]['title'].'</h1>
 					<h3>'.$d[$x]['date'].'</h3>
