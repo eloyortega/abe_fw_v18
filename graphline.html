@@ -32,10 +32,10 @@
 		data = [
 			{x: "jan", v: 10 },
 			{x: "feb", v: 3 },
-			{x: "mar", v: 16 },
+			{x: "mar", v: 19 },
 			{x: "apr", v: 2 },
 			{x: "may", v: 5 },
-			{x: "jun", v: 1 }
+			{x: "jun", v: 0 },
 		];
 
 		values = [];
@@ -101,7 +101,7 @@
 		
 		ctx.stroke();
 
-		alert(gpa);		
+		//alert(gpa);
 		ctx.font = "20px arial";
 		ctx.textAlign = "right";
 		ctx.textBaseline = "middle";
@@ -110,63 +110,38 @@
 			ctx.fillText(yaxisplots[i], 90, gpa[i]);
 		};
 
-//						ctx.fillText(yaxisplots[0], 90, gpa[0]);
-//		ctx.fillText("20", 90, 100);
-//		ctx.fillText("18", 90, 140);
-//		ctx.fillText("16", 90, 180);
-//		ctx.fillText("14", 90, 220);
-//		ctx.fillText("12", 90, 260);
-//		ctx.fillText("10", 90, 300);
-//		ctx.fillText("8", 90, 340);
-//		ctx.fillText("6", 90, 380);
-//		ctx.fillText("4", 90, 420);
-//		ctx.fillText("2", 90, 460);
-//		ctx.fillText("0", 90, 500);
-
 		ctx.textBaseline = "top";
-		ctx.fillText("Jan", 200, 510);
-		ctx.fillText("Feb", 300, 510);
-		ctx.fillText("Mar", 400, 510);
-		ctx.fillText("Apr", 500, 510);
-		ctx.fillText("May", 600, 510);
-		ctx.fillText("Jun", 700, 510);
 		
+		xplots = 600 / xaxisplots.length;
+		lpa = [xplots];
+
+		for(i=0; i < xaxisplots.length; ++i){
+			xplots += 100;
+			ctx.fillText(xaxisplots[i], xplots, 510);
+			lpa.push(xplots);
+		};
+
+//		alert(lpa);
+
 		ctx.beginPath();
-		ctx.moveTo(200, 300);
-		ctx.lineTo(300, 480);
-		ctx.lineTo(400, 180);
-		ctx.lineTo(500, 460);
-		ctx.lineTo(600, 400);
-		ctx.lineTo(700, 480);
+		ctx.moveTo(100, 500);
+
+		console.log(values);
+		console.log(300, 480, 180, 460, 400, 480);
+		for(i=0; i < values.length; ++i){
+			console.log( ( 400 - ( numceil * values[i] ) ) + 100 );
+			ctx.lineTo( lpa[i] + 100, ( 400 - ( numceil * values[i] ) + 100 ) );
+		};
+
 		ctx.strokeStyle = "red";
 		ctx.stroke();
-		
-		ctx.beginPath();
-		ctx.arc(200, 300, 5, 0, 2 * Math.PI);
-		ctx.fillStyle = "blue";
-		ctx.fill();
-				ctx.beginPath();
-		ctx.arc(300, 480, 5, 0, 2 * Math.PI);
-		ctx.fillStyle = "blue";
-		ctx.fill();
-		ctx.beginPath();
-		ctx.arc(400, 180, 5, 0, 2 * Math.PI);
-		ctx.fillStyle = "blue";
-		ctx.fill();
-				ctx.beginPath();
-		ctx.arc(500, 460, 5, 0, 2 * Math.PI);
-		ctx.fillStyle = "blue";
-		ctx.fill();
-				ctx.beginPath();
-		ctx.arc(600, 400, 5, 0, 2 * Math.PI);
-		ctx.fillStyle = "blue";
-		ctx.fill();
-				ctx.beginPath();
-		ctx.arc(700, 480, 5, 0, 2 * Math.PI);
-		ctx.fillStyle = "blue";
-		ctx.fill();
-		
-		
+
+		for(i=0; i < values.length; ++i){
+			ctx.beginPath();
+			ctx.arc(lpa[i] + 100, ( 400 - ( numceil * values[i] ) + 100 ), 5, 0, 2 * Math.PI);
+			ctx.fillStyle = "blue";
+			ctx.fill();
+		};
 	</script>
 </body>
 </html>
