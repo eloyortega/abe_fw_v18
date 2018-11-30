@@ -10,15 +10,18 @@
 	<title>ABE Template 2018 | BS4 Template</title>
 	<style>
 		/*custom page css here*/
+		#linegraph{background:#eee;}
 	</style>
 </head>
 <body>
 	<!-- HTML here. -->
 	<h1>Bootstrap 4 template</h1>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<canvas id="linegraph" width="710" height="600"></canvas>
 	<p id="val">Values: </p>
 	<p id="large">Largest Value: </p>
 	<p id="yaxis">y axis: </p>
+	<p id="xaxis">x axis: </p>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="assets/js/jquery.js"></script>
@@ -34,27 +37,28 @@
 			{x: "may", v: 5 },
 			{x: "jun", v: 1 }
 		];
-		
+
 		values = [];
-		
+		xaxisplots = [];
+
 		for(i in data){
 			values.push( data[i]['v'] );
+			xaxisplots.push( data[i]['x'] );
 		}
-		
+
 		largestvalue = Math.max(...values); 
 
 		$('#val').append(values);
 		$('#large').append(largestvalue);
 		
 		for(i=0; i<10; ++i){
-			//alert (largestvalue % 5)
 			if( largestvalue % 10 == 0 ){
-				numceil = largestvalue;			
+				numceil = largestvalue;
  			}else {
-				++largestvalue 
-			}		
+				++largestvalue;
+			};
 		};
-		
+
 		plot = numceil / 10;
 		nextplot = plot;
 		yaxisplots = [0, nextplot];
@@ -63,11 +67,118 @@
 			nextplot += plot;
 			yaxisplots.push(nextplot);
 		};
-		
+		yaxisplots.reverse();
+
 		for( i in yaxisplots ){
 			$('#yaxis').append( '<br>'+yaxisplots[i] );
 		};
 
+		for( i=0; i<xaxisplots.length; ++i ){
+			$('#xaxis').append( '<br>'+xaxisplots[i] );
+		};
+
+		var c = document.getElementById("linegraph");
+		var ctx = c.getContext("2d");
+		ctx.beginPath();
+		ctx.moveTo(100, 100);
+		ctx.lineTo(100, 500);
+		
+		ctx.moveTo(700, 100);
+		ctx.lineTo(700, 500);
+		
+		ctx.moveTo(100, 100);
+		ctx.lineTo(700, 100);
+		
+		ctx.moveTo(100, 140);
+		ctx.lineTo(700, 140);
+		
+		ctx.moveTo(100, 180);
+		ctx.lineTo(700, 180);
+		
+		ctx.moveTo(100, 220);
+		ctx.lineTo(700, 220);
+		
+		ctx.moveTo(100, 260);
+		ctx.lineTo(700, 260);
+		
+		ctx.moveTo(100, 300);
+		ctx.lineTo(700, 300);
+		
+		ctx.moveTo(100, 340);
+		ctx.lineTo(700, 340);
+		
+		ctx.moveTo(100, 380);
+		ctx.lineTo(700, 380);
+		
+		ctx.moveTo(100, 420);
+		ctx.lineTo(700, 420);
+		
+		ctx.moveTo(100, 460);
+		ctx.lineTo(700, 460);
+		
+		ctx.moveTo(100, 500);
+		ctx.lineTo(700, 500);
+		ctx.stroke();
+		
+		ctx.font = "20px arial";
+		ctx.textAlign = "right";
+		ctx.textBaseline = "middle";
+		
+		ctx.fillText("20", 90, 100);
+		ctx.fillText("18", 90, 140);
+		ctx.fillText("16", 90, 180);
+		ctx.fillText("14", 90, 220);
+		ctx.fillText("12", 90, 260);
+		ctx.fillText("10", 90, 300);
+		ctx.fillText("8", 90, 340);
+		ctx.fillText("6", 90, 380);
+		ctx.fillText("4", 90, 420);
+		ctx.fillText("2", 90, 460);
+		ctx.fillText("0", 90, 500);
+
+		ctx.textBaseline = "top";
+		ctx.fillText("Jan", 200, 510);
+		ctx.fillText("Feb", 300, 510);
+		ctx.fillText("Mar", 400, 510);
+		ctx.fillText("Apr", 500, 510);
+		ctx.fillText("May", 600, 510);
+		ctx.fillText("Jun", 700, 510);
+		
+		ctx.beginPath();
+		ctx.moveTo(200, 300);
+		ctx.lineTo(300, 480);
+		ctx.lineTo(400, 180);
+		ctx.lineTo(500, 460);
+		ctx.lineTo(600, 400);
+		ctx.lineTo(700, 480);
+		ctx.strokeStyle = "red";
+		ctx.stroke();
+		
+		ctx.beginPath();
+		ctx.arc(200, 300, 5, 0, 2 * Math.PI);
+		ctx.fillStyle = "blue";
+		ctx.fill();
+				ctx.beginPath();
+		ctx.arc(300, 480, 5, 0, 2 * Math.PI);
+		ctx.fillStyle = "blue";
+		ctx.fill();
+		ctx.beginPath();
+		ctx.arc(400, 180, 5, 0, 2 * Math.PI);
+		ctx.fillStyle = "blue";
+		ctx.fill();
+				ctx.beginPath();
+		ctx.arc(500, 460, 5, 0, 2 * Math.PI);
+		ctx.fillStyle = "blue";
+		ctx.fill();
+				ctx.beginPath();
+		ctx.arc(600, 400, 5, 0, 2 * Math.PI);
+		ctx.fillStyle = "blue";
+		ctx.fill();
+				ctx.beginPath();
+		ctx.arc(700, 480, 5, 0, 2 * Math.PI);
+		ctx.fillStyle = "blue";
+		ctx.fill();
+		
 		
 	</script>
 </body>
