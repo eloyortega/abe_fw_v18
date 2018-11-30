@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>ABE Template 2018 | BS4 Template</title>
+	<style>
+		/*custom page css here*/
+	</style>
+</head>
+<body>
+	<!-- HTML here. -->
+	<h1>Bootstrap 4 template</h1>
+	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
+	<p id="val">Values: </p>
+	<p id="large">Largest Value: </p>
+	<p id="yaxis">y axis: </p>
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="assets/js/jquery.js"></script>
+	<script src="assets/js/popper.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script>
+		/* custom script here */
+		data = [
+			{x: "jan", v: 10 },
+			{x: "feb", v: 3 },
+			{x: "mar", v: 16 },
+			{x: "apr", v: 2 },
+			{x: "may", v: 5 },
+			{x: "jun", v: 1 }
+		];
+		
+		values = [];
+		
+		for(i in data){
+			values.push( data[i]['v'] );
+		}
+		
+		largestvalue = Math.max(...values); 
+
+		$('#val').append(values);
+		$('#large').append(largestvalue);
+		
+		for(i=0; i<10; ++i){
+			//alert (largestvalue % 5)
+			if( largestvalue % 10 == 0 ){
+				numceil = largestvalue;			
+ 			}else {
+				++largestvalue 
+			}		
+		};
+		
+		plot = numceil / 10;
+		nextplot = plot;
+		yaxisplots = [0, nextplot];
+
+		for(i=0; i<9; ++i){
+			nextplot += plot;
+			yaxisplots.push(nextplot);
+		};
+		
+		for( i in yaxisplots ){
+			$('#yaxis').append( '<br>'+yaxisplots[i] );
+		};
+
+		
+	</script>
+</body>
+</html>
