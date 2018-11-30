@@ -77,6 +77,10 @@
 			$('#xaxis').append( '<br>'+xaxisplots[i] );
 		};
 
+		gridplot = 100;
+		gpa = [100];
+
+		
 		var c = document.getElementById("linegraph");
 		var ctx = c.getContext("2d");
 		ctx.beginPath();
@@ -85,56 +89,39 @@
 		
 		ctx.moveTo(700, 100);
 		ctx.lineTo(700, 500);
+
+		//build grid lines
 		
-		ctx.moveTo(100, 100);
-		ctx.lineTo(700, 100);
+		for(i = 0; i<11; ++i){
+			ctx.moveTo(100, gridplot);
+			ctx.lineTo(700, gridplot);
+			gridplot += 40;
+			gpa.push(gridplot);
+		};
 		
-		ctx.moveTo(100, 140);
-		ctx.lineTo(700, 140);
-		
-		ctx.moveTo(100, 180);
-		ctx.lineTo(700, 180);
-		
-		ctx.moveTo(100, 220);
-		ctx.lineTo(700, 220);
-		
-		ctx.moveTo(100, 260);
-		ctx.lineTo(700, 260);
-		
-		ctx.moveTo(100, 300);
-		ctx.lineTo(700, 300);
-		
-		ctx.moveTo(100, 340);
-		ctx.lineTo(700, 340);
-		
-		ctx.moveTo(100, 380);
-		ctx.lineTo(700, 380);
-		
-		ctx.moveTo(100, 420);
-		ctx.lineTo(700, 420);
-		
-		ctx.moveTo(100, 460);
-		ctx.lineTo(700, 460);
-		
-		ctx.moveTo(100, 500);
-		ctx.lineTo(700, 500);
 		ctx.stroke();
-		
+
+		alert(gpa);		
 		ctx.font = "20px arial";
 		ctx.textAlign = "right";
 		ctx.textBaseline = "middle";
 		
-		ctx.fillText("20", 90, 100);
-		ctx.fillText("18", 90, 140);
-		ctx.fillText("16", 90, 180);
-		ctx.fillText("14", 90, 220);
-		ctx.fillText("12", 90, 260);
-		ctx.fillText("10", 90, 300);
-		ctx.fillText("8", 90, 340);
-		ctx.fillText("6", 90, 380);
-		ctx.fillText("4", 90, 420);
-		ctx.fillText("2", 90, 460);
-		ctx.fillText("0", 90, 500);
+		for(i=0; i<11; ++i){
+			ctx.fillText(yaxisplots[i], 90, gpa[i]);
+		};
+
+//						ctx.fillText(yaxisplots[0], 90, gpa[0]);
+//		ctx.fillText("20", 90, 100);
+//		ctx.fillText("18", 90, 140);
+//		ctx.fillText("16", 90, 180);
+//		ctx.fillText("14", 90, 220);
+//		ctx.fillText("12", 90, 260);
+//		ctx.fillText("10", 90, 300);
+//		ctx.fillText("8", 90, 340);
+//		ctx.fillText("6", 90, 380);
+//		ctx.fillText("4", 90, 420);
+//		ctx.fillText("2", 90, 460);
+//		ctx.fillText("0", 90, 500);
 
 		ctx.textBaseline = "top";
 		ctx.fillText("Jan", 200, 510);
