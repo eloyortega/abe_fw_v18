@@ -10,18 +10,28 @@
 	<title>ABE Template 2018 | BS4 Template</title>
 	<style>
 		/*custom page css here*/
-		#linegraph{background:#eee;}
+		#linegraph {
+			background: #eee;
+		}
 	</style>
 </head>
+
 <body>
 	<!-- HTML here. -->
 	<h1>Bootstrap 4 template</h1>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
-	<canvas id="linegraph" width="710" height="600"></canvas>
-	<p id="val">Values: </p>
-	<p id="large">Largest Value: </p>
-	<p id="yaxis">y axis: </p>
-	<p id="xaxis">x axis: </p>
+	<div class="container">
+		<canvas id="linegraph" width="710" height="600"></canvas>
+		<form id="dataform">
+			<table class="table datatable">
+				<tr>
+					<th>X Axis</th>
+					<th>Value</th>
+					<th>Delete</th>
+				</tr>
+			</table>
+		</form>
+	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="assets/js/jquery.js"></script>
@@ -29,6 +39,114 @@
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
 		/* custom script here */
+		function graphbuilder() {
+			values = [];
+			xaxisplots = [];
+
+			for (i in d) {
+				values.push(d[i]['v']);
+				xaxisplots.push(d[i]['x']);
+				$(".datatable").append(`
+					<tr id="d${i}">
+						<td><input type="text" name="x${i}" value="${d[i]['x']}"></td>
+						<td><input type="text" name="v${i}" value="${d[i]['v']}"></td>
+						<td><input type="radio" name="delete" value="${i}"></td>
+					</tr>
+				`);
+			};
+
+			$(".datatable").append(`
+				<tr>
+					<td colspan="3">
+						<button class="btn btn-primary btn-block addAnotherBtn">Add Another Row</button>
+					</td>
+				</tr>
+			`);
+
+			largestvalue = Math.max(...values);
+
+			for (i = 0; i < 10; ++i) {
+				if (largestvalue % 10 == 0) {
+					numceil = largestvalue;
+				} else {
+					++largestvalue;
+				};
+			};
+
+			plot = numceil / 10;
+			nextplot = plot;
+			yaxisplots = [0, nextplot];
+
+			for (i = 0; i < 9; ++i) {
+				nextplot += plot;
+				yaxisplots.push(nextplot);
+			};
+
+			yaxisplots.reverse();
+
+			gridplot = 100;
+			gpa = [100];
+
+			var c = document.getElementById("linegraph");
+			var ctx = c.getContext("2d");
+			ctx.beginPath();
+			ctx.moveTo(100, 100);
+			ctx.lineTo(100, 500);
+
+			ctx.moveTo(700, 100);
+			ctx.lineTo(700, 500);
+
+			//build grid lines
+
+			for (i = 0; i < 11; ++i) {
+				ctx.moveTo(100, gridplot);
+				ctx.lineTo(700, gridplot);
+				gridplot += 40;
+				gpa.push(gridplot);
+			};
+
+			ctx.stroke();
+
+			ctx.font = "12px arial";
+			ctx.textAlign = "right";
+			ctx.textBaseline = "middle";
+
+			for (i = 0; i < 11; ++i) {
+				ctx.fillText(yaxisplots[i], 90, gpa[i]);
+			};
+
+			ctx.textBaseline = "top";
+
+			xplots = 600 / xaxisplots.length;
+			xplots = Math.floor(xplots);
+			xplotfirst = xplots + 100;
+			lpa = [xplotfirst];
+
+			for (i = 0; i < xaxisplots.length; ++i) {
+				ctx.fillText(xaxisplots[i], xplotfirst, 510);
+				xplotfirst += xplots;
+				lpa.push(xplotfirst);
+			};
+
+			ctx.beginPath();
+			ctx.moveTo(100, 500);
+
+			for (i = 0; i < values.length; ++i) {
+				ctx.lineTo(lpa[i], (400 - ((values[i] / numceil) * 400) + 100));
+			};
+
+			ctx.strokeStyle = "red";
+			ctx.stroke();
+
+			for (i = 0; i < values.length; ++i) {
+				ctx.beginPath();
+				ctx.arc(lpa[i], (400 - ((values[i] / numceil) * 400) + 100), 5, 0, 2 * Math.PI);
+				ctx.fillStyle = "blue";
+				ctx.fill();
+			};
+		};
+
+
 		$.ajax({
 			url: 'graph.json',
 			type: 'get',
@@ -38,128 +156,55 @@
 				console.log(data);
 			},
 			success: function(data) {
-				data = data;
-
-			};
+				console.log(data);
+				d = data;
+				graphbuilder();
+			}
 		});
-//		data = [
-//			{x: "jan", v: 115 },
-//			{x: "feb", v: 20 },
-//			{x: "mar", v: 814 },
-//			{x: "apr", v: 51 },
-//			{x: "may", v: 513 },
-//			{x: "jun", v: 452 }
-//		];
-
-		values = [];
-		xaxisplots = [];
-
-		for(i in data){
-			values.push( data[i]['v'] );
-			xaxisplots.push( data[i]['x'] );
-		}
-
-		largestvalue = Math.max(...values); 
 		
-		for(i=0; i<10; ++i){
-			if( largestvalue % 10 == 0 ){
-				numceil = largestvalue;
- 			}else {
-				++largestvalue;
-			};
-		};
-
-		plot = numceil / 10;
-		nextplot = plot;
-		yaxisplots = [0, nextplot];
-
-		for(i=0; i<9; ++i){
-			nextplot += plot;
-			yaxisplots.push(nextplot);
-		};
-
-		yaxisplots.reverse();
-
-		gridplot = 100;
-		gpa = [100];
+			$(document).on('click', '.addAnotherBtn', function() {
+				newid=$(this).parents('tr').prev().attr('id');
+				newid = newid.replace('d','');
+				newid = Number(newid);
+				++newid;
+			var addAnother = $(this).parents('tr').before(`<tr id="d${newid}">
+						<td>
+							<input type="text" name="x${newid}">
+						</td>
+						<td>
+							<input type="text" name="v${newid}">
+						</td>
+						<td>
+							<input type="radio" name="delete" value="${newid}">
+						</td>
+					</tr>`);
+			return false;
+		});
 		
-		var c = document.getElementById("linegraph");
-		var ctx = c.getContext("2d");
-		ctx.beginPath();
-		ctx.moveTo(100, 100);
-		ctx.lineTo(100, 500);
+		//onchange
+		$(document).on('change', 'input', function() {
+			console.log(this.value);
+			$("#dataform").submit();
+		});
 		
-		ctx.moveTo(700, 100);
-		ctx.lineTo(700, 500);
-
-		//build grid lines
-		
-		for(i = 0; i<11; ++i){
-			ctx.moveTo(100, gridplot);
-			ctx.lineTo(700, gridplot);
-			gridplot += 40;
-			gpa.push(gridplot);
-		};
-		
-		ctx.stroke();
-
-		//alert(gpa);
-		ctx.font = "12px arial";
-		ctx.textAlign = "right";
-		ctx.textBaseline = "middle";
-		
-		for(i=0; i<11; ++i){
-			ctx.fillText(yaxisplots[i], 90, gpa[i]);
-		};
-
-		ctx.textBaseline = "top";
-		
-		xplots = 600 / xaxisplots.length;
-		xplots = Math.floor(xplots);
-		xplotfirst = xplots + 100;
-		lpa = [xplotfirst];
-		//alert(xplotfirst);
-		//alert(600/7);
-		
-		for(i=0; i < xaxisplots.length; ++i){
-			ctx.fillText(xaxisplots[i], xplotfirst, 510);
-			xplotfirst += xplots;
-			lpa.push(xplotfirst);
-		};
-
-		//alert("lpa: "+lpa);
-
-		ctx.beginPath();
-		ctx.moveTo(100, 500);
-
-		//alert("values: "+values+". length: "+values.length);
-		for(i=0; i < values.length; ++i){
-			console.log( ( 400 - ( numceil * values[i] ) ) + 100 );
-			ctx.lineTo( lpa[i], ( 400-((values[i]/numceil) * 400)  + 100 ) );
-		};
-
-		ctx.strokeStyle = "red";
-		ctx.stroke();
-
-		for(i=0; i < values.length; ++i){
-			ctx.beginPath();
-			ctx.arc(lpa[i], ( 400-((values[i]/numceil) * 400)  + 100  ), 5, 0, 2 * Math.PI);
-			ctx.fillStyle = "blue";
-			ctx.fill();
-		};
-
-		
-		$('#val').append(values);
-		$('#large').append(largestvalue);
-
-		for( i in yaxisplots ){
-			$('#yaxis').append( '<br>'+yaxisplots[i] );
-		};
-
-		for( i=0; i<xaxisplots.length; ++i ){
-			$('#xaxis').append( '<br>'+xaxisplots[i] );
-		};
-
+					$("#dataform").submit(function(e) {
+				formData = new FormData($(this)[0]);
+				for(var pair of formData.entries()) {
+					console.log(pair[0]+ ', '+ pair[1]); 
+				}
+				$.ajax({
+				url: "graph.php",
+				type: "POST",
+				data: formData,
+				cache: false,
+				contentType: false,
+				processData: false,
+				success: function() {
+					console.log('got here');
+				}
+				});
+				e.preventDefault();
+			});
 
 	</script>
 </body>
