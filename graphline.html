@@ -29,14 +29,27 @@
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
 		/* custom script here */
-		data = [
-			{x: "jan", v: 10 },
-			{x: "feb", v: 3 },
-			{x: "mar", v: 19 },
-			{x: "apr", v: 2 },
-			{x: "may", v: 5 },
-			{x: "jun", v: 0 },
-		];
+		$.ajax({
+			url: 'graph.json',
+			type: 'get',
+			dataType: 'JSON',
+			cache: false,
+			error: function(data) {
+				console.log(data);
+			},
+			success: function(data) {
+				data = data;
+
+			};
+		});
+//		data = [
+//			{x: "jan", v: 115 },
+//			{x: "feb", v: 20 },
+//			{x: "mar", v: 814 },
+//			{x: "apr", v: 51 },
+//			{x: "may", v: 513 },
+//			{x: "jun", v: 452 }
+//		];
 
 		values = [];
 		xaxisplots = [];
@@ -47,9 +60,6 @@
 		}
 
 		largestvalue = Math.max(...values); 
-
-		$('#val').append(values);
-		$('#large').append(largestvalue);
 		
 		for(i=0; i<10; ++i){
 			if( largestvalue % 10 == 0 ){
@@ -67,19 +77,11 @@
 			nextplot += plot;
 			yaxisplots.push(nextplot);
 		};
+
 		yaxisplots.reverse();
-
-		for( i in yaxisplots ){
-			$('#yaxis').append( '<br>'+yaxisplots[i] );
-		};
-
-		for( i=0; i<xaxisplots.length; ++i ){
-			$('#xaxis').append( '<br>'+xaxisplots[i] );
-		};
 
 		gridplot = 100;
 		gpa = [100];
-
 		
 		var c = document.getElementById("linegraph");
 		var ctx = c.getContext("2d");
@@ -102,7 +104,7 @@
 		ctx.stroke();
 
 		//alert(gpa);
-		ctx.font = "20px arial";
+		ctx.font = "12px arial";
 		ctx.textAlign = "right";
 		ctx.textBaseline = "middle";
 		
@@ -113,24 +115,27 @@
 		ctx.textBaseline = "top";
 		
 		xplots = 600 / xaxisplots.length;
-		lpa = [xplots];
-
+		xplots = Math.floor(xplots);
+		xplotfirst = xplots + 100;
+		lpa = [xplotfirst];
+		//alert(xplotfirst);
+		//alert(600/7);
+		
 		for(i=0; i < xaxisplots.length; ++i){
-			xplots += 100;
-			ctx.fillText(xaxisplots[i], xplots, 510);
-			lpa.push(xplots);
+			ctx.fillText(xaxisplots[i], xplotfirst, 510);
+			xplotfirst += xplots;
+			lpa.push(xplotfirst);
 		};
 
-//		alert(lpa);
+		//alert("lpa: "+lpa);
 
 		ctx.beginPath();
 		ctx.moveTo(100, 500);
 
-		console.log(values);
-		console.log(300, 480, 180, 460, 400, 480);
+		//alert("values: "+values+". length: "+values.length);
 		for(i=0; i < values.length; ++i){
 			console.log( ( 400 - ( numceil * values[i] ) ) + 100 );
-			ctx.lineTo( lpa[i] + 100, ( 400 - ( numceil * values[i] ) + 100 ) );
+			ctx.lineTo( lpa[i], ( 400-((values[i]/numceil) * 400)  + 100 ) );
 		};
 
 		ctx.strokeStyle = "red";
@@ -138,10 +143,24 @@
 
 		for(i=0; i < values.length; ++i){
 			ctx.beginPath();
-			ctx.arc(lpa[i] + 100, ( 400 - ( numceil * values[i] ) + 100 ), 5, 0, 2 * Math.PI);
+			ctx.arc(lpa[i], ( 400-((values[i]/numceil) * 400)  + 100  ), 5, 0, 2 * Math.PI);
 			ctx.fillStyle = "blue";
 			ctx.fill();
 		};
+
+		
+		$('#val').append(values);
+		$('#large').append(largestvalue);
+
+		for( i in yaxisplots ){
+			$('#yaxis').append( '<br>'+yaxisplots[i] );
+		};
+
+		for( i=0; i<xaxisplots.length; ++i ){
+			$('#xaxis').append( '<br>'+xaxisplots[i] );
+		};
+
+
 	</script>
 </body>
 </html>
