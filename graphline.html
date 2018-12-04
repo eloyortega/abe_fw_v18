@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -13,6 +14,11 @@
 		#linegraph {
 			background: #eee;
 		}
+
+		#tablecontainer {
+			padding-left: 20px
+		}
+
 	</style>
 </head>
 
@@ -20,17 +26,19 @@
 	<!-- HTML here. -->
 	<h1>Bootstrap 4 template</h1>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
-	<div class="container">
-		<canvas id="linegraph" width="710" height="600"></canvas>
-		<form id="dataform">
-			<table class="table datatable">
-				<tr>
-					<th>X Axis</th>
-					<th>Value</th>
-					<th>Delete</th>
-				</tr>
-			</table>
-		</form>
+	<div class="fluid-container">
+		<div class="row">
+			<div id="graph" class="col">
+<!-- this canvas will contain the line graph. -->
+				<canvas id="linegraph" width="710" height="450"></canvas>
+			</div>
+			<div id="tablecontainer" class="col">
+<!-- This form will contain a table full of inputs -->
+				<form id="dataform">
+					<table class="table datatable"></table>
+				</form>
+			</div>
+		</div>
 	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -39,13 +47,41 @@
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
 		/* custom script here */
-		function graphbuilder() {
+// Step 1: This function contains an ajax call to get the data in a json file
+		function getdata() {
+			$.ajax({
+				url: 'graph.json',
+				type: 'get',
+				dataType: 'JSON',
+				cache: false,
+				error: function(data) {
+					console.log(data);
+				},
+				success: function(data) {
+// Step 2: when the data is grabbed, do the following to build the graph and table...
+
+					//console.log(data);
+// Step 3: set the data to var 'd' 
+					d = data;
+// Step 4: init 2 empty arrays for the values and the x axis labels 
 			values = [];
 			xaxisplots = [];
-
+// Step 5: empty the table to redraw it
+			$(".datatable").empty();
+// Step 6: build the table headers
+			$(".datatable").append(`
+				<tr>
+					<th>X Axis</th>
+					<th>Value</th>
+					<th>Delete</th>
+				</tr>
+			`);
+// Step 7: loop through data which are multi-dimensional objects containing x axis labels and values
 			for (i in d) {
+// Step 8: push values and x axis labels into their own empty arrays
 				values.push(d[i]['v']);
 				xaxisplots.push(d[i]['x']);
+// Step 9: build the rest of the table generating a row that contains inputs. these inputs have values containing the x axis labels, values of a radio button. Lastly create a delete button that has a value set to the index of the key of the object to delete.
 				$(".datatable").append(`
 					<tr id="d${i}">
 						<td><input type="text" name="x${i}" value="${d[i]['x']}"></td>
@@ -54,7 +90,7 @@
 					</tr>
 				`);
 			};
-
+// Step 10: after the loop, create a button which will create an empty table row when clicked
 			$(".datatable").append(`
 				<tr>
 					<td colspan="3">
@@ -63,8 +99,10 @@
 				</tr>
 			`);
 
+// Step 11: to start the graph, find the largest value from the data
 			largestvalue = Math.max(...values);
 
+// Step 14: loop 10 times to find the nearest rounded-up number that's divisible by 10. This number will be the ceiling of the y axis. assign this number to var 'numceil'.
 			for (i = 0; i < 10; ++i) {
 				if (largestvalue % 10 == 0) {
 					numceil = largestvalue;
@@ -73,43 +111,49 @@
 				};
 			};
 
+// Step 15: divide number by 10 to find the incremental values to be used for the y axis
 			plot = numceil / 10;
 			nextplot = plot;
+// Step 16: start an array to store the y axis labels, starting at 0 followed by the increment value
 			yaxisplots = [0, nextplot];
-
+// Step 17: increment the y axis label and store to array 9 more times. Including 0, we will have 11 y axis values
 			for (i = 0; i < 9; ++i) {
 				nextplot += plot;
 				yaxisplots.push(nextplot);
 			};
-
+// Step 18: reverse the array
 			yaxisplots.reverse();
 
-			gridplot = 100;
-			gpa = [100];
+// Step 19: build the grid for the graph. start by creating the offset on the y axis of 25, create a plot that will increment by 40 to create the lines 40px apart from each other and store in an array.
+			gridoffset = 25;
+			gridplot = gridoffset;
+			gpa = [gridplot];
 
+// Step 20: select the canvas and clear it out as this function can be called repeatedly
 			var c = document.getElementById("linegraph");
 			var ctx = c.getContext("2d");
+			ctx.clearRect(0, 0, c.width, c.height);
+// Step 21: draw 2 vertical lines
 			ctx.beginPath();
-			ctx.moveTo(100, 100);
-			ctx.lineTo(100, 500);
+			ctx.strokeStyle = "#ccc";
+			ctx.moveTo(100, gridoffset);
+			ctx.lineTo(100, 425);
+			ctx.moveTo(700, gridoffset);
+			ctx.lineTo(700, 425);
 
-			ctx.moveTo(700, 100);
-			ctx.lineTo(700, 500);
-
-			//build grid lines
-
+// Step 22: loop 10 times to draw 11 horzontal lines 40px apart. as we increment the y coordinates, store them in the 'gpa' array above
 			for (i = 0; i < 11; ++i) {
 				ctx.moveTo(100, gridplot);
 				ctx.lineTo(700, gridplot);
 				gridplot += 40;
 				gpa.push(gridplot);
 			};
-
 			ctx.stroke();
 
 			ctx.font = "12px arial";
 			ctx.textAlign = "right";
 			ctx.textBaseline = "middle";
+			ctx.fillStyle = "black";
 
 			for (i = 0; i < 11; ++i) {
 				ctx.fillText(yaxisplots[i], 90, gpa[i]);
@@ -123,16 +167,16 @@
 			lpa = [xplotfirst];
 
 			for (i = 0; i < xaxisplots.length; ++i) {
-				ctx.fillText(xaxisplots[i], xplotfirst, 510);
+				ctx.fillText(xaxisplots[i], xplotfirst, 430);
 				xplotfirst += xplots;
 				lpa.push(xplotfirst);
 			};
 
 			ctx.beginPath();
-			ctx.moveTo(100, 500);
+			ctx.moveTo(100, 425);
 
 			for (i = 0; i < values.length; ++i) {
-				ctx.lineTo(lpa[i], (400 - ((values[i] / numceil) * 400) + 100));
+				ctx.lineTo(lpa[i], (400 - ((values[i] / numceil) * 400) + gridoffset));
 			};
 
 			ctx.strokeStyle = "red";
@@ -140,33 +184,21 @@
 
 			for (i = 0; i < values.length; ++i) {
 				ctx.beginPath();
-				ctx.arc(lpa[i], (400 - ((values[i] / numceil) * 400) + 100), 5, 0, 2 * Math.PI);
+				ctx.arc(lpa[i], (400 - ((values[i] / numceil) * 400) + gridoffset), 5, 0, 2 * Math.PI);
 				ctx.fillStyle = "blue";
 				ctx.fill();
 			};
+				}
+			});
 		};
 
+		getdata();
 
-		$.ajax({
-			url: 'graph.json',
-			type: 'get',
-			dataType: 'JSON',
-			cache: false,
-			error: function(data) {
-				console.log(data);
-			},
-			success: function(data) {
-				console.log(data);
-				d = data;
-				graphbuilder();
-			}
-		});
-		
-			$(document).on('click', '.addAnotherBtn', function() {
-				newid=$(this).parents('tr').prev().attr('id');
-				newid = newid.replace('d','');
-				newid = Number(newid);
-				++newid;
+		$(document).on('click', '.addAnotherBtn', function() {
+			newid = $(this).parents('tr').prev().attr('id');
+			newid = newid.replace('d', '');
+			newid = Number(newid);
+			++newid;
 			var addAnother = $(this).parents('tr').before(`<tr id="d${newid}">
 						<td>
 							<input type="text" name="x${newid}">
@@ -180,19 +212,19 @@
 					</tr>`);
 			return false;
 		});
-		
+
 		//onchange
 		$(document).on('change', 'input', function() {
 			console.log(this.value);
 			$("#dataform").submit();
 		});
-		
-					$("#dataform").submit(function(e) {
-				formData = new FormData($(this)[0]);
-				for(var pair of formData.entries()) {
-					console.log(pair[0]+ ', '+ pair[1]); 
-				}
-				$.ajax({
+
+		$("#dataform").submit(function(e) {
+			formData = new FormData($(this)[0]);
+			for (var pair of formData.entries()) {
+				console.log(pair[0] + ', ' + pair[1]);
+			}
+			$.ajax({
 				url: "graph.php",
 				type: "POST",
 				data: formData,
@@ -201,11 +233,13 @@
 				processData: false,
 				success: function() {
 					console.log('got here');
+					getdata();
 				}
-				});
-				e.preventDefault();
 			});
+			e.preventDefault();
+		});
 
 	</script>
 </body>
+
 </html>
