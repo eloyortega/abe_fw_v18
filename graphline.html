@@ -29,11 +29,11 @@
 	<div class="fluid-container">
 		<div class="row">
 			<div id="graph" class="col">
-<!-- this canvas will contain the line graph. -->
+				<!-- this canvas will contain the line graph. -->
 				<canvas id="linegraph" width="710" height="450"></canvas>
 			</div>
 			<div id="tablecontainer" class="col">
-<!-- This form will contain a table full of inputs -->
+				<!-- This form will contain a table full of inputs -->
 				<form id="dataform">
 					<table class="table datatable"></table>
 				</form>
@@ -46,8 +46,7 @@
 	<script src="assets/js/popper.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
-		/* custom script here */
-// Step 1: This function contains an ajax call to get the data in a json file
+		// Step 1: This function contains an ajax call to get the data in a json file
 		function getdata() {
 			$.ajax({
 				url: 'graph.json',
@@ -58,142 +57,155 @@
 					console.log(data);
 				},
 				success: function(data) {
-// Step 2: when the data is grabbed, do the following to build the graph and table...
-
+					// Step 2: when the data is grabbed, do the following to build the graph and table...
 					//console.log(data);
-// Step 3: set the data to var 'd' 
+					// Step 3: set the data to var 'd'
 					d = data;
-// Step 4: init 2 empty arrays for the values and the x axis labels 
-			values = [];
-			xaxisplots = [];
-// Step 5: empty the table to redraw it
-			$(".datatable").empty();
-// Step 6: build the table headers
-			$(".datatable").append(`
-				<tr>
-					<th>X Axis</th>
-					<th>Value</th>
-					<th>Delete</th>
-				</tr>
-			`);
-// Step 7: loop through data which are multi-dimensional objects containing x axis labels and values
-			for (i in d) {
-// Step 8: push values and x axis labels into their own empty arrays
-				values.push(d[i]['v']);
-				xaxisplots.push(d[i]['x']);
-// Step 9: build the rest of the table generating a row that contains inputs. these inputs have values containing the x axis labels, values of a radio button. Lastly create a delete button that has a value set to the index of the key of the object to delete.
-				$(".datatable").append(`
-					<tr id="d${i}">
-						<td><input type="text" name="x${i}" value="${d[i]['x']}"></td>
-						<td><input type="text" name="v${i}" value="${d[i]['v']}"></td>
-						<td><input type="radio" name="delete" value="${i}"></td>
-					</tr>
-				`);
-			};
-// Step 10: after the loop, create a button which will create an empty table row when clicked
-			$(".datatable").append(`
-				<tr>
-					<td colspan="3">
-						<button class="btn btn-primary btn-block addAnotherBtn">Add Another Row</button>
-					</td>
-				</tr>
-			`);
+					// Step 4: init 2 empty arrays for the values and the x axis labels 
+					values = [];
+					xaxisplots = [];
+					// Step 5: empty the table to redraw it
+					$(".datatable").empty();
+					// Step 6: build the table headers
+					$(".datatable").append(`
+						<tr>
+							<th>X Axis</th>
+							<th>Value</th>
+							<th>Delete</th>
+						</tr>
+					`);
+					// Step 7: loop through data which are multi-dimensional objects containing x axis labels and values
+					for (i in d) {
+						// Step 8: push values and x axis labels into their own empty arrays
+						values.push(d[i]['v']);
+						xaxisplots.push(d[i]['x']);
+						// Step 9: build the rest of the table generating a row that contains inputs. these inputs have values containing the x axis labels, values of a radio button. Lastly create a delete button that has a value set to the index of the key of the object to delete.
+						$(".datatable").append(`
+							<tr id="d${i}">
+								<td><input type="text" name="x${i}" value="${d[i]['x']}"></td>
+								<td><input type="text" name="v${i}" value="${d[i]['v']}"></td>
+								<td><input type="radio" name="delete" value="${i}"></td>
+							</tr>
+						`);
+					};
+					// Step 10: after the loop, create a button which will create an empty table row when clicked
+					$(".datatable").append(`
+						<tr>
+							<td colspan="3">
+								<button class="btn btn-primary btn-block addAnotherBtn">Add Another Row</button>
+							</td>
+						</tr>
+					`);
 
-// Step 11: to start the graph, find the largest value from the data
-			largestvalue = Math.max(...values);
+					// Step 11: to start the graph, find the largest value from the data
+					largestvalue = Math.max(...values);
 
-// Step 14: loop 10 times to find the nearest rounded-up number that's divisible by 10. This number will be the ceiling of the y axis. assign this number to var 'numceil'.
-			for (i = 0; i < 10; ++i) {
-				if (largestvalue % 10 == 0) {
-					numceil = largestvalue;
-				} else {
-					++largestvalue;
-				};
-			};
+					// Step 14: loop 10 times to find the nearest rounded-up number that's divisible by 10. This number will be the ceiling of the y axis. assign this number to var 'numceil'.
+					for (i = 0; i < 10; ++i) {
+						if (largestvalue % 10 == 0) {
+							numceil = largestvalue;
+						} else {
+							++largestvalue;
+						};
+					};
 
-// Step 15: divide number by 10 to find the incremental values to be used for the y axis
-			plot = numceil / 10;
-			nextplot = plot;
-// Step 16: start an array to store the y axis labels, starting at 0 followed by the increment value
-			yaxisplots = [0, nextplot];
-// Step 17: increment the y axis label and store to array 9 more times. Including 0, we will have 11 y axis values
-			for (i = 0; i < 9; ++i) {
-				nextplot += plot;
-				yaxisplots.push(nextplot);
-			};
-// Step 18: reverse the array
-			yaxisplots.reverse();
+					// Step 15: divide number by 10 to find the incremental values to be used for the y axis
+					plot = numceil / 10;
+					nextplot = plot;
+					// Step 16: start an array to store the y axis labels, starting at 0 followed by the increment value
+					yaxisplots = [0, nextplot];
+					// Step 17: increment the y axis label and store to array 9 more times. Including 0, we will have 11 y axis values
+					for (i = 0; i < 9; ++i) {
+						nextplot += plot;
+						yaxisplots.push(nextplot);
+					};
+					// Step 18: reverse the array
+					yaxisplots.reverse();
+					// Step 19: build the grid for the graph. start by creating the offset on the y axis of 25, create a plot that will increment by 40 to create the lines 40px apart from each other and store in an array.
+					gridoffset = 25;
+					gridplot = gridoffset;
+					gpa = [gridplot];
+					// Step 20: select the canvas and clear it out as this function can be called repeatedly
+					var c = document.getElementById("linegraph");
+					var ctx = c.getContext("2d");
+					ctx.clearRect(0, 0, c.width, c.height);
+					// Step 21: draw 2 vertical lines
+					ctx.beginPath();
+					ctx.strokeStyle = "#ccc";
+					ctx.lineWidth = "1";
+					ctx.moveTo(100, gridoffset);
+					ctx.lineTo(100, 425);
+					ctx.moveTo(700, gridoffset);
+					ctx.lineTo(700, 425);
 
-// Step 19: build the grid for the graph. start by creating the offset on the y axis of 25, create a plot that will increment by 40 to create the lines 40px apart from each other and store in an array.
-			gridoffset = 25;
-			gridplot = gridoffset;
-			gpa = [gridplot];
+					// Step 22: loop 10 times to draw 11 horzontal lines 40px apart. as we increment the y coordinates, store them in the 'gpa' array above to use later
+					for (i = 0; i < 11; ++i) {
+						ctx.moveTo(100, gridplot);
+						ctx.lineTo(700, gridplot);
+						gridplot += 40;
+						gpa.push(gridplot);
+					};
+					ctx.stroke();
 
-// Step 20: select the canvas and clear it out as this function can be called repeatedly
-			var c = document.getElementById("linegraph");
-			var ctx = c.getContext("2d");
-			ctx.clearRect(0, 0, c.width, c.height);
-// Step 21: draw 2 vertical lines
-			ctx.beginPath();
-			ctx.strokeStyle = "#ccc";
-			ctx.moveTo(100, gridoffset);
-			ctx.lineTo(100, 425);
-			ctx.moveTo(700, gridoffset);
-			ctx.lineTo(700, 425);
+					// Step 23: Create presets for y-axis labels
+					ctx.font = "12px arial";
+					ctx.textAlign = "right";
+					ctx.textBaseline = "middle";
+					ctx.fillStyle = "black";
+					// Step 24: Loop 11 times, using the array of y-axis labels and the array to y-axis coordinates and draw the labels
+					for (i = 0; i < 11; ++i) {
+						ctx.fillText(yaxisplots[i], 90, gpa[i]);
+					};
+					// Step 25: Before creating the x-axis labels, restyle the text baseline to top instead of middle
+					ctx.textBaseline = "top";
+					// Step 26: To space the x-axis labels divide the amout of labels by 600 to get the increment, the width of the graph, then offset the increment by the left margin, 100px. Lastly, create an array to store the x-axis coordinates
+					xplots = 600 / xaxisplots.length;
+					xplots = Math.floor(xplots);
+					xplotfirst = xplots + 100;
+					lpa = [xplotfirst];
 
-// Step 22: loop 10 times to draw 11 horzontal lines 40px apart. as we increment the y coordinates, store them in the 'gpa' array above
-			for (i = 0; i < 11; ++i) {
-				ctx.moveTo(100, gridplot);
-				ctx.lineTo(700, gridplot);
-				gridplot += 40;
-				gpa.push(gridplot);
-			};
-			ctx.stroke();
-
-			ctx.font = "12px arial";
-			ctx.textAlign = "right";
-			ctx.textBaseline = "middle";
-			ctx.fillStyle = "black";
-
-			for (i = 0; i < 11; ++i) {
-				ctx.fillText(yaxisplots[i], 90, gpa[i]);
-			};
-
-			ctx.textBaseline = "top";
-
-			xplots = 600 / xaxisplots.length;
-			xplots = Math.floor(xplots);
-			xplotfirst = xplots + 100;
-			lpa = [xplotfirst];
-
-			for (i = 0; i < xaxisplots.length; ++i) {
-				ctx.fillText(xaxisplots[i], xplotfirst, 430);
-				xplotfirst += xplots;
-				lpa.push(xplotfirst);
-			};
-
-			ctx.beginPath();
-			ctx.moveTo(100, 425);
-
-			for (i = 0; i < values.length; ++i) {
-				ctx.lineTo(lpa[i], (400 - ((values[i] / numceil) * 400) + gridoffset));
-			};
-
-			ctx.strokeStyle = "red";
-			ctx.stroke();
-
-			for (i = 0; i < values.length; ++i) {
-				ctx.beginPath();
-				ctx.arc(lpa[i], (400 - ((values[i] / numceil) * 400) + gridoffset), 5, 0, 2 * Math.PI);
-				ctx.fillStyle = "blue";
-				ctx.fill();
-			};
+					// Step 27: loop through x-axis labels to create the labels and vertical grid lines at each incremental coordinate. store the coordinates in the array above
+					for (i = 0; i < xaxisplots.length; ++i) {
+						ctx.fillText(xaxisplots[i], xplotfirst, 430);
+						ctx.beginPath();
+						ctx.strokeStyle = "#ccc";
+						ctx.moveTo(xplotfirst, 25);
+						ctx.lineTo(xplotfirst, 425);
+						ctx.stroke();
+						xplotfirst += xplots;
+						lpa.push(xplotfirst);
+					};
+					// Step 28: start the graph line.
+					ctx.beginPath();
+					ctx.moveTo(100, 425);
+					// Step 29: loop through values to plot the next point in the line, get th x coordinates the the x coord array and  use the following formula for the y coordinates:
+					//value / ceiling number X height of the grid (400px) then offset the coordinate due to the spacing for the y-axis labels. Finally subtract 400px so the lower the number, the lower the position
+					for (i = 0; i < values.length; ++i) {
+						ctx.lineTo(lpa[i], (400 - ((values[i] / numceil) * 400) + gridoffset));
+					};
+					//Step 30: Style the graph line
+					ctx.strokeStyle = "#aaa";
+					ctx.lineWidth = "3";
+					ctx.stroke();
+					// Step 31: Loop through again to draw graph points and text of values
+					for (i = 0; i < values.length; ++i) {
+						ctx.beginPath();
+						ctx.arc(lpa[i], (400 - ((values[i] / numceil) * 400) + gridoffset), 7, 0, 2 * Math.PI);
+						ctx.fillStyle = "blue";
+						ctx.fill();
+						ctx.textBaseline = "bottom";
+						ctx.textAlign = "center";
+						ctx.fillStyle = "black";
+						ctx.fillText(values[i], lpa[i], (400 - ((values[i] / numceil) * 400) + 15));
+					};
 				}
 			});
 		};
 
+//Step 32: run the graph builder on page load
 		getdata();
 
+// Step 33: function to create a new table row with unique key to use in json.
 		$(document).on('click', '.addAnotherBtn', function() {
 			newid = $(this).parents('tr').prev().attr('id');
 			newid = newid.replace('d', '');
@@ -213,12 +225,13 @@
 			return false;
 		});
 
-		//onchange
+// Step 34: when inputs change trigger form submission
 		$(document).on('change', 'input', function() {
 			console.log(this.value);
 			$("#dataform").submit();
 		});
 
+// Step 35: when form submitted, send data to php and run the graph builder again
 		$("#dataform").submit(function(e) {
 			formData = new FormData($(this)[0]);
 			for (var pair of formData.entries()) {
@@ -239,6 +252,7 @@
 			e.preventDefault();
 		});
 
+//look at graph.php to continue...
 	</script>
 </body>
 
