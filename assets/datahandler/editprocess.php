@@ -43,7 +43,7 @@ if( $x != '' ){
 	$d[$q]['img'] = $i;
 };
 
-print_r($d);
+//print_r($d);
 
 $d = json_encode($d);
 file_put_contents('user.json', $d);

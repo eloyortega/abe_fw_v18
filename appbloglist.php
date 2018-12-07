@@ -67,7 +67,7 @@
 		
 		$('.next').click(function(){
 			if( c < $('.post').length ){
-				alert(c);
+				//alert(c);
 				$('.post').hide();
 				$('.post:eq('+c+')').show();
 				$('.post:eq('+(c+1)+')').show();

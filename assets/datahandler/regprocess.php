@@ -41,7 +41,7 @@ $a = [
 ];
 
 $d[$idx] = $a;
-print_r($d);
+//print_r($d);
 $d = json_encode($d);
 file_put_contents('user.json', $d);
 
