@@ -19,30 +19,30 @@
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
 
 	<div class="container">
-		<p class="targetDate">Target Date: <b></b></p>
+		<p>Target Date: <b id="targetDate"></b></p>
 		<div class="row">
 			<div class="col-md text-center">
-				<h3 class="durationYear"></h3>
+				<h3 id="durationYear"></h3>
 				<p>years</p>
 			</div>
 			<div class="col-md text-center">
-				<h3 class="durationDay"></h3>
+				<h3 id="durationDay"></h3>
 				<p>days</p>
 			</div>
 			<div class="col-md text-center">
-				<h3 class="durationHr"></h3>
+				<h3 id="durationHr"></h3>
 				<p>hours</p>
 			</div>
 			<div class="col-md text-center">
-				<h3 class="durationMin"></h3>
+				<h3 id="durationMin"></h3>
 				<p>mins</p>
 			</div>
 			<div class="col-md text-center">
-				<h3 class="durationSec"></h3>
+				<h3 id="durationSec"></h3>
 				<p>secs</p>
 			</div>
 			<div class="col-md text-center">
-				<h3 class="durationMSec"></h3>
+				<h3 id="durationMSec"></h3>
 				<p>millsecs</p>
 			</div>
 
@@ -100,16 +100,17 @@
 				var todaySec = todayDate.getSeconds();
 				var todayMSec = todayDate.getMilliseconds();
 			};
+			
+			document.getElementById('durationYear').innerText = todayYrs;
+			document.getElementById('durationDay').innerText = todayDays;
+			document.getElementById('durationHr').innerText = todayHrs;
+			document.getElementById('durationMin').innerText = todayMin;
+			document.getElementById('durationSec').innerText = todaySec;
+			document.getElementById('durationMSec').innerText = todayMSec;
 
-			$('.durationYear').text(todayYrs);
-			$('.durationDay').text(todayDays);
-			$('.durationHr').text(todayHrs);
-			$('.durationMin').text(todayMin);
-			$('.durationSec').text(todaySec);
-			$('.durationMSec').text(todayMSec);
 		}, 1);
 
-		$('.targetDate b').append(targetDate.toLocaleDateString());
+		document.getElementById('targetDate').innerHTML = targetDate.toLocaleDateString();
 	</script>
 </body>
 </html>

@@ -54,7 +54,7 @@
 		// Step 1: This function contains an ajax call to get the data in a json file
 		function getdata() {
 			$.ajax({
-				url: 'graph.json',
+				url: 'assets/datahandler/graph.json',
 				type: 'get',
 				dataType: 'JSON',
 				cache: false,
@@ -250,7 +250,7 @@
 				console.log(pair[0] + ', ' + pair[1]);
 			}
 			$.ajax({
-				url: "graph.php",
+				url: "assets/datahandler/graph.php",
 				type: "POST",
 				data: formData,
 				cache: false,

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
@@ -43,12 +44,12 @@
 
 
 		<p id="demo"></p>
-		
+
 		<button onclick="openInNewTab('https://www.facebook.com')">click</button>
-		
+
 		<p id="scrinfo"></p>
 		<p id="addline"></p>
-		
+
 
 	</div>
 
@@ -59,8 +60,22 @@
 	<script src="assets/js/bootstrap.min.js"></script>
 
 	<script>
-		$("#txtcode").load("snippet.html");
+		//js partial injection
+		function load(url, element) {
+			req = new XMLHttpRequest();
+			req.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					// Typical action to be performed when the document is ready:
+					element.innerHTML = req.responseText;
+				}
+			};
+			req.open("GET", url, true);
+			req.send(null);
+		}
 
+		load("snippet.html", document.getElementById("txtcode"));
+
+//nested functions
 		function f(x) {
 			x *= 2;
 			return function(y) {
@@ -74,17 +89,18 @@
 		console.log(f);
 		console.log(g);
 
-		//detect IE Browsers
+//detect IE Browsers
 		var ua = window.navigator.userAgent;
 		var msie = ua.indexOf('MSIE ');
 		var trident = ua.indexOf('Trident/');
 		var edge = ua.indexOf('Edge/');
 
 		if ((msie > 0) || (edge > 0) || (trident > 0)) {
-			//alert('Why are you using IE');
+			console.log('Why are you using IE');
 		} else {
-			//alert(ua);
+			console.log(ua);
 		}
+
 		document.getElementById('brow').innerHTML = `
 			browser info:${ua}<br>
 			${navigator.appName}<br>
@@ -93,25 +109,29 @@
 			${navigator.platform}<br>
 			${navigator.onLine}<br>
 		`;
-		
 
+//Common Math Methods
 		a = Math.random();
-		$('#math1').append(a);
+		//$('#math1').append(a);
+		document.getElementById('math1').innerHTML += a;
 
 		b = a.toFixed(2) * 100;
 		b = Math.round(b);
-		$('#math2').html(b);
+		document.getElementById('math2').innerHTML += b;
 
 		c = a.toFixed(3) * 1000;
 		c = Math.round(c);
-		$('#math3').html(c);
+		document.getElementById('math3').innerHTML += c;
 
-		$('.math:eq(0)').append(Math.round(9.4));
-		$('.math:eq(1)').append(Math.ceil(9.4));
-		$('.math:eq(2)').append(Math.floor(9.7));
-		$('.math:eq(3)').append(Math.pow(3, 3));
-		$('.math:eq(4)').append(Math.sqrt(9));
+		cmath = document.getElementsByClassName('math');
 
+		cmath[0].innerHTML += Math.round(9.4);
+		cmath[1].innerHTML += Math.ceil(9.4);
+		cmath[2].innerHTML += Math.floor(9.7);
+		cmath[3].innerHTML += Math.pow(3, 3);
+		cmath[4].innerHTML += Math.sqrt(9);
+
+//Timing Methods
 		var i = 0;
 
 		sint = function() {
@@ -124,23 +144,25 @@
 			clearInterval(int);
 		};
 
-		$('#int').parent().hover(function() {
-			cint();
-		}, function() {
-			sint();
-		});
+		int = document.getElementById('int').parentElement;
+		int.onmouseover = function(){ cint(); };
+		int.onmouseout = function(){ sint(); };
 
 		sint();
 
+
+		//number sorting
 		var points = [40, 100, 1, 5, 25, 10];
 		points.sort(function(a, b) {
 			return a - b
 		});
+		console.log(points);
 
 		var numbers = [1, 2, 3, 4];
 		Math.max(...numbers) // 4
 		Math.min(...numbers) // 1
 
+//mouse coords
 		document.body.onmousemove = function(event) {
 			var pageCoords = "( " + event.pageX + ", " + event.pageY + " )";
 			var clientCoords = "( " + event.clientX + ", " + event.clientY + " )";
@@ -148,7 +170,7 @@
 		};
 
 
-
+//BOM
 		var w = window.innerWidth ||
 			document.documentElement.clientWidth ||
 			document.body.clientWidth;
@@ -164,7 +186,7 @@
 			var win = window.open(url, '_blank');
 			win.focus();
 		}
-		
+
 		document.getElementById("scrinfo").innerHTML = `
 			Screen width is: ${screen.width} <br>
 			Screen height is: ${screen.height} <br>
@@ -173,16 +195,16 @@
 			Screen color depth is: ${screen.colorDepth} <br>
 		
 		`;
-		
-		document.getElementById("addline").innerHTML =`
+
+		document.getElementById("addline").innerHTML = `
 			Page location is ${window.location.href}<br>
 			Page hostname is ${window.location.hostname}<br>
 			Page pathname is ${window.location.pathname}<br>
 			Page protocol is ${window.location.protocol}<br>
 			Page port is ${window.location.port}<br>
 		`;
-		
-		
+
 	</script>
 </body>
+
 </html>

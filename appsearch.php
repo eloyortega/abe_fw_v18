@@ -29,7 +29,12 @@
 			<?php
 				$d = file_get_contents('assets/datahandler/dynamic.json');
 				$d = json_decode($d, true);
-				$x = $_GET['query'];
+				if(isset($_GET['query'])){
+					$x = $_GET['query'];
+				} else {
+					$x = '';
+				}
+				
 
 				foreach( $d as $k => $v ) {
 					if( $x == '' || stripos($v['hn'], $x) !== false || stripos($v['city'], $x) !== false || stripos($v['rn'], $x) !== false ){
