@@ -38,6 +38,14 @@
 						<a class="dropdown-item" href="appblogcreate.php">Create Article</a>
 					</div>
 				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Graphs</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="appgraphbar.html">Bar Graph</a>
+						<a class="dropdown-item" href="appgraphline.html">Line Graph</a>
+						<a class="dropdown-item" href="appgraphpie.html">Pie Graph</a>
+					</div>
+				</li>
 						
 						
 						

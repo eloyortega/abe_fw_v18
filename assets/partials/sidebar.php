@@ -14,7 +14,7 @@
 			<li><a href="appbloglist.php">All</a></li>
 			<?php
 				foreach($categories as $i => $val){
-					echo '<li><a href="appbloglist.php?'.$val.'">'.$val.'</a></li>';			
+					echo '<li><a href="appbloglist.php?'.$val.'">'.$val.'</a></li>';
 				};
 			?>
 		</ul>
