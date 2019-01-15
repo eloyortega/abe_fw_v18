@@ -1,18 +1,20 @@
 <?php
 $t = $_POST['title'];
 $c = $_POST['category'];
-$d = $_POST['date'];
+//$d = $_POST['date'];
 $a = $_POST['article'];
 
 $data = file_get_contents('article.json');
 $data = json_decode($data, true);
 
-$idx = end(array_keys($data));
+
+
+$idx = count($data);
 
 ++$idx;
 
 $array = [
-	"date" => $d,
+//	"date" => $d,
 	"category" => $c,
 	"title" => $t,
 	"article" => $a

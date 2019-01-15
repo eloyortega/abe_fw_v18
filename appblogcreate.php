@@ -35,12 +35,14 @@
 						</label>
 					</div>
 					<br>
+<!--
 					<div class="form-group">
 						<label>Date<br>
 							<input type="date" name="date">
 						</label>
 					</div>
 					<br>
+-->
 					<div class="form-group">
 						<label>Article<br>
 							<textarea name="article" id="summernote"></textarea>

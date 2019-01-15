@@ -5,7 +5,7 @@
 		//print_r($d);
 		$categories = [];
 		foreach( $articles as $k => $v ) {
-			if(array_search($v['category'], $categories) == false){
+			if(array_search($v['category'], $categories) === false){
 				array_push( $categories, $v['category'] );
 			};
 		};

@@ -16,7 +16,14 @@
 		}
 		.post:nth-child(1),
 		.post:nth-child(2),
-		.post:nth-child(3){
+		.post:nth-child(3),
+		.post:nth-child(4),
+		.post:nth-child(5),
+		.post:nth-child(6),
+		.post:nth-child(7),
+		.post:nth-child(8),
+		.post:nth-child(9),
+		.post:nth-child(10){
 			display:block;
 		}
 		
@@ -44,11 +51,9 @@
 						echo '
 							<div class="m-2 p-3 border post">
 								<h2><a href="appblogarticle.php?'.$k.'">'.$v['title'].'</a></h2>
-								<h6>'.$v['date'].'</h6>
-								<div>'.substr($v['article'],0,100).'...</div>
+								<div>'.substr($v['article'],0,500).'...</div>
 							</div>
 						';
-						++$c;
 					};
 				};
 				?>
@@ -63,18 +68,16 @@
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script>
 		/* custom script here */
-		var c = 3;
+		var c = 10;
 		
 		$('.next').click(function(){
 			if( c < $('.post').length ){
 				//alert(c);
 				$('.post').hide();
-				$('.post:eq('+c+')').show();
-				$('.post:eq('+(c+1)+')').show();
-				$('.post:eq('+(c+2)+')').show();
-				c += 3;			
+				$('.post:eq('+c+'), .post:eq('+(c+1)+'), .post:eq('+(c+2)+'), .post:eq('+(c+3)+'), .post:eq('+(c+4)+'), .post:eq('+(c+5)+'), .post:eq('+(c+6)+'), .post:eq('+(c+7)+'), .post:eq('+(c+8)+'), .post:eq('+(c+9)+')').show();
+				c += 10;
 			};
-		});		
+		});
 	</script>
 </body>
 
