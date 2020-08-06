@@ -15,6 +15,8 @@
 			clear: both;
 		}
 
+
+		
 		fieldset {
 			border: none;
 			width: 100%;
@@ -92,7 +94,7 @@
 </head>
 
 <body>
-	<h1>Read More</h1>
+	<h1>Form Wizard</h1>
 	<p><a href="index.html" class="btn-primary btn">Back to Home</a></p>
 	<div class="container">
 
@@ -107,11 +109,11 @@
 			</div>
 			<fieldset>
 				<h1>This is Step 1</h1>
-				<input type="text" name="fn">
+				<input type="text" name="fn" placeholder="first name">
 				<br>
-				<input type="text" name="ln" required>
+				<input type="text" name="ln" required placeholder="last name">
 				<br>
-				<input type="email" name="em" required>
+				<input type="email" name="em" required placeholder="email">
 				<div class="pad10 fwcontrols">
 					<a class="nextstep">Next Section&nbsp;&rsaquo;</a>
 					<br class="clear" />
@@ -119,11 +121,10 @@
 			</fieldset>
 			<fieldset>
 				<h1>This is Step 2</h1>
-				<input type="text" name="fn1">
+				<input type="password" name="pwrd1" required placeholder="password">
 				<br>
-				<input type="text" name="ln1" required>
+				<input type="password" name="pwrd2" placeholder="confirm password">
 				<br>
-				<input type="email" name="em1" required>
 				<div class="fwcontrols">
 					<a class="prevstep">&lsaquo;&nbsp;Prev Section</a>
 					<a class="nextstep">Next Section&nbsp;&rsaquo;</a>
@@ -132,11 +133,14 @@
 			</fieldset>
 			<fieldset>
 				<h1>This is Step 3</h1>
+				<p>Form completed. Thank you.</p>
+<!--
 				<div class="fwcontrols">
 					<a class="prevstep">&lsaquo;&nbsp;Prev Section</a>
 					<a class="nextstep">Next Section&nbsp;&rsaquo;</a>
 					<br class="clear" />
 				</div>
+-->
 			</fieldset>
 		</form>
 	</div>
@@ -149,6 +153,7 @@
 	<script src="assets/js/bootstrap.min.js"></script>
 
 	<script>
+		//hi
 		$('.formWizard').each(function() {
 			$('fieldset', this).eq(0).addClass('curSec');
 			$('.formWizardSteps li', this).eq(0).addClass('fwscurrent');
@@ -160,13 +165,13 @@
 			$('.nextstep', this).click(function() {
 				//remove any error messages
 				$('.errmsg').remove();
-
+				console.log('next clicked', $("input[name=pwrd1]").val(), $("input[name=pwrd2]").val());
 				//loop through validate inputs
 				$(this).parents('fieldset').find('.validate').each(function() {
 					//grab the input's value
 					inputval = $(this).val();
 
-					//create an eror is input is empty
+					//create an error if input is empty
 					if (inputval == "") {
 						$(this).addClass('error');
 						errormsg = 'Please enter a value in the highlighed input';
@@ -190,6 +195,13 @@
 						};
 						//if input is valid, remove error class and set var to true
 						//at the end of the loop this var set as true will allow progression through the wizard
+					} else if ( $(this).attr('name') == 'pwrd1' ) {
+						if ( $("input[name=pwrd1]").val() != $("input[name=pwrd2]").val() ) {
+							console.log('no match');
+							$(this).addClass('error');
+							errormsg = 'Password mismatch';
+							proceed = false;
+						}
 					} else {
 						$(this).removeClass('error');
 						proceed = true;
